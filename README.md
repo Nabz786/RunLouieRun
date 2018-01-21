@@ -6,7 +6,7 @@ several new and cool features.
 
 Goals For Release #1: 
 - [ ] Setup IDE with all required and relevant plugins 
-- [ ] Implement a Hello-world style program and initialize LIBGDX
+- [ ] Implement a Hello-world style program
 - [ ] Connect all team-members to GITHUB, have them pull and push changes
 - [ ] Begin working on basic character movement 
 - [ ] Add several infinite runner style obstacles
