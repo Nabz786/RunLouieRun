@@ -6,6 +6,11 @@ import javafx.scene.chart.BubbleChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+/**********************************************************************
+ * This is the fx:controller class which links the scene builder
+ * members from the fxml file to code within this class
+ */
+
 public class MainMenuController {
 	
 	private String helloWorld = "Hello World!";
@@ -23,11 +28,4 @@ public class MainMenuController {
 			System.out.println(helloWorld);
 		});
 	}
-	
-//	@FXML
-//	private void buttonAction(ActionEvent e) {
-//		System.out.println("Click!");
-//	}
-	
-
 }
