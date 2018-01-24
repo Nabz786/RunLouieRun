@@ -11,15 +11,19 @@ import javafx.scene.Scene;
  * the user at the main menu screen. 
  *
  *********************************************************************/
-
-//hi
-//hello
 public class Main extends Application {
+	
+	/** Int for the with of the program window **/
+	private final int windowWidth = 650;
+	
+	/** Int of the height of the program window **/
+	private final int windowHeight = 400;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("MainMenuStyle.fxml"));
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,windowWidth,windowHeight);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Run Louie Run");
