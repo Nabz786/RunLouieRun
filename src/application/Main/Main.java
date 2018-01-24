@@ -14,16 +14,16 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	/** Int for the with of the program window **/
-	private final int windowWidth = 650;
+	private static final int WIDTH = 650;
 	
 	/** Int of the height of the program window **/
-	private final int windowHeight = 400;
+	private static final int HEIGHT = 400;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("MainMenuStyle.fxml"));
-			Scene scene = new Scene(root,windowWidth,windowHeight);
+			Scene scene = new Scene(root,WIDTH,HEIGHT);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Run Louie Run");
