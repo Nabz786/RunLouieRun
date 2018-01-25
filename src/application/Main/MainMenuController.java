@@ -20,8 +20,6 @@ public class MainMenuController {
 	//This method is called after all @FXML annotated members have been injected
 	@FXML
 	private void initialize() {
-		clickButton.setOnAction((event) ->{
-		});
-		
+
 	}
 }
