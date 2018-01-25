@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 public class Main extends Application {
 	
 	/** Width of the program window **/
-	private static final int WIDTH = 650;
+	private static final int WIDTH = 600;
 	
 	/** height of the program window **/
 	private static final int HEIGHT = 400;
@@ -51,13 +51,16 @@ public class Main extends Application {
 			mainWindow.setScene(mainMenuScene);
 			mainWindow.setTitle("Run Louie Run");
 			mainWindow.show();
-			mainWindow.setResizable(false);
+			mainWindow.setResizable(true);
 			
 			Parent root = FXMLLoader.load(getClass().getResource("MainMenuStyle.fxml"));
 
 			startButton.setOnAction(event ->{
-				mainWindow.setScene(new Scene(root, WIDTH, HEIGHT));
-				Game game = new Game();
+				Scene gameScene = new Scene(root, WIDTH, HEIGHT);
+				root.setId("test");
+				gameScene.getStylesheets().add(Game.class.getResource("GameDesign.css").toExternalForm());
+				mainWindow.setScene(gameScene);
+				//Game game = new Game();
 			});
 			
 			
