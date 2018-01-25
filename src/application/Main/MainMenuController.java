@@ -10,9 +10,7 @@ import javafx.scene.control.Label;
  *********************************************************************/
 
 public class MainMenuController {
-		
-	private String helloWorld = "Hello World!";
-	
+			
 	@FXML
 	private Button clickButton;
 	
@@ -23,7 +21,6 @@ public class MainMenuController {
 	@FXML
 	private void initialize() {
 		clickButton.setOnAction((event) ->{
-			System.out.println(helloWorld);
 		});
 		
 	}
