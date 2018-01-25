@@ -9,6 +9,6 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main.MainMenuController">
    <children>
       <Button fx:id="clickButton" layoutX="166.0" layoutY="188.0" mnemonicParsing="false" text="ClickMe!!!" />
-      <Label fx:id="testLabel" layoutX="105.0" layoutY="124.0" text="This is where the main menu will go" />
+      <Label fx:id="testLabel" layoutX="105.0" layoutY="124.0" text="This is where the Game Instance Will go" />
    </children>
 </Pane>
