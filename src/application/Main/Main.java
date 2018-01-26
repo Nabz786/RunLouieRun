@@ -62,16 +62,6 @@ public class Main extends Application {
 				mainWindow.setScene(gameScene);
 				//Game game = new Game();
 			});
-			
-			
-			
-			
-//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-		
-		
-		//create a start button, then within the event listener create the animation timer
-		//thus when start is clicked we create a new timer for all the animations.
 	}
 	
 	public static void main(String[] args) {
