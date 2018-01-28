@@ -40,29 +40,29 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 
-			mainWindow = primaryStage;
-			startButton = new Button("Start");
-			startButton.setPrefSize(70, 50);
+		mainWindow = primaryStage;
+		startButton = new Button("Start");
+		startButton.setPrefSize(70, 50);
 			
-			VBox startMenuLayout = new VBox();
-			startMenuLayout.setAlignment(Pos.CENTER);
-			startMenuLayout.getChildren().add(startButton); //When adding multiple children use .addAll
+		VBox startMenuLayout = new VBox();
+		startMenuLayout.setAlignment(Pos.CENTER);
+		startMenuLayout.getChildren().add(startButton); //When adding multiple children use .addAll
 			
-			mainMenuScene = new Scene(startMenuLayout, WIDTH, HEIGHT);
-			mainWindow.setScene(mainMenuScene);
-			mainWindow.setTitle("Run Louie Run");
-			mainWindow.show();
-			mainWindow.setResizable(true);
+		mainMenuScene = new Scene(startMenuLayout, WIDTH, HEIGHT);
+		mainWindow.setScene(mainMenuScene);
+		mainWindow.setTitle("Run Louie Run");
+		mainWindow.show();
+		mainWindow.setResizable(true);
 			
-			startButton.setOnAction(event ->{
-				Game game = null;
-				try {
+		startButton.setOnAction(event ->{
+			Game game = null;
+			try {
 					game = new Game();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				Scene gameScene = game.getGameScene();
-				mainWindow.setScene(gameScene);
+			Scene gameScene = game.getGameScene();
+			mainWindow.setScene(gameScene);
 			});
 	}
 	
