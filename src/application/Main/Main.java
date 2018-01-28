@@ -3,6 +3,9 @@ import application.Game.Game;
  
 import java.io.IOException;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -20,13 +23,13 @@ import javafx.scene.layout.VBox;
 public class Main extends Application {
 	
 	/** Width of the program window **/
-	private static final int WIDTH = 600;
-	
+	private static final int WIDTH = 500; //transition to 600
+	 
 	/** height of the program window **/
-	private static final int HEIGHT = 400;
+	private static final int HEIGHT = 600; //transition to 400
 	
 	/** Stage for the primary stage which will be the main-window **/
-	private Stage mainWindow;
+	private static Stage mainWindow;
 	
 	/** The first scene that loads upon running the program **/
 	private Scene mainMenuScene;
@@ -34,11 +37,9 @@ public class Main extends Application {
 	/** Button to start the game**/
 	private Button startButton;
 	
-	
-	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		//try {
+
 			mainWindow = primaryStage;
 			startButton = new Button("Start");
 			startButton.setPrefSize(70, 50);
@@ -53,15 +54,20 @@ public class Main extends Application {
 			mainWindow.show();
 			mainWindow.setResizable(true);
 			
-			Parent root = FXMLLoader.load(getClass().getResource("MainMenuStyle.fxml"));
-
 			startButton.setOnAction(event ->{
-				Scene gameScene = new Scene(root, WIDTH, HEIGHT);
-				root.setId("test");
-				gameScene.getStylesheets().add(Game.class.getResource("GameDesign.css").toExternalForm());
+				Game game = null;
+				try {
+					game = new Game();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				Scene gameScene = game.getGameScene();
 				mainWindow.setScene(gameScene);
-				//Game game = new Game();
 			});
+	}
+	
+	public static Stage getCurrentStage() {
+		return mainWindow;
 	}
 	
 	public static void main(String[] args) {
