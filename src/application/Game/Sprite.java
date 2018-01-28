@@ -7,5 +7,15 @@ package application.Game;
 
 
 public class Sprite {
+	
+	private float positionX, positionY, velocityX, velocityY;
+	
+	
 
+	public Sprite() {
+		
+	}
+	
+	
+	
 }

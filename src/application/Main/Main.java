@@ -23,10 +23,10 @@ import javafx.scene.layout.VBox;
 public class Main extends Application {
 	
 	/** Width of the program window **/
-	private static final int WIDTH = 500; //transition to 600
+	private static final int WIDTH = 600; //transition to 600
 	 
 	/** height of the program window **/
-	private static final int HEIGHT = 600; //transition to 400
+	private static final int HEIGHT = 400; //transition to 400
 	
 	/** Stage for the primary stage which will be the main-window **/
 	private static Stage mainWindow;
@@ -43,17 +43,20 @@ public class Main extends Application {
 		mainWindow = primaryStage;
 		startButton = new Button("Start");
 		startButton.setPrefSize(70, 50);
-			
+		
+		//we are using a vbox layout for the mainmenu, we declare it here then add its children
 		VBox startMenuLayout = new VBox();
 		startMenuLayout.setAlignment(Pos.CENTER);
 		startMenuLayout.getChildren().add(startButton); //When adding multiple children use .addAll
-			
+		
+		//Main window options
 		mainMenuScene = new Scene(startMenuLayout, WIDTH, HEIGHT);
 		mainWindow.setScene(mainMenuScene);
 		mainWindow.setTitle("Run Louie Run");
 		mainWindow.show();
 		mainWindow.setResizable(true);
 			
+		//when the start button is clicked we create a new instance of game and load it to the current stage
 		startButton.setOnAction(event ->{
 			Game game = null;
 			try {
@@ -66,6 +69,7 @@ public class Main extends Application {
 			});
 	}
 	
+	//returns the current stage
 	public static Stage getCurrentStage() {
 		return mainWindow;
 	}
