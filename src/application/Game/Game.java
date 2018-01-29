@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  *********************************************************************/
 public class Game extends Application {
-	
+		
 	/** The scene that is represented within this class**/
 	public Scene gameScene;
 	

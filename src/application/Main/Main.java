@@ -17,8 +17,7 @@ import javafx.scene.layout.VBox;
 
 /**********************************************************************
  * This is the main class, here the program will be launched placing
- * the user at the main menu screen. 
- *
+ * the user at the main menu screen.
  *********************************************************************/
 public class Main extends Application {
 	
@@ -38,7 +37,7 @@ public class Main extends Application {
 	private Button startButton;
 	
 	@Override
-	public void start(Stage primaryStage) throws IOException {
+	public final void start(final Stage primaryStage) throws IOException {
 
 		mainWindow = primaryStage;
 		startButton = new Button("Start");
@@ -64,8 +63,7 @@ public class Main extends Application {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			Scene gameScene = game.getGameScene();
-			mainWindow.setScene(gameScene);
+			mainWindow.setScene(game.getGameScene());
 			});
 	}
 	
@@ -74,7 +72,7 @@ public class Main extends Application {
 		return mainWindow;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		launch(args);
 	}
 }

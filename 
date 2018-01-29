@@ -1,0 +1,45 @@
+[1mdiff --git a/src/application/Game/Game.java b/src/application/Game/Game.java[m
+[1mindex f8c27fb..6f32da8 100644[m
+[1m--- a/src/application/Game/Game.java[m
+[1m+++ b/src/application/Game/Game.java[m
+[36m@@ -20,7 +20,7 @@[m [mimport javafx.stage.Stage;[m
+  *[m
+  *********************************************************************/[m
+ public class Game extends Application {[m
+[31m-	[m
+[32m+[m[41m		[m
+ 	/** The scene that is represented within this class**/[m
+ 	public Scene gameScene;[m
+ 	[m
+[1mdiff --git a/src/application/Main/Main.java b/src/application/Main/Main.java[m
+[1mindex 815d643..3fe0352 100644[m
+[1m--- a/src/application/Main/Main.java[m
+[1m+++ b/src/application/Main/Main.java[m
+[36m@@ -17,8 +17,7 @@[m [mimport javafx.scene.layout.VBox;[m
+ [m
+ /**********************************************************************[m
+  * This is the main class, here the program will be launched placing[m
+[31m- * the user at the main menu screen. [m
+[31m- *[m
+[32m+[m[32m * the user at the main menu screen.[m
+  *********************************************************************/[m
+ public class Main extends Application {[m
+ 	[m
+[36m@@ -38,7 +37,7 @@[m [mpublic class Main extends Application {[m
+ 	private Button startButton;[m
+ 	[m
+ 	@Override[m
+[31m-	public void start(Stage primaryStage) throws IOException {[m
+[32m+[m	[32mpublic final void start(final Stage primaryStage) throws IOException {[m
+ [m
+ 		mainWindow = primaryStage;[m
+ 		startButton = new Button("Start");[m
+[36m@@ -74,7 +73,7 @@[m [mpublic class Main extends Application {[m
+ 		return mainWindow;[m
+ 	}[m
+ 	[m
+[31m-	public static void main(String[] args) {[m
+[32m+[m	[32mpublic static void main(final String[] args) {[m
+ 		launch(args);[m
+ 	}[m
+ }[m
