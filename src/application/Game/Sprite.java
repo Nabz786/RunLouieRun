@@ -9,11 +9,15 @@ package application.Game;
 public class Sprite {
 	
 	private float positionX, positionY, velocityX, velocityY;
-	
+	private boolean isAlive;
 	
 
-	public Sprite() {
-		
+	public Sprite(float positionX, float positionY, float veloctiyX, float velocityY) {
+		this.positionX = positionX;
+		this.positionY = positionY;
+		this.velocityX = velocityX;
+		this.velocityY = velocityY;
+		isAlive = true;
 	}
 	
 	
