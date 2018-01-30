@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 /**********************************************************************
  * This is the fx:controller class which links the scene builder
  * members from the fxml file to code within this class
+ * @author Nabeel Vali
  *********************************************************************/
 
 public class MainMenuController {
