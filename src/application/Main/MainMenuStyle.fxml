@@ -11,30 +11,31 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../Resources/Images/background.png" />
+            <Image url="file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="426.0" fitWidth="600.0" layoutX="167.0" layoutY="-26.0">
          <image>
-            <Image url="@../Resources/Images/title.png" />
+            <Image url="file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/title.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="346.0" fitWidth="540.0" layoutX="46.0">
          <image>
-            <Image url="@../Resources/Images/start_text.png" />
+            <Image url="file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/start_text.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="355.0" fitWidth="600.0" layoutX="7.0">
          <image>
-            <Image url="@../Resources/Images/exit_text.png" />
+            <Image url="file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/exit_text.png" />
          </image>
       </ImageView>
       <Button layoutX="425.0" layoutY="122.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" text="start" visible="false" />
       <Button layoutX="416.0" layoutY="158.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" text="exit" visible="false" />
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="46.0" layoutY="207.0">
          <image>
-            <Image url="@../Resources/Images/starting_Louie.png" />
+            <Image url="file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/starting_Louie.png" />
          </image>
       </ImageView>
+      <Button fx:id="clickButton" layoutX="28.0" layoutY="53.0" mnemonicParsing="false" text="Button" />
    </children>
 </Pane>

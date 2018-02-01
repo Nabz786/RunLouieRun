@@ -52,14 +52,16 @@ public class Main extends Application {
 	@Override
 	public final void start(final Stage primaryStage) throws IOException {
 
+		Parent root = FXMLLoader.load(getClass().getResource("MainMenuStyle.fxml"));
+		
 		mainWindow = primaryStage;
-		startButton = new Button("Start");
-		startButton.setPrefSize(70, 50);
+		//startButton = new Button("Start");
+		//startButton.setPrefSize(70, 50);
 		
 		//we are using a vbox layout for the mainmenu, we declare it here then add its children
-		VBox startMenuLayout = new VBox();
-		startMenuLayout.setAlignment(Pos.CENTER);
-		startMenuLayout.getChildren().add(startButton); //When adding multiple children use .addAll
+		//VBox startMenuLayout = new VBox();
+		//startMenuLayout.setAlignment(Pos.CENTER);
+		//startMenuLayout.getChildren().add(startButton); //When adding multiple children use .addAll
 			
 		ImageView imageView = new ImageView();
 		imageView.setX(200);
@@ -102,29 +104,29 @@ public class Main extends Application {
 //			
 //		};
 //		timer.start();
-		startMenuLayout.getChildren().add(imageView);
+		//startMenuLayout.getChildren().add(imageView);
 
 		
 		
 		
 		//Main window options
-		mainMenuScene = new Scene(startMenuLayout, WIDTH, HEIGHT);
+		mainMenuScene = new Scene(root, WIDTH, HEIGHT);
 		mainWindow.setScene(mainMenuScene);
 		mainWindow.setTitle("Run Louie Run");
 		mainWindow.show();
 		mainWindow.setResizable(true);
 			
 		//when the start button is clicked we create a new instance of game and load it to the current stage
-		startButton.setOnAction(event ->{
-			Game game = null;
-			try {
-					game = new Game();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			mainWindow.setScene(game.getGameScene());
-			});
-		
+//		startButton.setOnAction(event ->{
+//			Game game = null;
+//			try {
+//					game = new Game();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			mainWindow.setScene(game.getGameScene());
+//			});
+//		
 		
 		
 	}
