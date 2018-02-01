@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 /********************************************************************** 
  * This class will hold all the relevant material related to the game
  * and game states 
- *
+ *@author Nabeel Vali
  *********************************************************************/
 public class Game extends Application {
 		

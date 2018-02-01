@@ -30,6 +30,7 @@ import javafx.scene.layout.VBox;
 /**********************************************************************
  * This is the main class, here the program will be launched placing
  * the user at the main menu screen.
+ * @author Nabeel Vali
  *********************************************************************/
 public class Main extends Application {
 	
