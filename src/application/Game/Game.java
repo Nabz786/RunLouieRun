@@ -1,14 +1,19 @@
 package application.Game;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.Transition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -53,6 +58,7 @@ public class Game extends Application {
 		root = new Pane();
 		createGameInstance();
 		createCircle();
+		showLouie();
 	}
 	
 	//we will be using an animation timer to update the scene and all relevant game movements 
@@ -87,6 +93,33 @@ public class Game extends Application {
 			c.setCenterY(ballY);
 		}
 	};
+	
+	public void showLouie() {
+		
+		ImageView imageView = new ImageView();
+		imageView.setX(WIDTH/2);
+		imageView.setY(HEIGHT/2);
+		imageView.setFitHeight(HEIGHT/2);
+		imageView.setFitWidth(WIDTH/2);
+		List<Image> images = new ArrayList<>();
+		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
+		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
+		
+		Transition Animation = new Transition() {
+
+			@Override
+			protected void interpolate(double arg0) {
+				int index = (int)(arg0*(images.size()-1));
+				imageView.setImage(images.get(index));
+			}
+		};
+		Animation.play();
+		
+		root.getChildren().add(imageView);
+		
+		
+		
+	}
 	
 	public void createCircle() {
 		c = new Circle();
