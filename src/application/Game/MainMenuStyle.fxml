@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main.MainMenuController" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main.MainMenuController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../Resources/Images/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="426.0" fitWidth="600.0" layoutX="167.0" layoutY="-26.0">
+         <image>
+            <Image url="@../Resources/Images/title.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="346.0" fitWidth="540.0" layoutX="46.0">
+         <image>
+            <Image url="@../Resources/Images/start_text.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="355.0" fitWidth="600.0" layoutX="7.0">
+         <image>
+            <Image url="@../Resources/Images/exit_text.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="425.0" layoutY="122.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" text="start" visible="false" />
+      <Button layoutX="416.0" layoutY="158.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="112.0" text="exit" visible="false" />
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="46.0" layoutY="207.0">
+         <image>
+            <Image url="@../Resources/Images/starting_Louie.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
