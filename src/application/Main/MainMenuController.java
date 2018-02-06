@@ -13,7 +13,8 @@ import javafx.scene.control.Label;
 public class MainMenuController {
 			
 	@FXML
-	private Button clickButton;
+	private Button startButton;
+	private Button exitButton;
 	
 	@FXML
 	private Label testLabel;
@@ -21,7 +22,7 @@ public class MainMenuController {
 	//This method is called after all @FXML annotated members have been injected
 	@FXML
 	private void initialize() {
-		clickButton.setOnAction(e -> {
+		startButton.setOnAction(e -> {
 			System.out.println("test");
 		});
 
