@@ -2,11 +2,18 @@ package application.Main;
 
 import application.Game.Game;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
@@ -39,6 +46,9 @@ import javafx.scene.layout.VBox;
  *********************************************************************/
 public class Main extends Application {
 
+	/** Boolean to start/stop music play**/
+	private volatile boolean musicplaying = false;
+	
 	/** Width of the program window **/
 	private static final int WIDTH = 600; // transition to 600
 
@@ -56,15 +66,15 @@ public class Main extends Application {
 
 	@Override
 	public final void start(final Stage primaryStage) throws IOException {
-
+		
 		mainWindow = primaryStage;
 
 		//I changed from vbox to pane because I found more tutorials on pane, seemed easier to work with :)
 		Pane startMenuLayout = new Pane();
-		ImageView background = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/background.png"));
-		ImageView title = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/title.png"));
-		ImageView startButton = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/start_text.png"));
-		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/exit_text.png"));
+		ImageView background = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/background.png"));
+		ImageView title = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/title.png"));
+		ImageView startButton = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/start_text.png"));
+		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/exit_text.png"));
 		
 		startButton.setLayoutX(400);
 		startButton.setLayoutY(150);
@@ -78,19 +88,28 @@ public class Main extends Application {
 		title.setLayoutX(150);
 		title.setLayoutY(0);
 		
+		//Begin playing music
+		playMusic("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav");
+		
 		//adding a listener to the image to act as a button
 		startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			
 			//code to start game goes here
 			System.out.println("Hi");
+			
+			//Stop menu theme music and begin running music
+			musicplaying = false;
+			playMusic("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav");
 						
-			//this tells the handeler that the event is over
+			//this tells the handler that the event is over
 	         event.consume();	
 		});
 
 		//closes the window
 		exitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			primaryStage.close();	
+			//Stop music
+			musicplaying = false;
 		});
 		
 		//adding all of the menu components
@@ -102,9 +121,9 @@ public class Main extends Application {
 		imageView.setFitHeight(128);
 		imageView.setFitWidth(128);
 		List<Image> images = new ArrayList<>();
-		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
+		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
+		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
+		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
 
 		imageView.setImage(images.get(0));
 		int index = 0;
@@ -164,6 +183,31 @@ public class Main extends Application {
 
 	}
 
+	//Plays the main menu theme on loop
+
+	public void playMusic(String filepath){
+		Thread t = new Thread(new Runnable(){
+			@Override
+			public void run(){
+				musicplaying = true;
+				File file= new File(filepath);
+				try{
+					Clip clip = AudioSystem.getClip();
+					clip.open(AudioSystem.getAudioInputStream(file));
+				while(musicplaying){
+						clip.loop(Clip.LOOP_CONTINUOUSLY);
+				}
+				clip.stop();
+				clip.close();
+				}catch(Exception e) {
+					System.err.println(e.getMessage());
+				}
+			}
+		});
+		t.start();
+	}
+	
+	
 	// returns the current stage
 	public static Stage getCurrentStage() {
 		return mainWindow;
