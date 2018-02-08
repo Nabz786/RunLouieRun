@@ -7,7 +7,7 @@ several new and cool features.
 Goals For Release #1: 
 - [ ] Setup IDE with all required and relevant plugins 
 - [x] Implement a Hello-world style program
-- [ ] Connect all team-members to GITHUB, have them pull and push changes
-- [ ] Begin working on basic character movement 
+- [x] Connect all team-members to GITHUB, have them pull and push changes
+- [x] Begin working on basic character movement 
 - [ ] Add several infinite runner style obstacles
 - [x] Start artwork and sound Creation
