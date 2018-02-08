@@ -128,7 +128,7 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 						yPos++;
 						imageView.setY(yPos);
 					}else {
-						yPos = 241;
+						yPos = 243;
 						imageView.setY(yPos);
 					}
 				}	
