@@ -71,10 +71,14 @@ public class Main extends Application {
 
 		//I changed from vbox to pane because I found more tutorials on pane, seemed easier to work with :)
 		Pane startMenuLayout = new Pane();
-		ImageView background = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/background.png"));
-		ImageView title = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/title.png"));
-		ImageView startButton = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/start_text.png"));
-		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/exit_text.png"));
+		
+		//Commented out my file locations, you guys do the same for yours so we don't have to keep changing them as we move the files around
+		// for not at least until we find a different way
+		
+		//ImageView background = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/background.png"));
+		//ImageView title = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/title.png"));
+		//ImageView startButton = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/start_text.png"));
+		//ImageView exitButton = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/exit_text.png"));
 		
 		startButton.setLayoutX(400);
 		startButton.setLayoutY(150);
@@ -89,7 +93,7 @@ public class Main extends Application {
 		title.setLayoutY(0);
 		
 		//Begin playing music
-		playMusic("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav");
+		//playMusic("C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav");
 		
 		//adding a listener to the image to act as a button
 		startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -99,7 +103,7 @@ public class Main extends Application {
 			
 			//Stop menu theme music and begin running music
 			musicplaying = false;
-			playMusic("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav");
+			//playMusic("C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav");
 						
 			//this tells the handler that the event is over
 	         event.consume();	
@@ -121,9 +125,9 @@ public class Main extends Application {
 		imageView.setFitHeight(128);
 		imageView.setFitWidth(128);
 		List<Image> images = new ArrayList<>();
-		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
+		//images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
+		//images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
+		//images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
 
 		imageView.setImage(images.get(0));
 		int index = 0;
