@@ -52,8 +52,11 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	/** Image view to be used for holding louie in this release**/
 	ImageView imageView;
 	
-	private int xPos = 65;
-	private int yPos = 241;
+	/** The x value of the imageview that holds louie**/
+	private int xPos = 55;
+	
+	/** The y value of the imageview that holds louie **/
+	private int yPos = 243;
 	
 	
 	/**
@@ -116,11 +119,29 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	@Override
 	public void start(Stage gameStage) throws Exception {}
 
+	public void rebound() {
+		AnimationTimer timer = new AnimationTimer() {
+
+			@Override
+			public void handle(long arg0) {
+					if(imageView.getY() < 243) {
+						yPos++;
+						imageView.setY(yPos);
+					}else {
+						yPos = 241;
+						imageView.setY(yPos);
+					}
+				}	
+		};
+		timer.start();
+	}
+	
 	@Override
 	public void handle(KeyEvent event) {
 		if(event.getCode() == KeyCode.SPACE) {
-			yPos = yPos - 20;
+			yPos = yPos - 40;
 			imageView.setY(yPos);
+			rebound();
 		}
 	}
 }	
