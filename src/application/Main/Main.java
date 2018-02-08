@@ -71,7 +71,6 @@ public class Main extends Application {
 
 		//I changed from vbox to pane because I found more tutorials on pane, seemed easier to work with :)
 		Pane startMenuLayout = new Pane();
-<<<<<<< HEAD
 		
 		//Commented out my file locations, you guys do the same for yours so we don't have to keep changing them as we move the files around
 		// for not at least until we find a different way
@@ -80,12 +79,10 @@ public class Main extends Application {
 		//ImageView title = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/title.png"));
 		//ImageView startButton = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/start_text.png"));
 		//ImageView exitButton = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/exit_text.png"));
-=======
 		ImageView background = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png"));
 		ImageView title = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/title.png"));
 		ImageView startButton = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/start_text.png"));
 		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/exit_text.png"));
->>>>>>> 61d322d70a44f1aaf10613ad838708ec026cafa1
 		
 		startButton.setLayoutX(400);
 		startButton.setLayoutY(150);
@@ -100,11 +97,9 @@ public class Main extends Application {
 		title.setLayoutY(0);
 		
 		//Begin playing music
-<<<<<<< HEAD
+
 		//playMusic("C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav");
-=======
 		playMusic("C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav");
->>>>>>> 61d322d70a44f1aaf10613ad838708ec026cafa1
 		
 		//adding a listener to the image to act as a button
 		startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -121,11 +116,11 @@ public class Main extends Application {
 						
 			//Stop menu theme music and begin running music
 			musicplaying = false;
-<<<<<<< HEAD
+
 			//playMusic("C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav");
-=======
+
 			playMusic("C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav");
->>>>>>> 61d322d70a44f1aaf10613ad838708ec026cafa1
+
 						
 			//this tells the handler that the event is over
 	         event.consume();	
@@ -142,7 +137,7 @@ public class Main extends Application {
 		//adding all of the menu components
 		startMenuLayout.getChildren().addAll(background,title,exitButton,startButton);
 		
-<<<<<<< HEAD
+
 		ImageView imageView = new ImageView();
 		imageView.setX(200);
 		imageView.setY(200);
@@ -189,9 +184,9 @@ public class Main extends Application {
 
 
 
-=======
+
 		
->>>>>>> 61d322d70a44f1aaf10613ad838708ec026cafa1
+
 		//Main window options
 		mainMenuScene = new Scene(startMenuLayout, WIDTH, HEIGHT);
 		mainWindow.setScene(mainMenuScene);
