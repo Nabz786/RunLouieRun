@@ -71,10 +71,10 @@ public class Main extends Application {
 
 		//I changed from vbox to pane because I found more tutorials on pane, seemed easier to work with :)
 		Pane startMenuLayout = new Pane();
-		ImageView background = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/background.png"));
-		ImageView title = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/title.png"));
-		ImageView startButton = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/start_text.png"));
-		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/exit_text.png"));
+		ImageView background = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png"));
+		ImageView title = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/title.png"));
+		ImageView startButton = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/start_text.png"));
+		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/exit_text.png"));
 		
 		startButton.setLayoutX(400);
 		startButton.setLayoutY(150);
@@ -89,17 +89,24 @@ public class Main extends Application {
 		title.setLayoutY(0);
 		
 		//Begin playing music
-		playMusic("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav");
+		playMusic("C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav");
 		
 		//adding a listener to the image to act as a button
 		startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			
 			//code to start game goes here
-			System.out.println("Hi");
-			
+			//when the start button is clicked we create a new instance of game and load it to the current stage
+						Game game = null;
+						try {
+								game = new Game();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						mainWindow.setScene(game.getGameScene());
+						
 			//Stop menu theme music and begin running music
 			musicplaying = false;
-			playMusic("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav");
+			playMusic("C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav");
 						
 			//this tells the handler that the event is over
 	         event.consume();	
@@ -110,81 +117,26 @@ public class Main extends Application {
 			primaryStage.close();	
 			//Stop music
 			musicplaying = false;
+			
 		});
 		
 		//adding all of the menu components
 		startMenuLayout.getChildren().addAll(background,title,exitButton,startButton);
 		
-		ImageView imageView = new ImageView();
-		imageView.setX(200);
-		imageView.setY(200);
-		imageView.setFitHeight(128);
-		imageView.setFitWidth(128);
-		List<Image> images = new ArrayList<>();
-		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-		images.add(new Image("file:///C:/Users/Andy/git/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
-
-		imageView.setImage(images.get(0));
-		int index = 0;
-
-		IntegerProperty count = new SimpleIntegerProperty(0);
-
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000/6), ev -> {
-			if(count.get() < 2) count.set(count.get() +1);
-			else count.set(0);
-
-
-			imageView.setImage(images.get(count.get()));
-
-		}));
-		timeline.setCycleCount(Animation.INDEFINITE);
-		timeline.play();
-
-		//		AnimationTimer timer = new AnimationTimer() {
-		//			int index = 0;
-		//
-		//			@Override
-		//			public void handle(long arg0) {
-		//				if(index != images.size()) {
-		//				imageView.setImage(images.get(index++));
-		//				}
-		//				else {
-		//					index = 0;
-		//				}
-		//			}
-		//			
-		//		};
-		//		timer.start();
-		//startMenuLayout.getChildren().add(imageView);
-
-
-
-
+		
 		//Main window options
 		mainMenuScene = new Scene(startMenuLayout, WIDTH, HEIGHT);
 		mainWindow.setScene(mainMenuScene);
 		mainWindow.setTitle("Run Louie Run");
 		mainWindow.show();
 		mainWindow.setResizable(true);
-
-		//when the start button is clicked we create a new instance of game and load it to the current stage
-		//		startButton.setOnAction(event ->{
-		//			Game game = null;
-		//			try {
-		//					game = new Game();
-		//				} catch (IOException e) {
-		//					e.printStackTrace();
-		//				}
-		//			mainWindow.setScene(game.getGameScene());
-		//			});
-		//		
-
-
 	}
 
 	//Plays the main menu theme on loop
 
+	
+			
+	
 	public void playMusic(String filepath){
 		Thread t = new Thread(new Runnable(){
 			@Override
