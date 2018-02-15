@@ -1,8 +1,10 @@
-package application.Main;
+package Testing;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import application.Game.Game;
 
 class MainTest {
 
@@ -10,6 +12,5 @@ class MainTest {
 	public void Test2equals() {
 		assertTrue(2==4/2);
 	}
-	
-	
+		
 }
