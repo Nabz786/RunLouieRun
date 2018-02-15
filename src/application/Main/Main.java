@@ -75,10 +75,14 @@ public class Main extends Application {
 //		ImageView title = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/title.png"));
 //		ImageView startButton = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/start_text.png"));
 //		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/exit_text.png"));
-		ImageView background = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png"));
-		ImageView title = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/title.png"));
-		ImageView startButton = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/start_text.png"));
-		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/exit_text.png"));
+//		ImageView background = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png"));
+//		ImageView title = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/title.png"));
+//		ImageView startButton = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/start_text.png"));
+//		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/exit_text.png"));
+		ImageView background = new ImageView(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/background.png"));
+		ImageView title = new ImageView(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/title.png"));
+		ImageView startButton = new ImageView(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/start_text.png"));
+		ImageView exitButton = new ImageView(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/exit_text.png"));
 		
 		startButton.setLayoutX(400);
 		startButton.setLayoutY(150);
@@ -105,6 +109,8 @@ public class Main extends Application {
 							}
 						mainWindow.setScene(game.getGameScene());
 						soundManager.stopSound();
+						soundManager.playSound(SoundManager.Sounds.Running);
+						
 						
 
 			//this tells the handler that the event is over

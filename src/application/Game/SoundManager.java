@@ -1,5 +1,6 @@
 package application.Game;
 
+
 import java.io.File;
 
 import javafx.scene.media.Media;
@@ -18,9 +19,11 @@ public class SoundManager {
 	private Media currentSound;
 	
 	/** Various sound files for our game **/
-	private String startMusicFile = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
-	private String runningMusic = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
-	
+//	private String startMusicFile = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
+//	private String runningMusic = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
+	private String startMusicFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
+	private String runningMusic = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
+	private String JumpSoundFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/Jump.wav";
 	/****************************************************************** 
 	 * Default constructor sets the current playing sound to null
 	 *****************************************************************/
@@ -47,14 +50,19 @@ public class SoundManager {
 			case MainMenu:
 				currentSound = new Media(new File(startMusicFile).toURI().toString());
 				mediaPlayer = new MediaPlayer(currentSound);
+				mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 				mediaPlayer.play();
 				break;
 			case Jump:
+				currentSound = new Media(new File(JumpSoundFile).toURI().toString());
+				mediaPlayer = new MediaPlayer(currentSound);
+				mediaPlayer.play();
 				break;
 			case Running:
 				clearCurrentSound();
 				currentSound = new Media(new File(runningMusic).toURI().toString());
 				mediaPlayer = new MediaPlayer(currentSound);
+				mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 				mediaPlayer.play();
 				break;
 		default:
