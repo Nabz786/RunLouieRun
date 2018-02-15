@@ -32,7 +32,7 @@ import javafx.util.Duration;
 
 /********************************************************************** 
  * This class will hold all the relevant material related to the game
- * and game states 
+ * and game states. 
  *@author Nabeel Vali
  *********************************************************************/
 public class Game extends Application implements EventHandler<KeyEvent> {

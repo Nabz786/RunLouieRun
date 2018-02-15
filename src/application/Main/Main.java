@@ -1,32 +1,16 @@
 package application.Main;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
-
 import application.Game.Game;
 import application.Game.SoundManager;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 
 /**********************************************************************
@@ -52,6 +36,7 @@ public class Main extends Application {
 	/** Button to start the game **/
 	private Button startButton;
 	
+	/** Manager for all game sounds **/
 	private SoundManager soundManager;
 	
 
