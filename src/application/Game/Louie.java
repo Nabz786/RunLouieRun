@@ -2,21 +2,12 @@ package application.Game;
 
 public class Louie extends Sprite{
 
-	public Louie(float positionX, float positionY, float velocityX, float velocityY) {
-		super(positionX, positionY, velocityX * 0, velocityY);
+	public Louie(int imageHeight, int imageWidth, double positionX, double positionY, double velocityX,
+			double velocityY) {
+		super(imageHeight, imageWidth, positionX, positionY, velocityX, velocityY);
 	}
-	
-	public void jump() {
-		
-	}
-	
-	public void setPositionX(float posX) {
-		
-	}
-	
-	public void setPositionY(float posyY) {
-		
-	}
-	
 
+	private void jump() {
+		positionY+= 20;
+	}
 }
