@@ -15,53 +15,42 @@ import javafx.stage.Stage;
  * This is the fx:controller class which links the scene builder
  * members from the fxml file to code within this class
  * @author Nabeel Vali
+ * @author Khelsey Lewis
  *********************************************************************/
 
 public class MainMenuController {
-
-			
-	@FXML
-	private Button startButton;
-	private Button exitButton;
 	
+	/**Buttons to start and exit the game **/
 	@FXML
-	private Label testLabel;
-	private Stage mainWindow;
+	private Button startButton, exitButton;
+	
+	/** Sound manager to manage the start menu sound **/
 	private SoundManager soundManager;
-	private Scene mainMenuScene;
-	private Main main;
 	
 	/** Width of the program window **/
-	private static final int WIDTH = 600; // transition to 600
+	private static final int WIDTH = 600;
 
 	/** height of the program window **/
-	private static final int HEIGHT = 400; // transition to 400
+	private static final int HEIGHT = 400;
 
-	//This method is called after all @FXML annotated members have been injected
 	@FXML
+	/****************************************************************** 
+	 * This method is called after all @FXML annotated members have
+	 * been injected. 
+	 *****************************************************************/
 	private void initialize() {
 		soundManager = new SoundManager();
 		soundManager.playSound(SoundManager.Sounds.MainMenu);
 		
 		startButton.setOnAction(e -> {
-			
-			//System.out.println("test");
 			Game game = null;
 			try {
 					game = new Game();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-			//mainWindow.setScene(game.getGameScene());
 			Main.setScene(game.getGameScene());
 			soundManager.stopSound();
-			
 		});
-
 	}
-	
-	
-	
-	
-	
 }
