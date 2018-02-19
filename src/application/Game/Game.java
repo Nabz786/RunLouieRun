@@ -58,6 +58,15 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	/** The y value of the imageview that holds louie **/
 	private int yPos = 243;
 	
+	/** The vertical velocity**/
+	private int yVelocity = 4;
+	
+	private double absY;
+	
+	private int gravity = 2;
+	
+	private Sprite sprite;
+	
 	
 	/**
 	 * Constructor creates an instance of game as well as created a circle
@@ -73,17 +82,17 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	public void showLouie() {
 		
 		imageView = new ImageView();
-		imageView.setX(xPos);
-		imageView.setY(yPos);
+		imageView.setLayoutX(xPos);
+		imageView.setLayoutY(yPos);
 		imageView.setFitHeight(128);
 		imageView.setFitWidth(128);
 		List<Image> images = new ArrayList<>();
-//		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-//		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-//		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
-		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
+		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
+		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
+		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
+//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
+//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
+//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
 
 		imageView.setImage(images.get(0));
 		int index = 0;
@@ -123,29 +132,35 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	public void start(Stage gameStage) throws Exception {}
 
 	public void rebound() {
-		AnimationTimer timer = new AnimationTimer() {
-
-			@Override
-			public void handle(long arg0) {
-					if(imageView.getY() < 243) {
-						yPos++;
-						imageView.setY(yPos);
-					}else {
-						yPos = 243;
-						imageView.setY(yPos);
-					}
-				}	
-		};
-		timer.start();
+		
 	}
 	
 	@Override
 	public void handle(KeyEvent event) {
-		if(event.getCode() == KeyCode.SPACE) {
-			yPos = yPos - 40;
-			imageView.setY(yPos);
-			rebound();
-		}
+			AnimationTimer timer = new AnimationTimer() {
+
+				@Override
+				public void handle(long deltaTime) {
+					if(event.getCode() == KeyCode.SPACE) {
+						updatePosition(yPos--);
+//						if(imageView.getLayoutY() < 243) {
+//							yVelocity += gravity * 3;
+//							System.out.println(yVelocity);
+//							updatePosition(yPos + yVelocity);
+//						}
+					}
+		
+				}	
+			};
+			timer.start();
 	}
+	
+	private void updatePosition(double currentYPosition) {
+		imageView.setLayoutY(currentYPosition);
+	}
+	
+	
+		
+	
 }	
 
