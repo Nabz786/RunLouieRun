@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
@@ -8,17 +9,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main.HelpMenuController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="606.0" layoutX="-3.0">
          <image>
             <Image url="@../Resources/Images/background.png" />
          </image>
          <effect>
-            <ColorAdjust brightness="0.93" />
+            <ColorAdjust brightness="-0.75" />
          </effect>
       </ImageView>
-      <Text layoutX="17.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The object of the game is to run away from the evil final exams. Try to survive as long as possible." wrappingWidth="343.4482421875" />
+      <Text fill="WHITE" layoutX="358.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The object of the game is to run away from the evil final exams. Try to survive as long as possible." wrappingWidth="227.4482421875" />
+      <Button fx:id="backButton" layoutX="424.0" layoutY="111.0" mnemonicParsing="false" onAction="#initialize" text="BackButton">
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="@../Resources/Images/back_text.png" />
+               </source>
+            </ImageInput>
+         </effect>
+      </Button>
+      <ImageView fitHeight="117.0" fitWidth="117.0" layoutX="43.0" layoutY="142.0">
+         <image>
+            <Image url="@../Resources/Images/Finished_Louie1.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="239.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="292.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="321.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+      <Text fill="WHITE" layoutX="14.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press the spacebar to jump over enemies" wrappingWidth="278.2158203125" />
+      <ImageView fitHeight="140.0" fitWidth="153.0" layoutX="84.0" layoutY="232.0">
+         <image>
+            <Image url="@../Resources/Images/enemy.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
