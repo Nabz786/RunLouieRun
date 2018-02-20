@@ -1,26 +1,22 @@
 package application.Main;
 
-import java.io.File;
 import java.io.IOException;
-
 import application.Game.Game;
 import application.Game.SoundManager;
-//import application.Help;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
 /**********************************************************************
  * This is the fx:controller class which links the scene builder members from
- * the fxml file to code within this class
+ * the MainMenuStyle.fxml file to code within this class
  * 
  * @author Nabeel Vali
  * @author Khelsey Lewis
+ * @author Andrew Freiman
+ * @version Winter 2018
  *********************************************************************/
 
 public class MainMenuController {
@@ -42,11 +38,15 @@ public class MainMenuController {
 	/******************************************************************
 	 * This method is called after all @FXML annotated members have been
 	 * injected.
+	 * @param none
+	 * @return none
 	 *****************************************************************/
+	
 	private void initialize() {
 		soundManager = new SoundManager();
 		soundManager.playSound(SoundManager.Sounds.MainMenu);
 
+		//If the start button is hit will start new game
 		startButton.setOnAction(e -> {
 
 			Game game = null;
@@ -59,6 +59,7 @@ public class MainMenuController {
 			soundManager.stopSound();
 		});
 
+		//If the help button is hit will take to help menu
 		helpButton.setOnAction(e -> {
 
 			try {

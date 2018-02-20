@@ -7,8 +7,11 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 /**********************************************************************
- * Sound manager class for simple sound management throughout the game
+ * Sound manager class for simple sound management throughout the game.
  * @author Nabeel
+ * @author Kehlsey Lewis
+ * @author Andrew Freiman
+ * @version Winter 2018
  *********************************************************************/
 public class SoundManager {
 
@@ -28,14 +31,14 @@ public class SoundManager {
 	private String runningMusic = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
 	private String JumpSoundFile = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/Jump.wav";
 	/****************************************************************** 
-	 * Default constructor sets the current playing sound to null
+	 * Default constructor sets the current playing sound to null.
 	 *****************************************************************/
 	public SoundManager() {
 		currentSound = null;
 	}
 	
 	/******************************************************************
-	 *Types to represent the various sounds in our game
+	 *Types to represent the various sounds in our game.
 	 *****************************************************************/
 	public enum Sounds{
 		MainMenu,
@@ -45,7 +48,7 @@ public class SoundManager {
 	
 	/******************************************************************
 	 * This method takes in a sound(type) as input then plays the 
-	 * corresponding audio file 
+	 * corresponding audio file. 
 	 * @param sound - the sound to play
 	 *****************************************************************/
 	public void playSound(Sounds sound) {
@@ -74,14 +77,14 @@ public class SoundManager {
 	}
 	
 	/******************************************************************
-	 * Clears the sound that is being played
+	 * Clears the sound that is being played.
 	 *****************************************************************/
 	private void clearCurrentSound() {
 		currentSound = null;
 	}
 	
 	/******************************************************************
-	 * Stops the music
+	 * Stops the music.
 	 *****************************************************************/
 	public void stopSound() {
 		mediaPlayer.stop();

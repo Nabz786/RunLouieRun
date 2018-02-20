@@ -32,10 +32,11 @@ import javafx.util.Duration;
 
 
 /**********************************************************************
- * This is the main class, here the program will be launched placing the user at
- * the main menu screen.
- * 
+ * This is the main class, here the program will be launched placing 
+ * the user at the main menu screen.
  * @author Nabeel Vali
+ * @author Kehlsey Lewis
+ * @author Andrew Freiman
  *********************************************************************/
 public class Main extends Application {
 
@@ -50,16 +51,16 @@ public class Main extends Application {
 
 	/** The first scene that loads upon running the program **/
 	private Scene mainMenuScene;
-
-	/** Button to start the game **/
-	private Button startButton;
 	
-	private SoundManager soundManager;
 	
-
+	/*****************************************************************
+    * This method starts the game.
+    * @param primaryStage - the graphics context for the panel
+    *****************************************************************/
 	@Override
 	public final void start(final Stage primaryStage) throws IOException {
 	
+		//Loads main menu setup for main menu
 		Parent root = FXMLLoader.load(getClass().getResource("MainMenuStyle.fxml"));
 
 		//Main window options
@@ -72,16 +73,28 @@ public class Main extends Application {
 		
 	}
 			
-	// returns the current stage
+	/*****************************************************************
+	 * This method returns the current stage setup when called.
+	 * @return mainWindow - the current stage
+	 *****************************************************************/
 	public static Stage getCurrentStage() {
 		return mainWindow;
 	}
 	
+	/*****************************************************************
+    * This method will set the scene for the current window.
+    * @param scene - the scene for the window to be set to
+    * @return mainWindow - the window with the new scene
+    *****************************************************************/
 	public static Stage setScene(Scene scene){
 		mainWindow.setScene(scene);
 		return mainWindow;
 	}
 
+	/*****************************************************************
+	* This method is the main method that will launch the application.
+	* @param args -
+    *****************************************************************/
 	public static void main(final String[] args) {
 		launch(args);
 	}
