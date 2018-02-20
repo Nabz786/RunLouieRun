@@ -12,32 +12,41 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/background.png" />
+            <Image url="@../Resources/Images/background.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="426.0" fitWidth="600.0" layoutX="167.0" layoutY="-26.0">
          <image>
-            <Image url="file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/title.png" />
+            <Image url="@../Resources/Images/title.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="140.0" fitWidth="142.0" layoutX="61.0" layoutY="246.0">
          <image>
-            <Image url="file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/starting_Louie.png" />
+            <Image url="@../Resources/Images/starting_Louie.png" />
          </image>
       </ImageView>
       <Button fx:id="startButton" layoutX="425.0" layoutY="122.0" mnemonicParsing="false" onAction="#initialize" onMouseClicked="#initialize" prefHeight="33.0" prefWidth="112.0" text="start">
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/start_text.png" />
+                  <Image url="@../Resources/Images/start_text.png" />
                </source>
             </ImageInput>
          </effect></Button>
-      <Button fx:id="exitButton" layoutX="425.0" layoutY="171.0" mnemonicParsing="false" onAction="#initialize" prefHeight="33.0" prefWidth="112.0" text="Button">
+      <Button fx:id="exitButton" layoutX="425.0" layoutY="167.0" mnemonicParsing="false" onAction="#initialize" prefHeight="33.0" prefWidth="112.0" text="Button">
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/exit_text.png" />
+                  <Image url="@../Resources/Images/exit_text.png" />
+               </source>
+            </ImageInput>
+         </effect>
+      </Button>
+      <Button fx:id="helpButton" layoutX="425.0" layoutY="209.0" mnemonicParsing="false" onAction="#initialize" text="Button">
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="file:/C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/help_text.png" />
                </source>
             </ImageInput>
          </effect>

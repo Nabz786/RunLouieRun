@@ -1,15 +1,19 @@
 package application.Main;
 
+import java.io.File;
 import java.io.IOException;
 
 import application.Game.Game;
 import application.Game.SoundManager;
+//import application.Help;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
 /**********************************************************************
  * This is the fx:controller class which links the scene builder
@@ -22,7 +26,7 @@ public class MainMenuController {
 	
 	/**Buttons to start and exit the game **/
 	@FXML
-	private Button startButton, exitButton;
+	private Button startButton, exitButton, helpButton;
 	
 	/** Sound manager to manage the start menu sound **/
 	private SoundManager soundManager;
@@ -51,6 +55,21 @@ public class MainMenuController {
 				}
 			Main.setScene(game.getGameScene());
 			soundManager.stopSound();
+		});
+		
+		
+		helpButton.setOnAction(e -> {
+
+			try {
+				Parent root = FXMLLoader.load(getClass().getResource("helpMenu.fxml"));
+				
+				Scene mainMenuScene = new Scene(root, 600, 400);
+				Main.setScene(mainMenuScene);
+				
+				
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		});
 	}
 }
