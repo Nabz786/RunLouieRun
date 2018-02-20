@@ -46,7 +46,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/help_text.png" />
+                  <Image url="@../Resources/Images/help_text.png" />
                </source>
             </ImageInput>
          </effect>
