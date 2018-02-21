@@ -50,13 +50,15 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	private final int HEIGHT = 400;
 	
 	/** Image view to be used for holding louie in this release**/
-	ImageView imageView;
+	ImageView imageView, enemyView;
 	
 	/** The x value of the imageview that holds louie**/
 	private int xPos = 55;
 	
 	/** The y value of the imageview that holds louie **/
 	private int yPos = 243;
+	
+	private int xEnemyPos = 500;
 	
 	/** The vertical velocity**/
 	private int yVelocity = 4;
@@ -66,6 +68,8 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	private int gravity = 2;
 	
 	private Sprite sprite;
+	
+	private String enemyImage = "file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/enemy.png";
 	
 	
 	/**
@@ -87,12 +91,12 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 		imageView.setFitHeight(128);
 		imageView.setFitWidth(128);
 		List<Image> images = new ArrayList<>();
-//		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-//		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-//		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
-		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
+		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
+		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
+		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
+//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
+//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
+//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
 //		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
 //		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
 //		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
@@ -102,10 +106,11 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 
 		IntegerProperty count = new SimpleIntegerProperty(0);
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000/6), ev -> {
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000/7), ev -> {
 			if(count.get() < 2) count.set(count.get() +1);
 			else count.set(0);
 			imageView.setImage(images.get(count.get()));
+			moveEnemy();
 		}));
 		
 		timeline.setCycleCount(Animation.INDEFINITE);
@@ -117,6 +122,7 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 		gameScene = new Scene(root, WIDTH, HEIGHT);
 		root.setId("test");
 		gameScene.getStylesheets().add(Game.class.getResource("GameDesign.css").toExternalForm());
+		spawnEnemy();
 	}
 	
 	private void setTempNode() {
@@ -162,8 +168,24 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 		imageView.setLayoutY(currentYPosition);
 	}
 	
+	private void spawnEnemy() {
+		enemyView = new ImageView(enemyImage);
+		enemyView.setFitHeight(128);
+		enemyView.setFitWidth(128);
+		enemyView.setLayoutX(500);
+		enemyView.setLayoutY(yPos);
+		root.getChildren().add(enemyView);
+	}
 	
-		
+	private void resetEnemy() {
+		enemyView.setLayoutX(600);
+	}
 	
+	private void moveEnemy() {
+		if(enemyView.getLayoutX() < -50) {
+			resetEnemy();
+		}else 
+			enemyView.setLayoutX(enemyView.getLayoutX()-10);
+	}
 }	
 
