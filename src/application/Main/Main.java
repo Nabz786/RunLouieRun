@@ -41,10 +41,10 @@ import javafx.util.Duration;
 public class Main extends Application {
 
 	/** Width of the program window **/
-	private static final int WIDTH = 600; // transition to 600
+	private static final int WIDTH = 600; 
 
 	/** height of the program window **/
-	private static final int HEIGHT = 400; // transition to 400
+	private static final int HEIGHT = 400; 
 
 	/** Stage for the primary stage which will be the main-window **/
 	public static Stage mainWindow;
@@ -86,9 +86,8 @@ public class Main extends Application {
     * @param scene - the scene for the window to be set to
     * @return mainWindow - the window with the new scene
     *****************************************************************/
-	public static Stage setScene(Scene scene){
+	public static void setScene(Scene scene){
 		mainWindow.setScene(scene);
-		return mainWindow;
 	}
 
 	/*****************************************************************
