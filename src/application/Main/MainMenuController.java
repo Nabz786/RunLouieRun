@@ -57,6 +57,7 @@ public class MainMenuController {
 			}
 			Main.setScene(game.getGameScene());
 			soundManager.stopSound();
+			soundManager.playSound(SoundManager.Sounds.Running);
 		});
 
 		//If the help button is hit will take to help menu
