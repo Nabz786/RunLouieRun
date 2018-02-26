@@ -37,10 +37,10 @@ import javafx.scene.canvas.GraphicsContext;
 
 /********************************************************************** 
  * This class will hold all the relevant material related to the game
- * and game states. 
+ * engine and game states. 
  *@author Nabeel Vali
  *********************************************************************/
-public class Game extends Application implements EventHandler<KeyEvent> {
+public class Game extends Application {
 		
 	/** The scene that is represented within this class**/
 	private Scene gameScene;
@@ -54,23 +54,31 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	/** Height of the game window  **/
 	public final int HEIGHT = 400;
 	
+	/** Graphics canvas where objects are drawn **/
 	private Canvas canvas;
 	
+	/** Graphics engine **/
 	private GraphicsContext gc;
 	
+	/** Background scenery image **/
 	private Image background;
 	
+	/** Main character louie sprite **/
 	private Louie louie;
 	
+	/** Random instance to randomize spawning **/
 	private Random random;
 	
+	/** Boolean value to identify whether game has been started**/
 	private boolean gameStarted = false;
 		
-	ArrayList<String> input;
+	/** Arraylist holding all key events  **/
+	private ArrayList<String> input;
 	
-	ArrayList<EvilExam> enemyList;
+	/** Arraylist holding all spawned enemies **/
+	private ArrayList<EvilExam> enemyList;
 	
-	ArrayList<EvilExam> toRemove;
+	
 
 	public Game() {	
 		createGameInstance();
@@ -85,9 +93,7 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 		gc = canvas.getGraphicsContext2D();
 		
 		enemyList = new ArrayList<EvilExam>();
-		toRemove = new ArrayList<EvilExam>();
-		
-		
+				
 		background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
 	}
 	
@@ -167,15 +173,9 @@ public class Game extends Application implements EventHandler<KeyEvent> {
                 	louie.rebound();
                 }
                 
-                
-                
-                
-                
                 gc.drawImage(background, 0, 0);
-                
+        
 				louie.render(gc, deltaDifference);
-				
-
 				
 				for(int i = 0; i < enemyList.size(); i++) {
 					EvilExam enemy = enemyList.get(i);
@@ -188,8 +188,6 @@ public class Game extends Application implements EventHandler<KeyEvent> {
                 	}
                 	
 				}
-				
-
 //                	
 ////                	if(louie.intersects(enemy)) {
 ////                		stop();
@@ -197,21 +195,11 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 ////                	}
 //                	
 //                }
-				
-
-
-
-				
+	
 			}
 		}.start();
 	}
-		
-	@Override
-	public void handle(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+			
 	public Scene getGameScene() {
 		return gameScene;
 	}
