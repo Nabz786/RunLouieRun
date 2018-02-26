@@ -2,8 +2,11 @@ package application.Game;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
+import application.Main;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -29,6 +32,8 @@ import javafx.scene.shape.Box;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.canvas.GraphicsContext;
+
 
 /********************************************************************** 
  * This class will hold all the relevant material related to the game
@@ -38,99 +43,173 @@ import javafx.util.Duration;
 public class Game extends Application implements EventHandler<KeyEvent> {
 		
 	/** The scene that is represented within this class**/
-	public Scene gameScene;
+	private Scene gameScene;
 	
 	/** For now we will use a pane as the Parent node **/
-	private Pane root;
+	private Group root;
 	
 	/** Width of the game window**/
-	private final int WIDTH = 600;
+	public final int WIDTH = 600;
 	
 	/** Height of the game window  **/
-	private final int HEIGHT = 400;
+	public final int HEIGHT = 400;
 	
-	/** Image view to be used for holding louie in this release**/
-	ImageView imageView, enemyView;
+	private Canvas canvas;
 	
-	/** The x value of the imageview that holds louie**/
-	private int xPos = 55;
+	private GraphicsContext gc;
 	
-	/** The y value of the imageview that holds louie **/
-	private int yPos = 243;
+	private Image background;
 	
-	private int xEnemyPos = 500;
+	private Louie louie;
 	
-	/** The vertical velocity**/
-	private int yVelocity = 4;
+	private Random random;
 	
-	private double absY;
+	private boolean gameStarted = false;
+		
+	ArrayList<String> input;
 	
-	private int gravity = 2;
+	ArrayList<EvilExam> enemyList;
 	
-	private Sprite sprite;
-	
-	private String enemyImage = "file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/enemy.png";
-	
-	
-	/**
-	 * Constructor creates an instance of game as well as created a circle
-	 * @throws IOException - if the css stylesheet was not found
-	 */
-	public Game() throws IOException{
-		root = new Pane();
+	ArrayList<EvilExam> toRemove;
+
+	public Game() {	
 		createGameInstance();
-		showLouie();
-		setTempNode();
 	}
 	
-	public void showLouie() {
+	private void loadAssets() {
+		canvas = new Canvas(700, this.HEIGHT);
+		root.getChildren().add(canvas);
 		
-		imageView = new ImageView();
-		imageView.setLayoutX(xPos);
-		imageView.setLayoutY(yPos);
-		imageView.setFitHeight(128);
-		imageView.setFitWidth(128);
-		List<Image> images = new ArrayList<>();
-		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-		images.add(new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
-//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-//		images.add(new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
-//		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie1.png"));
-//		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie2.png"));
-//		images.add(new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie3.png"));
-
-		imageView.setImage(images.get(0));
-		int index = 0;
-
-		IntegerProperty count = new SimpleIntegerProperty(0);
-
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000/7), ev -> {
-			if(count.get() < 2) count.set(count.get() +1);
-			else count.set(0);
-			imageView.setImage(images.get(count.get()));
-			moveEnemy();
-		}));
+		random = new Random();
 		
-		timeline.setCycleCount(Animation.INDEFINITE);
-		timeline.play();
-		root.getChildren().add(imageView);
+		gc = canvas.getGraphicsContext2D();
+		
+		enemyList = new ArrayList<EvilExam>();
+		toRemove = new ArrayList<EvilExam>();
+		
+		
+		background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
 	}
 	
-	public void createGameInstance() throws IOException {
+	private void loadLouie() {		
+		louie = new Louie(32, 243);
+		
+		Image[] louieFrames = new Image[3];
+		for(int i = 1; i < 4; i++) 
+			louieFrames[i-1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
+		louie.frames = louieFrames;
+		louie.dispayDuration = 0.100;
+	}
+	
+	private void spawnEnemy() {
+		if(gameStarted) {
+			EvilExam enemy = new EvilExam(enemyList.get(enemyList.size()-1).positionX + 350, 275);
+			enemyList.add(enemy);
+		}else {
+			EvilExam enemy = new EvilExam(WIDTH + enemyList.size() * 250, 275);
+			enemyList.add(enemy);
+		}
+	}
+	
+	private void initListener() {
+		input = new ArrayList<String>();
+
+        gameScene.setOnKeyPressed(
+            new EventHandler<KeyEvent>()
+            {
+                public void handle(KeyEvent e)
+                {
+                    String code = e.getCode().toString();
+                    if ( !input.contains(code) )
+                        input.add( code );
+                }
+            });
+
+        gameScene.setOnKeyReleased(
+            new EventHandler<KeyEvent>()
+            {
+                public void handle(KeyEvent e)
+                {
+                    String code = e.getCode().toString();
+                    input.remove( code );
+                }
+            });
+	}
+	
+	private void createGameInstance() {
+		root = new Group();
 		gameScene = new Scene(root, WIDTH, HEIGHT);
-		root.setId("test");
-		gameScene.getStylesheets().add(Game.class.getResource("GameDesign.css").toExternalForm());
+		loadAssets();
+		loadLouie();
+		initListener();
 		spawnEnemy();
+		spawnEnemy();
+		
+		gameStarted = true;
+		
+		final long startingTime = System.nanoTime();
+		
+		new AnimationTimer() {
+
+			@Override
+			public void handle(long currentDeltaTime) {
+				double deltaDifference = (currentDeltaTime - startingTime) /  1000000000.0;
+                gc.clearRect(0, 0, 700, HEIGHT);
+                
+                
+                if(louie.onGround()) {
+                	louie.canJump = true;
+                	if(input.contains("SPACE")) {
+                		louie.jump();
+                	}
+                }else {
+                	louie.canJump = false;
+                	louie.rebound();
+                }
+                
+                
+                
+                
+                
+                gc.drawImage(background, 0, 0);
+                
+				louie.render(gc, deltaDifference);
+				
+
+				
+				for(int i = 0; i < enemyList.size(); i++) {
+					EvilExam enemy = enemyList.get(i);
+					enemy.render(gc, deltaDifference, 96, 96);
+                	enemy.chargeLeft();
+                	
+                	if(enemy.getPositionX() + 96 < 0) {
+                		enemyList.remove(enemy);
+                		spawnEnemy();
+                	}
+                	
+				}
+				
+
+//                	
+////                	if(louie.intersects(enemy)) {
+////                		stop();
+////                		System.out.println("Game Over!!!");
+////                	}
+//                	
+//                }
+				
+
+
+
+				
+			}
+		}.start();
 	}
-	
-	private void setTempNode() {
-		final Box keyBoardNode = new Box();
-		keyBoardNode.setFocusTraversable(true);
-		keyBoardNode.requestFocus();
-		keyBoardNode.setOnKeyPressed(this);
-		root.getChildren().add(keyBoardNode);
+		
+	@Override
+	public void handle(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	public Scene getGameScene() {
@@ -138,54 +217,8 @@ public class Game extends Application implements EventHandler<KeyEvent> {
 	}
 	
 	@Override
-	public void start(Stage gameStage) throws Exception {}
+	public void start(Stage gameStage) {}
+}
+	
 
-	public void rebound() {
-		
-	}
-	
-	@Override
-	public void handle(KeyEvent event) {
-			AnimationTimer timer = new AnimationTimer() {
-
-				@Override
-				public void handle(long deltaTime) {
-					if(event.getCode() == KeyCode.SPACE) {
-						updatePosition(yPos--);
-//						if(imageView.getLayoutY() < 243) {
-//							yVelocity += gravity * 3;
-//							System.out.println(yVelocity);
-//							updatePosition(yPos + yVelocity);
-//						}
-					}
-		
-				}	
-			};
-			timer.start();
-	}
-	
-	private void updatePosition(double currentYPosition) {
-		imageView.setLayoutY(currentYPosition);
-	}
-	
-	private void spawnEnemy() {
-		enemyView = new ImageView(enemyImage);
-		enemyView.setFitHeight(128);
-		enemyView.setFitWidth(128);
-		enemyView.setLayoutX(500);
-		enemyView.setLayoutY(yPos);
-		root.getChildren().add(enemyView);
-	}
-	
-	private void resetEnemy() {
-		enemyView.setLayoutX(600);
-	}
-	
-	private void moveEnemy() {
-		if(enemyView.getLayoutX() < -50) {
-			resetEnemy();
-		}else 
-			enemyView.setLayoutX(enemyView.getLayoutX()-10);
-	}
-}	
 
