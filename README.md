@@ -5,7 +5,7 @@ Created as part of a Group-Project for CIS-350, this project will evolve in two 
 several new and cool features.
 
 Goals For Release #1: 
-- [ ] Setup IDE with all required and relevant plugins 
+- [x] Setup IDE with all required and relevant plugins 
 - [x] Implement a Hello-world style program
 - [x] Connect all team-members to GITHUB, have them pull and push changes
 - [x] Begin working on basic character movement 
