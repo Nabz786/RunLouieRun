@@ -12,7 +12,7 @@ public class BaseSprite {
 	protected double velocityX;
 	protected double velocityY;
 	private int defaultImgWidth, defaultImgHeight;
-	private Game game;
+//	private Game game;
 	
 	public BaseSprite(final double positionX, final double positionY) {
 		this.positionX = positionX;

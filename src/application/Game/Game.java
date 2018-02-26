@@ -42,50 +42,56 @@ import javafx.scene.canvas.GraphicsContext;
  *********************************************************************/
 public class Game extends Application {
 		
-	/** The scene that is represented within this class**/
+	/** The scene that is represented within this class.**/
 	private Scene gameScene;
 	
-	/** For now we will use a pane as the Parent node **/
+	/** For now we will use a pane as the Parent node.**/
 	private Group root;
 	
-	/** Width of the game window**/
-	public final int windowWidth = 600;
+	/** Width of the game window.**/
+	public static final int windowWidth = 600;
 	
-	/** Height of the game window  **/
-	public final int windowHeight = 400;
+	/** Height of the game window.**/
+	public static final int windowHeight = 400;
 	
-	/** Graphics canvas where objects are drawn **/
+	/** Graphics canvas where objects are drawn.**/
 	private Canvas canvas;
 	
-	/** Graphics engine **/
+	/** Graphics engine.**/
 	private GraphicsContext gc;
 	
-	/** Background scenery image **/
+	/** Background scenery image.**/
 	private Image background;
 	
-	/** Main character louie sprite **/
+	/** Main character louie sprite.**/
 	private Louie louie;
 	
-	/** Random instance to randomize spawning **/
+	/** Random instance to randomize spawning.**/
 	private Random random;
 	
-	/** Boolean value to identify whether game has been started**/
+	/** Boolean value to identify whether game has been started.**/
 	private boolean gameStarted = false;
 		
-	/** Arraylist holding all key events  **/
+	/** Arraylist holding all key events.**/
 	private ArrayList<String> input;
 	
-	/** Arraylist holding all spawned enemies **/
+	/** Arraylist holding all spawned enemies.**/
 	private ArrayList<EvilExam> enemyList;
 	
-	
-
+	/******************************************************************
+	 * Constructor for game class.
+	 * Calls another method to initialize the game engine and draw all
+	 * required game assets to the screen
+	 *****************************************************************/
 	public Game() {	
 		createGameInstance();
 	}
 	
-	private void loadAssets() {
-		canvas = new Canvas(700, this.windowHeight);
+	/******************************************************************
+	 * Instantiates all required members, and loads backgrounds
+	 *****************************************************************/
+	private void loadAssets()  {
+		canvas = new Canvas(700, Game.windowHeight);
 		root.getChildren().add(canvas);
 		
 		random = new Random();
@@ -186,7 +192,6 @@ public class Game extends Application {
                 		enemyList.remove(enemy);
                 		spawnEnemy();
                 	}
-                	
 				}
 //                	
 ////                	if(louie.intersects(enemy)) {
