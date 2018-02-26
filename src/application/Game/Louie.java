@@ -1,26 +1,42 @@
 package application.Game;
 
-public class Louie extends Sprite{
+import javafx.geometry.Rectangle2D;
+import javafx.scene.canvas.GraphicsContext;
 
+public class Louie extends BaseSprite {
 	
-	/**
-	 * Creates a new main character sprite for louie
-	 * @param imageHeight - height of louie image
-	 * @param imageWidth - width of louie image
-	 * @param positionX - location (X) of louie
-	 * @param positionY - location (Y) of louie
-	 * @param velocityX - how fast the louie is moving horizontally
-	 * @param velocityY - how fast the louie is moving vertically
-	 */
-	public Louie(int imageHeight, int imageWidth, double positionX, double positionY, double velocityX,
-			double velocityY) {
-		super(imageHeight, imageWidth, positionX, positionY, velocityX, velocityY);
+	private double fallingVelocity = 0;
+	private float gravityForce = 0.3f;
+	private int jumpPower = -8;
+	public boolean canJump;
+	
+	public Louie(double positionX, double positionY) {
+		super(positionX, positionY);
+	}
+	
+	public void render(GraphicsContext gc, double deltaDifference){
+        super.render(gc, deltaDifference, 128, 128);
+    }
+	
+	public boolean onGround(){
+		if(positionY >= 243) {
+    		return true;
+    	}
+    	return false;
+	}
+	
+	public void rebound() {		 
+		super.setPosition(super.getPositionX(), super.getPositionY() + fallingVelocity);
+		fallingVelocity += gravityForce;
+	}
+	
+	public void jump() {
+		fallingVelocity = jumpPower;
+		rebound();
+	}
+	
+	public Rectangle2D getBoundary() {
+		return new Rectangle2D(positionX,positionY,32,64);
 	}
 
-	/**
-	 * called when user clicks the spacebar to make louie jump
-	 */
-	private void jump() {
-		positionY+= 20;
-	}
 }
