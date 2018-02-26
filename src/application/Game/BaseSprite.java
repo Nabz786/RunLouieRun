@@ -4,7 +4,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class BaseSprite{
+public class BaseSprite {
 	public Image[] frames;
 	public double dispayDuration;
 	protected double positionY;
@@ -14,7 +14,7 @@ public class BaseSprite{
 	private int defaultImgWidth, defaultImgHeight;
 	private Game game;
 	
-	public BaseSprite(double positionX, double positionY) {
+	public BaseSprite(final double positionX, final double positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		defaultImgWidth = 64;
@@ -23,11 +23,11 @@ public class BaseSprite{
 		velocityY = 0;
 	}
 	
-	public void render(GraphicsContext gc, double deltaDifference, int defaultImgWidth, int defaultImgHeight){
+	public void render(GraphicsContext gc, double deltaDifference, int defaultImgWidth, int defaultImgHeight) {
         gc.drawImage(getCurrentFrame(deltaDifference), positionX, positionY, defaultImgWidth, defaultImgHeight);
     }
 	
-	public void setPosition(double x, double y){
+	public void setPosition(double x, double y) {
         positionX = x;
         positionY = y;
     }
@@ -45,16 +45,16 @@ public class BaseSprite{
 		return positionY;
 	}
 	
-	public Rectangle2D getBoundary(){
+	public Rectangle2D getBoundary() {
 		return new Rectangle2D(positionX,positionY,defaultImgWidth,defaultImgHeight);
 	}
 
-	public boolean intersects(BaseSprite s){
+	public boolean intersects(BaseSprite s) {
 		return s.getBoundary().intersects( this.getBoundary() );
 	}
 	
 	public Image getCurrentFrame(double deltaTime) {
-		int index = (int)((deltaTime % (frames.length * dispayDuration)) / dispayDuration);
+		int index = (int) ((deltaTime % (frames.length * dispayDuration)) / dispayDuration);
 	    return frames[index];
 	}
 }

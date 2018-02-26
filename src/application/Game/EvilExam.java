@@ -3,7 +3,7 @@ package application.Game;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
-public class EvilExam extends BaseSprite{
+public class EvilExam extends BaseSprite {
 
 	private float chargePower = 2.9f;
 	

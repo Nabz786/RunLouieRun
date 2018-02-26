@@ -49,10 +49,10 @@ public class Game extends Application {
 	private Group root;
 	
 	/** Width of the game window**/
-	public final int WIDTH = 600;
+	public final int windowWidth = 600;
 	
 	/** Height of the game window  **/
-	public final int HEIGHT = 400;
+	public final int windowHeight = 400;
 	
 	/** Graphics canvas where objects are drawn **/
 	private Canvas canvas;
@@ -85,7 +85,7 @@ public class Game extends Application {
 	}
 	
 	private void loadAssets() {
-		canvas = new Canvas(700, this.HEIGHT);
+		canvas = new Canvas(700, this.windowHeight);
 		root.getChildren().add(canvas);
 		
 		random = new Random();
@@ -102,17 +102,17 @@ public class Game extends Application {
 		
 		Image[] louieFrames = new Image[3];
 		for(int i = 1; i < 4; i++) 
-			louieFrames[i-1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
+			louieFrames[i- 1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
 		louie.frames = louieFrames;
 		louie.dispayDuration = 0.100;
 	}
 	
 	private void spawnEnemy() {
 		if(gameStarted) {
-			EvilExam enemy = new EvilExam(enemyList.get(enemyList.size()-1).positionX + 350, 275);
+			EvilExam enemy = new EvilExam(enemyList.get(enemyList.size()- 1).positionX + 350, 275);
 			enemyList.add(enemy);
 		}else {
-			EvilExam enemy = new EvilExam(WIDTH + enemyList.size() * 250, 275);
+			EvilExam enemy = new EvilExam(windowWidth + enemyList.size() * 250, 275);
 			enemyList.add(enemy);
 		}
 	}
@@ -144,7 +144,7 @@ public class Game extends Application {
 	
 	private void createGameInstance() {
 		root = new Group();
-		gameScene = new Scene(root, WIDTH, HEIGHT);
+		gameScene = new Scene(root, windowWidth, windowHeight);
 		loadAssets();
 		loadLouie();
 		initListener();
@@ -160,7 +160,7 @@ public class Game extends Application {
 			@Override
 			public void handle(long currentDeltaTime) {
 				double deltaDifference = (currentDeltaTime - startingTime) /  1000000000.0;
-                gc.clearRect(0, 0, 700, HEIGHT);
+                gc.clearRect(0, 0, 700, windowHeight);
                 
                 
                 if(louie.onGround()) {
@@ -168,7 +168,7 @@ public class Game extends Application {
                 	if(input.contains("SPACE")) {
                 		louie.jump();
                 	}
-                }else {
+                } else {
                 	louie.canJump = false;
                 	louie.rebound();
                 }
