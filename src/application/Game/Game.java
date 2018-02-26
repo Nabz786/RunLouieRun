@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import application.Main;
+import application.Main.Main;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -100,7 +99,8 @@ public class Game extends Application {
 		
 		enemyList = new ArrayList<EvilExam>();
 				
-		background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
+		//background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
+		background = new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/background.png");
 	}
 	
 	private void loadLouie() {		
@@ -108,7 +108,8 @@ public class Game extends Application {
 		
 		Image[] louieFrames = new Image[3];
 		for(int i = 1; i < 4; i++) 
-			louieFrames[i- 1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
+			//louieFrames[i- 1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
+			louieFrames[i- 1] = new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
 		louie.frames = louieFrames;
 		louie.dispayDuration = 0.100;
 	}
@@ -192,14 +193,23 @@ public class Game extends Application {
                 		enemyList.remove(enemy);
                 		spawnEnemy();
                 	}
-				}
-//                	
-////                	if(louie.intersects(enemy)) {
-////                		stop();
-////                		System.out.println("Game Over!!!");
-////                	}
-//                	
-//                }
+                	
+                	//If Louie hits an enemy it is game over
+					if(louie.intersects(enemy)) {
+                		stop();
+                		
+                		try {
+							Parent root = FXMLLoader.load(getClass().getResource("gameOverScreen.fxml"));
+							Scene mainMenuScene = new Scene(root, 600, 400);
+							Main.setScene(mainMenuScene);
+							
+							
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	}
+                	
+                }
 	
 			}
 		}.start();
