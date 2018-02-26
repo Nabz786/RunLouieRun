@@ -48,13 +48,9 @@ public class MainMenuController {
 
 		//If the start button is hit will start new game
 		startButton.setOnAction(e -> {
-
-			Game game = null;
-			try {
-				game = new Game();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			
+			Game game = new Game();
+		
 			Main.setScene(game.getGameScene());
 			soundManager.stopSound();
 			soundManager.playSound(SoundManager.Sounds.Running);
