@@ -1,7 +1,15 @@
 package application.Game;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 
+=======
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import application.Main.Main;
+import javafx.animation.Animation;
+>>>>>>> refs/remotes/origin/master
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -74,7 +82,8 @@ public class Game extends Application {
 		
 		enemyList = new ArrayList<EvilExam>();
 				
-		background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
+		//background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
+		background = new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/background.png");
 	}
 	
 	/******************************************************************
@@ -85,11 +94,19 @@ public class Game extends Application {
 		louie = new Louie(32, 243);
 		
 		Image[] louieFrames = new Image[3];
+<<<<<<< HEAD
 		for (int i = 1; i < 4; i++) {
 			louieFrames[i- 1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
 		}
 		louie.setFrames(louieFrames);
 		louie.setFrameDuration(0.100);
+=======
+		for(int i = 1; i < 4; i++) 
+			//louieFrames[i- 1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
+			louieFrames[i- 1] = new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
+		louie.frames = louieFrames;
+		louie.dispayDuration = 0.100;
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	/******************************************************************
@@ -188,11 +205,31 @@ public class Game extends Application {
                 		spawnEnemy();
                 	}
                 	
+<<<<<<< HEAD
                 	if (louie.intersects(enemy)) {
                 		stop();
             		System.out.println("Game Over!!!");
                 	}
 				}
+=======
+                	//If Louie hits an enemy it is game over
+					if(louie.intersects(enemy)) {
+                		stop();
+                		
+                		try {
+							Parent root = FXMLLoader.load(getClass().getResource("gameOverScreen.fxml"));
+							Scene mainMenuScene = new Scene(root, 600, 400);
+							Main.setScene(mainMenuScene);
+							
+							
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+                	}
+                	
+                }
+	
+>>>>>>> refs/remotes/origin/master
 			}
 		}.start();
 	}
