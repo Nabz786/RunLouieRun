@@ -40,7 +40,6 @@ public class Main extends Application {
 		//Loads main menu setup for main menu
 		Parent root = FXMLLoader.load(
 				getClass().getResource("MainMenuStyle.fxml"));
-
 		//Main window options
 		mainWindow = primaryStage;
 		mainMenuScene = new Scene(root, WIDTH, HEIGHT);

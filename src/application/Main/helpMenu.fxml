@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="606.0" layoutX="-3.0">
          <image>
-            <Image url="@../Resources/Images/background.png" />
+            <Image url="@../../../resources/Images/background.png" />
          </image>
          <effect>
             <ColorAdjust brightness="-0.75" />
@@ -24,14 +24,14 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="@../Resources/Images/back_text.png" />
+                  <Image url="@../../../resources/Images/back_text.png" />
                </source>
             </ImageInput>
          </effect>
       </Button>
       <ImageView fitHeight="117.0" fitWidth="117.0" layoutX="43.0" layoutY="142.0">
          <image>
-            <Image url="@../Resources/Images/Finished_Louie1.png" />
+            <Image url="@../../../resources/Images/Finished_Louie1.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="239.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
@@ -41,7 +41,7 @@
       <Text fill="WHITE" layoutX="14.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press the spacebar to jump over enemies" wrappingWidth="278.2158203125" />
       <ImageView fitHeight="140.0" fitWidth="153.0" layoutX="84.0" layoutY="232.0">
          <image>
-            <Image url="@../Resources/Images/enemy.png" />
+            <Image url="@../../../resources/Images/enemy.png" />
          </image>
       </ImageView>
    </children>

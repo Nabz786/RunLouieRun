@@ -49,7 +49,8 @@ public class EvilExam extends BaseSprite {
 	private void initAnimation() {
 		Image[] enemyFrames = new Image[2];
 		for (int i = 0; i < 2; i++) {
-			enemyFrames[i] = new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Evil_Exam" + i + ".png");
+			enemyFrames[i] = new Image("file:resources/Images/Evil_Exam"
+					+ i + ".png");
 		}
 		this.setFrames(enemyFrames);
 		this.setFrameDuration(0.100);

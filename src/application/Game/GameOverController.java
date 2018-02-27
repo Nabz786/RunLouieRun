@@ -10,37 +10,36 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 
-/**********************************************************************
- * This is the fx:controller class which links the scene builder members from
- * the GameOverScreen.fxml file to code within this class
- * 
+/**
+ * This is the fx:controller class which links the scene builder 
+ * members from the GameOverScreen.fxml file to code within this class.
  * @author Nabeel Vali
  * @author Khelsey Lewis
  * @author Andrew Freiman
  * @version Winter 2018
- *********************************************************************/
+ */
 
 public class GameOverController {
-   /** Buttons to go back to main menu and restart the game **/
+   /** Buttons to go back to main menu and restart the game. **/
    @FXML
    private Button mainMenuButton, restartButton;
 
-   /** Sound manager to manage the game over menu sound **/
+   /** Sound manager to manage the game over menu sound. **/
    private SoundManager soundManager;
 
-   /** Width of the program window **/
+   /** Width of the program window. **/
    private static final int WIDTH = 600;
 
-   /** height of the program window **/
+   /** height of the program window. **/
    private static final int HEIGHT = 400;
 
    @FXML
-   /******************************************************************
+   /**
     * This method is called after all @FXML annotated members have been
     * injected.
     * @param none
     * @return none
-    *****************************************************************/
+    */
    
    private void initialize() {
       soundManager = new SoundManager();

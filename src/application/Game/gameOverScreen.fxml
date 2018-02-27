@@ -11,14 +11,14 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../Resources/Images/game%20over%20(3).png" />
+            <Image url="@../../../resources/Images/gameOverScreen.png" />
          </image>
       </ImageView>
       <Button fx:id="restartButton" layoutX="40.0" layoutY="188.0" mnemonicParsing="false" onAction="#initialize" prefHeight="38.0" prefWidth="166.0" text="Button">
          <effect>
             <ImageInput>
                <source>
-                  <Image url="@../Resources/Images/restart.png" />
+                  <Image url="@../../../resources/Images/restart.png" />
                </source>
             </ImageInput>
          </effect>
@@ -27,7 +27,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="@../Resources/Images/mainMenu_text%20(1).png" />
+                  <Image url="@../../../resources/Images/mainMenu_text%20(1).png" />
                </source>
             </ImageInput>
          </effect>

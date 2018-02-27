@@ -2,11 +2,7 @@ package application.Game;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 import application.Main.Main;
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -25,6 +21,7 @@ import javafx.stage.Stage;
  * This class will hold all the relevant material related to the game
  * engine and game states. 
  *@author Nabeel Vali
+ *@author Andrew Freiman
  */
 public class Game extends Application {
 		
@@ -85,9 +82,7 @@ public class Game extends Application {
 		
 		enemyList = new ArrayList<EvilExam>();
 				
-		//background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
-		//background = new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/background.png");
-		background = new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/background.png");
+		background = new Image("file:resources/Images/background.png");
 	}
 	
 	/**
@@ -100,7 +95,8 @@ public class Game extends Application {
 		Image[] louieFrames = new Image[3];
 
 		for (int i = 1; i < 4; i++) {
-			louieFrames[i- 1] = new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
+			louieFrames[i - 1] = new Image("file:resources/"
+					+ "Images/Finished_Louie" + i + ".png");
 		}
 		louie.setFrames(louieFrames);
 		louie.setFrameDuration(0.100);
@@ -123,7 +119,7 @@ public class Game extends Application {
 		}
 	}
 	
-	/*
+	/**
 	 * Initializes a key listener to record key presses and then pass
 	 * each press into an arraylist to mitigate key spamming.
 	 */
@@ -206,8 +202,6 @@ public class Game extends Application {
                 	}
                 	
                 	if (louie.intersects(enemy)) {
-                		stop();
-            		System.out.println("Game Over!!!");
             		try {
 						Parent root = FXMLLoader.load(getClass().getResource("gameOverScreen.fxml"));
 						Scene mainMenuScene = new Scene(root, 600, 400);
@@ -215,6 +209,7 @@ public class Game extends Application {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}          	
+            		stop();
             		soundManager.stopSound();
                 }
               }

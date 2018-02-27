@@ -12,24 +12,24 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../Resources/Images/background.png" />
+            <Image url="@../../../resources/Images/background.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="426.0" fitWidth="600.0" layoutX="167.0" layoutY="-26.0">
          <image>
-            <Image url="@../Resources/Images/title.png" />
+            <Image url="@../../../resources/Images/title.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="140.0" fitWidth="142.0" layoutX="61.0" layoutY="246.0">
          <image>
-            <Image url="@../Resources/Images/starting_Louie.png" />
+            <Image url="@../../../resources/Images/starting_Louie.png" />
          </image>
       </ImageView>
       <Button fx:id="startButton" layoutX="425.0" layoutY="122.0" mnemonicParsing="false" onAction="#initialize" onMouseClicked="#initialize" prefHeight="33.0" prefWidth="112.0" text="start">
          <effect>
             <ImageInput>
                <source>
-                  <Image url="@../Resources/Images/start_text.png" />
+                  <Image url="@../../../resources/Images/start_text.png" />
                </source>
             </ImageInput>
          </effect></Button>
@@ -37,7 +37,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="@../Resources/Images/help_text.png" />
+                  <Image url="@../../../resources/Images/help_text.png" />
                </source>
             </ImageInput>
          </effect>

@@ -6,13 +6,13 @@ import java.io.File;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/**********************************************************************
+/**
  * Sound manager class for simple sound management throughout the game.
- * @author Nabeel
+ * @author Nabeel Vali
  * @author Kehlsey Lewis
  * @author Andrew Freiman
  * @version Winter 2018
- *********************************************************************/
+ */
 public class SoundManager {
 
 	/** Media player to play audio files. **/
@@ -21,16 +21,17 @@ public class SoundManager {
 	/** The media played in the media player .**/
 	private Media currentSound;
 	
-	/** Various sound files for our game. **/
-//	private String startMusicFile = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
-//	private String runningMusic = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
-	private String startMusicFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
-	private String runningMusic = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
-	private String JumpSoundFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/Jump.wav";
-	private String DeathSoundFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/DeathSound1.wav";
-//	private String startMusicFile = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
-//	private String runningMusic = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
-//	private String JumpSoundFile = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/Jump.wav";
+	/** Main menu music. **/
+	private String startMusicFile = "resources/Sounds/MainThemeFinal.wav";
+	
+	/** Running music.**/
+	private String runningMusic = "resources/Sounds/RunningTheme.wav";
+	
+	/** Jumping sound effect. **/
+	private String jumpSoundFile = "resources/Sounds/Jump.wav";
+	
+	/** Death sound effect.**/
+	private String deathSoundFile = "resources/Sounds/DeathSound1.wav";
 
 	/**
 	 * Sets the current sound playing to null.
@@ -65,7 +66,8 @@ public class SoundManager {
 				mediaPlayer.play();
 				break;
 			case Jump:
-				currentSound = new Media(new File(JumpSoundFile).toURI().toString());
+				currentSound = new Media(new File(jumpSoundFile
+						).toURI().toString());
 				mediaPlayer = new MediaPlayer(currentSound);
 				mediaPlayer.play();
 				break;
@@ -80,7 +82,7 @@ public class SoundManager {
 			case Death:
 				clearCurrentSound();
 				currentSound = new Media(new File(
-						DeathSoundFile).toURI().toString());
+						deathSoundFile).toURI().toString());
 				mediaPlayer = new MediaPlayer(currentSound);
 				mediaPlayer.play();
 				break;
