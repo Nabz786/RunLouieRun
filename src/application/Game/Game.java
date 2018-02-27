@@ -193,24 +193,8 @@ public class Game extends Application {
                 		enemyList.remove(enemy);
                 		spawnEnemy();
                 	}
-                	
-                	//If Louie hits an enemy it is game over
-					if(louie.intersects(enemy)) {
-                		stop();
-                		
-                		try {
-							Parent root = FXMLLoader.load(getClass().getResource("gameOverScreen.fxml"));
-							Scene mainMenuScene = new Scene(root, 600, 400);
-							Main.setScene(mainMenuScene);
-							
-							
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-                	}
-                	
                 }
-	
+
 			}
 		}.start();
 	}
