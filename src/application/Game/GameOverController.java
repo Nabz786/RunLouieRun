@@ -30,21 +30,18 @@ public class GameOverController {
    /** Width of the program window. **/
    private static final int WIDTH = 600;
 
-   /** height of the program window. **/
+   /** Height of the program window. **/
    private static final int HEIGHT = 400;
 
    @FXML
    /**
     * This method is called after all @FXML annotated members have been
     * injected.
-    * @param none
-    * @return none
     */
    
    private void initialize() {
       soundManager = new SoundManager();
       soundManager.playSound(SoundManager.Sounds.Death);
-      //soundManager.playSound(SoundManager.Sounds.MainMenu);
       //If the restart button is hit will start new game
       restartButton.setOnAction(e -> {
     	 soundManager.stopSound();
