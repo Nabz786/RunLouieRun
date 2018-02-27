@@ -21,11 +21,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 
-/********************************************************************** 
+/**
  * This class will hold all the relevant material related to the game
  * engine and game states. 
  *@author Nabeel Vali
- *********************************************************************/
+ */
 public class Game extends Application {
 		
 	/** The scene that is represented within this class.**/
@@ -61,18 +61,18 @@ public class Game extends Application {
 	/** Arraylist holding all spawned enemies.**/
 	private ArrayList<EvilExam> enemyList;
 	
-	/******************************************************************
+	/**
 	 * Constructor for game class.
 	 * Calls another method to initialize the game engine and draw all
 	 * required game assets to the screen
-	 *****************************************************************/
+	 **/
 	public Game() {	
 		createGameInstance();
 	}
 	
-	/******************************************************************
+	/**
 	 * Instantiates all required members, and loads backgrounds.
-	 *****************************************************************/
+	 **/
 	private void loadAssets()  {
 		canvas = new Canvas(700, Game.windowHeight);
 		root.getChildren().add(canvas);
@@ -85,10 +85,10 @@ public class Game extends Application {
 		//background = new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/background.png");
 	}
 	
-	/******************************************************************
+	/**
 	 * Creates a new louie sprite and loads all frames into array
 	 * to create the animation.
-	 *****************************************************************/
+	 */
 	private void loadLouie() {		
 		louie = new Louie(32, 243);
 		
@@ -101,10 +101,10 @@ public class Game extends Application {
 		louie.setFrameDuration(0.100);
 	}
 	
-	/******************************************************************
+	/**
 	 * Creates a new louie sprite and loads all frames into array
 	 * to create the animation.
-	 *****************************************************************/
+	 */
 	private void spawnEnemy() {
 		if (gameStarted) {
 			EvilExam enemy = new EvilExam(enemyList.get(
@@ -118,10 +118,10 @@ public class Game extends Application {
 		}
 	}
 	
-	/******************************************************************
+	/*
 	 * Initializes a key listener to record key presses and then pass
 	 * each press into an arraylist to mitigate key spamming.
-	 *****************************************************************/
+	 */
 	private void initListener() {
 		input = new ArrayList<String>();
 
@@ -145,12 +145,12 @@ public class Game extends Application {
             });
 	}
 	
-	/******************************************************************
+	/**
 	 * Initializes many aspects of the game including the gamescene and
 	 * root node, this method also loads all game assets and spawns two
 	 * starting enemies, and serves as the game engine to render all
 	 * assets.
-	 *****************************************************************/
+	 */
 	private void createGameInstance() {
 		root = new Group();
 		gameScene = new Scene(root, windowWidth, windowHeight);
@@ -214,10 +214,10 @@ public class Game extends Application {
 		}.start();
 	}
 		
-	/******************************************************************
+	/**
 	 * Returns the current gamescene to load in the main stage.
 	 * @return the current game scene
-	 *****************************************************************/
+	 */
 	public Scene getGameScene() {
 		return gameScene;
 	}
