@@ -31,6 +31,10 @@ public class Game extends Application {
 	/** The scene that is represented within this class.**/
 	private Scene gameScene;
 	
+	/** Sound managers to manage the in game sound effects. **/
+	private SoundManager soundManager;
+	private SoundManager soundManagerJump;
+	
 	/** For now we will use a pane as the Parent node.**/
 	private Group root;
 	
@@ -81,8 +85,9 @@ public class Game extends Application {
 		
 		enemyList = new ArrayList<EvilExam>();
 				
-		background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
+		//background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
 		//background = new Image("file:///C:/Users/Kehlsey/workspace/RunLouieRun/src/application/Resources/Images/background.png");
+		background = new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/background.png");
 	}
 	
 	/**
@@ -95,7 +100,7 @@ public class Game extends Application {
 		Image[] louieFrames = new Image[3];
 
 		for (int i = 1; i < 4; i++) {
-			louieFrames[i- 1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
+			louieFrames[i- 1] = new Image("file:///C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
 		}
 		louie.setFrames(louieFrames);
 		louie.setFrameDuration(0.100);
@@ -128,7 +133,6 @@ public class Game extends Application {
         gameScene.setOnKeyPressed(
             new EventHandler<KeyEvent>() {
                 public void handle(final KeyEvent e) {
-                
                     String code = e.getCode().toString();
                     if (!input.contains(code)) {
                         input.add(code);
@@ -139,6 +143,7 @@ public class Game extends Application {
         gameScene.setOnKeyReleased(
             new EventHandler<KeyEvent>() {
                 public void handle(final KeyEvent e) {
+                	soundManagerJump.playSound(SoundManager.Sounds.Jump);
                     String code = e.getCode().toString();
                     input.remove(code);
                 }
@@ -154,6 +159,9 @@ public class Game extends Application {
 	private void createGameInstance() {
 		root = new Group();
 		gameScene = new Scene(root, windowWidth, windowHeight);
+		soundManager = new SoundManager();
+		soundManagerJump = new SoundManager();
+		soundManager.playSound(SoundManager.Sounds.Running);
 		loadAssets();
 		loadLouie();
 		initListener();
@@ -200,7 +208,6 @@ public class Game extends Application {
                 	if (louie.intersects(enemy)) {
                 		stop();
             		System.out.println("Game Over!!!");
-            		
             		try {
 						Parent root = FXMLLoader.load(getClass().getResource("gameOverScreen.fxml"));
 						Scene mainMenuScene = new Scene(root, 600, 400);
@@ -208,7 +215,8 @@ public class Game extends Application {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}          	
-				}               	
+            		soundManager.stopSound();
+                }
               }
 			}
 		}.start();

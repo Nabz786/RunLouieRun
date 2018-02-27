@@ -22,11 +22,12 @@ public class SoundManager {
 	private Media currentSound;
 	
 	/** Various sound files for our game. **/
-	private String startMusicFile = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
-	private String runningMusic = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
-//	private String startMusicFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
-//	private String runningMusic = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
-//	private String JumpSoundFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/Jump.wav";
+//	private String startMusicFile = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
+//	private String runningMusic = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
+	private String startMusicFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
+	private String runningMusic = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
+	private String JumpSoundFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/Jump.wav";
+	private String DeathSoundFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/DeathSound1.wav";
 //	private String startMusicFile = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
 //	private String runningMusic = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
 //	private String JumpSoundFile = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/Jump.wav";
@@ -45,7 +46,8 @@ public class SoundManager {
 	public enum Sounds {
 		MainMenu, 
 		Running,
-		Jump
+		Jump,
+		Death
 	}
 	
 	/**
@@ -63,9 +65,9 @@ public class SoundManager {
 				mediaPlayer.play();
 				break;
 			case Jump:
-//				currentSound = new Media(new File(JumpSoundFile).toURI().toString());
-//				mediaPlayer = new MediaPlayer(currentSound);
-//				mediaPlayer.play();
+				currentSound = new Media(new File(JumpSoundFile).toURI().toString());
+				mediaPlayer = new MediaPlayer(currentSound);
+				mediaPlayer.play();
 				break;
 			case Running:
 				clearCurrentSound();
@@ -73,6 +75,13 @@ public class SoundManager {
 						runningMusic).toURI().toString());
 				mediaPlayer = new MediaPlayer(currentSound);
 				mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+				mediaPlayer.play();
+				break;
+			case Death:
+				clearCurrentSound();
+				currentSound = new Media(new File(
+						DeathSoundFile).toURI().toString());
+				mediaPlayer = new MediaPlayer(currentSound);
 				mediaPlayer.play();
 				break;
 		default:

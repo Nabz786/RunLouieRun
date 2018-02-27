@@ -43,28 +43,25 @@ public class GameOverController {
     *****************************************************************/
    
    private void initialize() {
-      //soundManager = new SoundManager();
+      soundManager = new SoundManager();
+      soundManager.playSound(SoundManager.Sounds.Death);
       //soundManager.playSound(SoundManager.Sounds.MainMenu);
-
       //If the restart button is hit will start new game
       restartButton.setOnAction(e -> {
-         
+    	 soundManager.stopSound();
          Game game = new Game();
          Main.setScene(game.getGameScene());
-         //soundManager.stopSound();
-         //soundManager.playSound(SoundManager.Sounds.Running);
       });
 
       //If the main menu button is hit will take back to main menu
       mainMenuButton.setOnAction(e -> {
-
+  		soundManager.stopSound();
          try {
             
             //Loads the main menu to return back to
             Parent root = FXMLLoader.load(Main.class.getResource("MainMenuStyle.fxml"));
             Scene mainMenuScene = new Scene(root, WIDTH, HEIGHT);
             Main.setScene(mainMenuScene);
-            //soundManager.stopSound();
 
          } catch (IOException e1) {
             e1.printStackTrace();
