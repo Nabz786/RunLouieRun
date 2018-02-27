@@ -73,15 +73,6 @@ public class BaseSprite {
     }
 	
 	/**
-	 * Updates the sprites position, with the change in time.
-	 * @param deltaTime - Change in time between previous and current frame
-	 */
-	public void updatePosition(final double deltaTime) {
-        positionX += velocityX * deltaTime;
-        positionY += velocityY * deltaTime;
-	}
-	
-	/**
 	 * Returns the current sprites x coordinate.
 	 * @return Current sprites x coordinate
 	 */

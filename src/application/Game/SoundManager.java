@@ -104,5 +104,11 @@ public class SoundManager {
 	public void stopSound() {
 		mediaPlayer.stop();
 	}
-
+	
+	/** 
+	 * Plays the running music. 
+	 */
+	public void playRunningMusic() {
+		playSound(Sounds.Running);
+	}
 }

@@ -155,9 +155,8 @@ public class Game extends Application {
 	private void createGameInstance() {
 		root = new Group();
 		gameScene = new Scene(root, windowWidth, windowHeight);
-		soundManager = new SoundManager();
 		soundManagerJump = new SoundManager();
-		soundManager.playSound(SoundManager.Sounds.Running);
+		soundManagerJump.playRunningMusic();
 		loadAssets();
 		loadLouie();
 		initListener();
@@ -210,7 +209,7 @@ public class Game extends Application {
 						e.printStackTrace();
 					}          	
             		stop();
-            		soundManager.stopSound();
+            		soundManagerJump.stopSound();
                 }
               }
 			}
