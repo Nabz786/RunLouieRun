@@ -9,39 +9,37 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 
-/**********************************************************************
+/**
  * This is the fx:controller class which links the scene builder members from
- * the MainMenuStyle.fxml file to code within this class
+ * the MainMenuStyle.fxml file to code within this class.
  * 
  * @author Nabeel Vali
  * @author Khelsey Lewis
  * @author Andrew Freiman
  * @version Winter 2018
- *********************************************************************/
+ */
 
 public class MainMenuController {
 
-	/** Buttons to start and exit the game **/
+	/** Buttons to start and exit the game. **/
 	@FXML
 	private Button startButton, exitButton, helpButton;
 
-	/** Sound manager to manage the start menu sound **/
+	/** Sound manager to manage the start menu sound. **/
 	private SoundManager soundManager;
 
-	/** Width of the program window **/
+	/** Width of the program window. **/
 	private static final int WIDTH = 600;
 
-	/** height of the program window **/
+	/** height of the program window. **/
 	private static final int HEIGHT = 400;
 
-	@FXML
+	
 	/******************************************************************
 	 * This method is called after all @FXML annotated members have been
 	 * injected.
-	 * @param none
-	 * @return none
 	 *****************************************************************/
-	
+	@FXML
 	private void initialize() {
 		soundManager = new SoundManager();
 		soundManager.playSound(SoundManager.Sounds.MainMenu);
@@ -60,9 +58,13 @@ public class MainMenuController {
 		helpButton.setOnAction(e -> {
 
 			try {
-				Parent root = FXMLLoader.load(getClass().getResource("helpMenu.fxml"));
+				Parent root = FXMLLoader.load(
+						getClass().
+						getResource(
+						"helpMenu.fxml"));
 
-				Scene mainMenuScene = new Scene(root, 600, 400);
+				Scene mainMenuScene = new Scene(root, 
+						WIDTH, HEIGHT);
 				Main.setScene(mainMenuScene);
 				soundManager.stopSound();
 

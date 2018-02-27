@@ -1,38 +1,17 @@
 package application.Game;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
-import application.Main;
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.animation.Transition;
 import javafx.application.Application;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 
 /********************************************************************** 
@@ -66,9 +45,6 @@ public class Game extends Application {
 	/** Main character louie sprite.**/
 	private Louie louie;
 	
-	/** Random instance to randomize spawning.**/
-	private Random random;
-	
 	/** Boolean value to identify whether game has been started.**/
 	private boolean gameStarted = false;
 		
@@ -88,14 +64,12 @@ public class Game extends Application {
 	}
 	
 	/******************************************************************
-	 * Instantiates all required members, and loads backgrounds
+	 * Instantiates all required members, and loads backgrounds.
 	 *****************************************************************/
 	private void loadAssets()  {
 		canvas = new Canvas(700, Game.windowHeight);
 		root.getChildren().add(canvas);
-		
-		random = new Random();
-		
+				
 		gc = canvas.getGraphicsContext2D();
 		
 		enemyList = new ArrayList<EvilExam>();
@@ -103,51 +77,71 @@ public class Game extends Application {
 		background = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/background.png");
 	}
 	
+	/******************************************************************
+	 * Creates a new louie sprite and loads all frames into array
+	 * to create the animation.
+	 *****************************************************************/
 	private void loadLouie() {		
 		louie = new Louie(32, 243);
 		
 		Image[] louieFrames = new Image[3];
-		for(int i = 1; i < 4; i++) 
+		for (int i = 1; i < 4; i++) {
 			louieFrames[i- 1] = new Image("file:///C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Images/Finished_Louie" + i + ".png");
-		louie.frames = louieFrames;
-		louie.dispayDuration = 0.100;
+		}
+		louie.setFrames(louieFrames);
+		louie.setFrameDuration(0.100);
 	}
 	
+	/******************************************************************
+	 * Creates a new louie sprite and loads all frames into array
+	 * to create the animation.
+	 *****************************************************************/
 	private void spawnEnemy() {
-		if(gameStarted) {
-			EvilExam enemy = new EvilExam(enemyList.get(enemyList.size()- 1).positionX + 350, 275);
+		if (gameStarted) {
+			EvilExam enemy = new EvilExam(enemyList.get(
+					        enemyList.size() - 1).getPositionX() 
+					           + 350, 275);
 			enemyList.add(enemy);
-		}else {
-			EvilExam enemy = new EvilExam(windowWidth + enemyList.size() * 250, 275);
+		} else {
+			EvilExam enemy = new EvilExam(windowWidth 
+					+ enemyList.size() * 250, 275);
 			enemyList.add(enemy);
 		}
 	}
 	
+	/******************************************************************
+	 * Initializes a key listener to record key presses and then pass
+	 * each press into an arraylist to mitigate key spamming.
+	 *****************************************************************/
 	private void initListener() {
 		input = new ArrayList<String>();
 
         gameScene.setOnKeyPressed(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
+            new EventHandler<KeyEvent>() {
+                public void handle(final KeyEvent e) {
+                
                     String code = e.getCode().toString();
-                    if ( !input.contains(code) )
-                        input.add( code );
+                    if (!input.contains(code)) {
+                        input.add(code);
+                    }
                 }
             });
 
         gameScene.setOnKeyReleased(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
+            new EventHandler<KeyEvent>() {
+                public void handle(final KeyEvent e) {
                     String code = e.getCode().toString();
-                    input.remove( code );
+                    input.remove(code);
                 }
             });
 	}
 	
+	/******************************************************************
+	 * Initializes many aspects of the game including the gamescene and
+	 * root node, this method also loads all game assets and spawns two
+	 * starting enemies, and serves as the game engine to render all
+	 * assets.
+	 *****************************************************************/
 	private void createGameInstance() {
 		root = new Group();
 		gameScene = new Scene(root, windowWidth, windowHeight);
@@ -164,18 +158,19 @@ public class Game extends Application {
 		new AnimationTimer() {
 
 			@Override
-			public void handle(long currentDeltaTime) {
-				double deltaDifference = (currentDeltaTime - startingTime) /  1000000000.0;
+			public void handle(final long currentDeltaTime) {
+				double deltaDifference = (currentDeltaTime
+						- startingTime) /  1000000000.0;
+				
                 gc.clearRect(0, 0, 700, windowHeight);
                 
-                
-                if(louie.onGround()) {
-                	louie.canJump = true;
-                	if(input.contains("SPACE")) {
+                if (louie.onGround()) {
+                	louie.setCanJump();
+                	if (input.contains("SPACE")) {
                 		louie.jump();
                 	}
                 } else {
-                	louie.canJump = false;
+                	louie.setCantJump();
                 	louie.rebound();
                 }
                 
@@ -183,34 +178,35 @@ public class Game extends Application {
         
 				louie.render(gc, deltaDifference);
 				
-				for(int i = 0; i < enemyList.size(); i++) {
+				for (int i = 0; i < enemyList.size(); i++) {
 					EvilExam enemy = enemyList.get(i);
 					enemy.render(gc, deltaDifference, 96, 96);
                 	enemy.chargeLeft();
                 	
-                	if(enemy.getPositionX() + 96 < 0) {
+                	if (enemy.getPositionX() + 96 < 0) {
                 		enemyList.remove(enemy);
                 		spawnEnemy();
                 	}
+                	
+                	if (louie.intersects(enemy)) {
+                		stop();
+            		System.out.println("Game Over!!!");
+                	}
 				}
-//                	
-////                	if(louie.intersects(enemy)) {
-////                		stop();
-////                		System.out.println("Game Over!!!");
-////                	}
-//                	
-//                }
-	
 			}
 		}.start();
 	}
-			
+		
+	/******************************************************************
+	 * Returns the current gamescene to load in the main stage.
+	 * @return the current game scene
+	 *****************************************************************/
 	public Scene getGameScene() {
 		return gameScene;
 	}
 	
 	@Override
-	public void start(Stage gameStage) {}
+	public void start(final Stage gameStage) { }
 }
 	
 

@@ -15,13 +15,13 @@ import javafx.scene.media.MediaPlayer;
  *********************************************************************/
 public class SoundManager {
 
-	/** Media player to play audio files **/
+	/** Media player to play audio files. **/
 	private MediaPlayer mediaPlayer;
 	
-	/** The media played in the media player**/
+	/** The media played in the media player .**/
 	private Media currentSound;
 	
-	/** Various sound files for our game **/
+	/** Various sound files for our game. **/
 	private String startMusicFile = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
 	private String runningMusic = "C:/Users/Nabeel/eclipse-workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
 //	private String startMusicFile = "C:/Users/Andy/Documents/GitHub/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
@@ -30,31 +30,34 @@ public class SoundManager {
 //	private String startMusicFile = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/MainThemeFinal.wav";
 //	private String runningMusic = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/RunningTheme.wav";
 //	private String JumpSoundFile = "C:/Users/Kehlsey/Workspace/RunLouieRun/src/application/Resources/Sounds/Jump.wav";
-	/****************************************************************** 
-	 * Default constructor sets the current playing sound to null.
-	 *****************************************************************/
+
+	/**
+	 * Sets the current sound playing to null.
+	 */
 	public SoundManager() {
 		currentSound = null;
 	}
 	
-	/******************************************************************
-	 *Types to represent the various sounds in our game.
-	 *****************************************************************/
-	public enum Sounds{
-		MainMenu,
+	/**
+	 * Creates enumerated types to specify each unique sound.
+	 * @author Nabeel
+	 */
+	public enum Sounds {
+		MainMenu, 
 		Running,
 		Jump
 	}
 	
-	/******************************************************************
-	 * This method takes in a sound(type) as input then plays the 
+	/**
+	 * Takes in a sound(type) as input then plays the 
 	 * corresponding audio file. 
 	 * @param sound - the sound to play
-	 *****************************************************************/
-	public void playSound(Sounds sound) {
-		switch(sound) {
+	 */
+	public void playSound(final Sounds sound) {
+		switch (sound) {
 			case MainMenu:
-				currentSound = new Media(new File(startMusicFile).toURI().toString());
+				currentSound = new Media(new File(startMusicFile
+						).toURI().toString());
 				mediaPlayer = new MediaPlayer(currentSound);
 				mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 				mediaPlayer.play();
@@ -66,7 +69,8 @@ public class SoundManager {
 				break;
 			case Running:
 				clearCurrentSound();
-				currentSound = new Media(new File(runningMusic).toURI().toString());
+				currentSound = new Media(new File(
+						runningMusic).toURI().toString());
 				mediaPlayer = new MediaPlayer(currentSound);
 				mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 				mediaPlayer.play();
@@ -76,16 +80,16 @@ public class SoundManager {
 		}
 	}
 	
-	/******************************************************************
-	 * Clears the sound that is being played.
-	 *****************************************************************/
+	/**
+	 * Clears the current sound that is playing.
+	 */
 	private void clearCurrentSound() {
 		currentSound = null;
 	}
-	
-	/******************************************************************
+
+	/**
 	 * Stops the music.
-	 *****************************************************************/
+	 */
 	public void stopSound() {
 		mediaPlayer.stop();
 	}

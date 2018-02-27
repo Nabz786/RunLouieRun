@@ -4,16 +4,39 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+/**********************************************************************
+ * Base class for all sprite, hold all the basic variables necessary
+ * for sprite manipulation and animation.
+ * @author Nabeel
+ *********************************************************************/
 public class BaseSprite {
-	public Image[] frames;
-	public double dispayDuration;
-	protected double positionY;
-	protected double positionX;
-	protected double velocityX;
-	protected double velocityY;
-	private int defaultImgWidth, defaultImgHeight;
-//	private Game game;
+	/** Holds all the images to animate of a sprite. **/
+	private Image[] frames;
 	
+	/** How long to display each image.**/
+	private double dispayDuration;
+	
+	/** Y-axis position of the sprite.**/
+	private double positionY;
+	
+	/** X-axis position of the sprite.**/
+	private double positionX;
+	
+	/** X-axis velocity of the sprite.**/
+	private double velocityX;
+	
+	/** Y-axis velocity of the sprite.**/
+	private double velocityY;
+	
+	/** Default image height and width.**/
+	private int defaultImgWidth, defaultImgHeight;
+	
+	/**
+	 * Constructor for base sprite, initializes all position and
+	 * movement variables.
+	 * @param positionX X coordinate on screen
+	 * @param positionY Y coordinate on screen
+	 */
 	public BaseSprite(final double positionX, final double positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
@@ -23,38 +46,102 @@ public class BaseSprite {
 		velocityY = 0;
 	}
 	
-	public void render(GraphicsContext gc, double deltaDifference, int defaultImgWidth, int defaultImgHeight) {
-        gc.drawImage(getCurrentFrame(deltaDifference), positionX, positionY, defaultImgWidth, defaultImgHeight);
+	/**
+	 * Called every time graphics context is called to update the sprite.
+	 * @param gc - Graphics context 
+	 * @param deltaDifference - Difference in time between frames
+	 * @param defaultImgWidth - The default width to set an image 
+	 * @param defaultImgHeight - The default height to set an image
+	 */
+	public void render(final GraphicsContext gc, 
+			final double deltaDifference, 
+			final int defaultImgWidth, 
+			final int defaultImgHeight) {
+        gc.drawImage(getCurrentFrame(deltaDifference),
+        		positionX, positionY,
+        		defaultImgWidth, defaultImgHeight);
     }
 	
-	public void setPosition(double x, double y) {
+	/**
+	 * Sets the position of a sprite manually.
+	 * @param x - x coordinate on screen 
+	 * @param y - y coordinate on screen
+	 */
+	public void setPosition(final double x, final double y) {
         positionX = x;
         positionY = y;
     }
 	
-	public void updatePosition(double deltaTime) {
+	/**
+	 * Updates the sprites position, with the change in time.
+	 * @param deltaTime - Change in time between previous and current frame
+	 */
+	public void updatePosition(final double deltaTime) {
         positionX += velocityX * deltaTime;
         positionY += velocityY * deltaTime;
 	}
 	
+	/**
+	 * Returns the current sprites x coordinate.
+	 * @return Current sprites x coordinate
+	 */
 	public double getPositionX() {
 		return positionX;
 	}
 	
+	/**
+	 * Returns the sprites y coordinate.
+	 * @return Current sprites y coordinate
+	 */
 	public double getPositionY() {
 		return positionY;
 	}
 	
+	/**
+	 * Returns a rectangle around the sprite for collision detection.
+	 * @return A 2D rectangle around the sprite
+	 */
 	public Rectangle2D getBoundary() {
-		return new Rectangle2D(positionX,positionY,defaultImgWidth,defaultImgHeight);
+		return new Rectangle2D(positionX, positionY,
+				defaultImgWidth, defaultImgHeight);
 	}
 
-	public boolean intersects(BaseSprite s) {
-		return s.getBoundary().intersects( this.getBoundary() );
+	/**
+	 * Checks if this sprites rectangle intersects with another sprite.
+	 * @param s - Sprite to check if collision occurred
+	 * @return Whether or not a collision occurred
+	 */
+	public boolean intersects(final BaseSprite s) {
+		return s.getBoundary().intersects(this.getBoundary());
 	}
 	
-	public Image getCurrentFrame(double deltaTime) {
-		int index = (int) ((deltaTime % (frames.length * dispayDuration)) / dispayDuration);
+	/**
+	 * Sets the duration to display each frame for the sprite animation.
+	 * @param frameDuration - Duration to display each frame
+	 */
+	public void setFrameDuration(final double frameDuration) {
+		this.dispayDuration = frameDuration;
+	}
+	
+	/**
+	 * Assigns each image for animation in a remote array to the. 
+	 * sprites array
+	 * @param frames - All images for animation
+	 */
+	public void setFrames(final Image[] frames) {
+		this.frames = frames;
+	}
+	
+	/**
+	 * Returns each the index for a respective frame by incorporating.
+	 * change in time within the game engine
+	 * @param deltaTime - change in time between current and last frame
+	 * @return Next image to draw
+	 */
+	public Image getCurrentFrame(final double deltaTime) {
+		int index = (int) ((deltaTime 
+				% (frames.length * dispayDuration))
+				/ dispayDuration);
 	    return frames[index];
 	}
 }
