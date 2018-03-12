@@ -41,23 +41,22 @@ public class Main extends Application {
 		Parent root = FXMLLoader.load(
 				getClass().getResource("MainMenuStyle.fxml"));
 		//Main window options
-		mainWindow = primaryStage;
+		setMainWindow(primaryStage);
 		mainMenuScene = new Scene(root, WIDTH, HEIGHT);
 		mainWindow.setScene(mainMenuScene);
 		mainWindow.setTitle("Run Louie Run");
 		mainWindow.show();
 		mainWindow.setResizable(true);
-		
-	}
-			
-	/**
-	 * This method returns the current stage setup when called.
-	 * @return the current stage
-	 */
-	public static Stage getCurrentStage() {
-		return mainWindow;
 	}
 	
+	/**
+	 * Sets the primary stage to the mainwindow.
+	 * @param stage to be set
+	 */
+	private void setMainWindow(final Stage stage) {
+		mainWindow = stage;
+	}
+			
 	/**
 	 * Updates the current scene with the passed scene.
 	 * @param scene Scene to update

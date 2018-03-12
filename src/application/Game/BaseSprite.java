@@ -22,12 +22,6 @@ public class BaseSprite {
 	/** X-axis position of the sprite.**/
 	private double positionX;
 	
-	/** X-axis velocity of the sprite.**/
-	private double velocityX;
-	
-	/** Y-axis velocity of the sprite.**/
-	private double velocityY;
-	
 	/** Default image height and width.**/
 	private int defaultImgWidth, defaultImgHeight;
 	
@@ -42,8 +36,6 @@ public class BaseSprite {
 		this.positionY = positionY;
 		defaultImgWidth = 64;
 		defaultImgHeight = 64;
-		velocityX = 0;
-		velocityY = 0;
 	}
 	
 	/**

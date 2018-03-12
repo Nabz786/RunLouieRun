@@ -50,8 +50,11 @@ public class HelpMenuController {
 				try {
 					
 					//Loads the main menu to return back to
-					Parent root = FXMLLoader.load(getClass().getResource("MainMenuStyle.fxml"));
-					Scene mainMenuScene = new Scene(root, WIDTH, HEIGHT);
+					Parent root = FXMLLoader.load(
+							getClass().getResource(
+							 "MainMenuStyle.fxml"));
+					Scene mainMenuScene = new Scene(
+							root, WIDTH, HEIGHT);
 					Main.setScene(mainMenuScene);
 					
 					soundManager.stopSound();

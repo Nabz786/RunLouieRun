@@ -1,8 +1,5 @@
 package application.Game;
-
 import java.io.IOException;
-import application.Game.Game;
-import application.Game.SoundManager;
 import application.Main.Main;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -33,36 +30,31 @@ public class GameOverController {
    /** Height of the program window. **/
    private static final int HEIGHT = 400;
 
-   @FXML
+   
    /**
     * This method is called after all @FXML annotated members have been
     * injected.
     */
-   
+   @FXML
    private void initialize() {
       soundManager = new SoundManager();
       soundManager.playSound(SoundManager.Sounds.Death);
       //If the restart button is hit will start new game
       restartButton.setOnAction(e -> {
-    	 soundManager.stopSound();
          Game game = new Game();
          Main.setScene(game.getGameScene());
       });
 
       //If the main menu button is hit will take back to main menu
       mainMenuButton.setOnAction(e -> {
-  		soundManager.stopSound();
          try {
-            
             //Loads the main menu to return back to
             Parent root = FXMLLoader.load(Main.class.getResource("MainMenuStyle.fxml"));
             Scene mainMenuScene = new Scene(root, WIDTH, HEIGHT);
             Main.setScene(mainMenuScene);
-
          } catch (IOException e1) {
             e1.printStackTrace();
          }
       });
-
    }
 }

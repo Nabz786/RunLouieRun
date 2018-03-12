@@ -30,16 +30,15 @@ public class Game extends Application {
 	
 	/** Sound managers to manage the in game sound effects. **/
 	private SoundManager soundManager;
-	private SoundManager soundManagerJump;
 	
 	/** For now we will use a pane as the Parent node.**/
 	private Group root;
 	
 	/** Width of the game window.**/
-	public static final int windowWidth = 600;
+	public static final int WIDTH = 600;
 	
 	/** Height of the game window.**/
-	public static final int windowHeight = 400;
+	public static final int HEIGHT = 400;
 	
 	/** Graphics canvas where objects are drawn.**/
 	private Canvas canvas;
@@ -75,7 +74,7 @@ public class Game extends Application {
 	 * Instantiates all required members, and loads backgrounds.
 	 **/
 	private void loadAssets()  {
-		canvas = new Canvas(700, Game.windowHeight);
+		canvas = new Canvas(700, Game.HEIGHT);
 		root.getChildren().add(canvas);
 				
 		gc = canvas.getGraphicsContext2D();
@@ -113,7 +112,7 @@ public class Game extends Application {
 					           + 350, 275);
 			enemyList.add(enemy);
 		} else {
-			EvilExam enemy = new EvilExam(windowWidth 
+			EvilExam enemy = new EvilExam(WIDTH 
 					+ enemyList.size() * 250, 275);
 			enemyList.add(enemy);
 		}
@@ -139,7 +138,7 @@ public class Game extends Application {
         gameScene.setOnKeyReleased(
             new EventHandler<KeyEvent>() {
                 public void handle(final KeyEvent e) {
-                	soundManagerJump.playSound(SoundManager.Sounds.Jump);
+                	soundManager.playSound(SoundManager.Sounds.Jump);
                     String code = e.getCode().toString();
                     input.remove(code);
                 }
@@ -154,9 +153,9 @@ public class Game extends Application {
 	 */
 	private void createGameInstance() {
 		root = new Group();
-		gameScene = new Scene(root, windowWidth, windowHeight);
-		soundManagerJump = new SoundManager();
-		soundManagerJump.playRunningMusic();
+		gameScene = new Scene(root, WIDTH, HEIGHT);
+		soundManager = new SoundManager();
+		soundManager.playSound(SoundManager.Sounds.Running);
 		loadAssets();
 		loadLouie();
 		initListener();
@@ -174,7 +173,7 @@ public class Game extends Application {
 				double deltaDifference = (currentDeltaTime
 						- startingTime) /  1000000000.0;
 				
-                gc.clearRect(0, 0, 700, windowHeight);
+                gc.clearRect(0, 0, 700, HEIGHT);
                 
                 if (louie.onGround()) {
                 	louie.setCanJump();
@@ -202,14 +201,16 @@ public class Game extends Application {
                 	
                 	if (louie.intersects(enemy)) {
             		try {
-						Parent root = FXMLLoader.load(getClass().getResource("gameOverScreen.fxml"));
+						Parent root = FXMLLoader.load(
+								getClass().getResource(
+								"gameOverScreen.fxml"));
 						Scene mainMenuScene = new Scene(root, 600, 400);
 						Main.setScene(mainMenuScene);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}          	
             		stop();
-            		soundManagerJump.stopSound();
+            		soundManager.stopSound();
                 }
               }
 			}
