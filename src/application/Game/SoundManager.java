@@ -49,7 +49,6 @@ public class SoundManager {
 	
 	/**
 	 * Creates enumerated types to specify each unique sound.
-	 * @author Nabeel
 	 */
 	public enum Sounds {
 		/** Main menu sound effect.**/

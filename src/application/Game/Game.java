@@ -2,6 +2,8 @@ package application.Game;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import application.Main.Main;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -61,6 +63,10 @@ public class Game extends Application {
 	/** Arraylist holding all spawned enemies.**/
 	private ArrayList<EvilExam> enemyList;
 	
+	private ArrayList<EvilExam> subList;
+	
+	private double deltaDifference;
+	
 	/**
 	 * Constructor for game class.
 	 * Calls another method to initialize the game engine and draw all
@@ -80,6 +86,7 @@ public class Game extends Application {
 		gc = canvas.getGraphicsContext2D();
 		
 		enemyList = new ArrayList<EvilExam>();
+		subList = new ArrayList<EvilExam>();
 				
 		background = new Image("file:resources/Images/background.png");
 	}
@@ -110,7 +117,7 @@ public class Game extends Application {
 			EvilExam enemy = new EvilExam(enemyList.get(
 					        enemyList.size() - 1).getPositionX() 
 					           + 350, 275);
-			enemyList.add(enemy);
+			subList.add(enemy);
 		} else {
 			EvilExam enemy = new EvilExam(WIDTH 
 					+ enemyList.size() * 250, 275);
@@ -161,6 +168,8 @@ public class Game extends Application {
 		initListener();
 		spawnEnemy();
 		spawnEnemy();
+		//remove for actual program
+		spawnEnemy();
 		
 		gameStarted = true;
 		
@@ -170,7 +179,7 @@ public class Game extends Application {
 
 			@Override
 			public void handle(final long currentDeltaTime) {
-				double deltaDifference = (currentDeltaTime
+				 deltaDifference = (currentDeltaTime
 						- startingTime) /  1000000000.0;
 				
                 gc.clearRect(0, 0, 700, HEIGHT);
@@ -189,30 +198,41 @@ public class Game extends Application {
         
 				louie.render(gc, deltaDifference);
 				
-				for (int i = 0; i < enemyList.size(); i++) {
-					EvilExam enemy = enemyList.get(i);
-					enemy.render(gc, deltaDifference, 96, 96);
-                	enemy.chargeLeft();
-                	
-                	if (enemy.getPositionX() + 96 < 0) {
-                		enemyList.remove(enemy);
-                		spawnEnemy();
+//				for (int i = 0; i < enemyList.size(); i++) {
+//					EvilExam enemy = enemyList.get(i);
+//					enemy.render(gc, deltaDifference, 96, 96);
+//                	enemy.chargeLeft();
+//                	
+//                	if (enemy.getPositionX() + 96 < 0) {
+//                		enemyList.remove(enemy);
+//                		spawnEnemy();
+//                	}
+//                	
+//                	if (louie.intersects(enemy)) {
+//            		try {
+//						Parent root = FXMLLoader.load(
+//								getClass().getResource(
+//								"gameOverScreen.fxml"));
+//						Scene mainMenuScene = new Scene(root, 600, 400);
+//						Main.setScene(mainMenuScene);
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}          	
+//            		stop();
+//            		soundManager.stopSound();
+//                }
+//              }
+				
+				
+				for(Iterator<EvilExam> iter = enemyList.iterator(); iter.hasNext();) {
+					EvilExam evilExam = iter.next();
+					evilExam.render(gc, deltaDifference, 96, 96);
+					evilExam.chargeLeft();
+					if (evilExam.getPositionX() + 96 < -50) {
+                		iter.remove();
+                		spawnEnemy();//GRAPHICS GLITCH IS HERE
                 	}
-                	
-                	if (louie.intersects(enemy)) {
-            		try {
-						Parent root = FXMLLoader.load(
-								getClass().getResource(
-								"gameOverScreen.fxml"));
-						Scene mainMenuScene = new Scene(root, 600, 400);
-						Main.setScene(mainMenuScene);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}          	
-            		stop();
-            		soundManager.stopSound();
-                }
-              }
+				}	
 			}
 		}.start();
 	}
