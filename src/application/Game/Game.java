@@ -31,6 +31,9 @@ public class Game extends Application {
 	/** Sound managers to manage the in game sound effects. **/
 	private SoundManager soundManager;
 	
+	/** In-game store object.**/
+	private Shop shop;
+	
 	/** For now we will use a pane as the Parent node.**/
 	private Group root;
 	
@@ -156,6 +159,7 @@ public class Game extends Application {
 		gameScene = new Scene(root, WIDTH, HEIGHT);
 		soundManager = new SoundManager();
 		soundManager.playSound(SoundManager.Sounds.Running);
+		shop = new Shop();
 		loadAssets();
 		loadLouie();
 		initListener();
