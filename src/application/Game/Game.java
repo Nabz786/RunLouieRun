@@ -1,5 +1,6 @@
 package application.Game;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,6 +11,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.value.WritableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -166,37 +170,47 @@ public class Game extends Application {
 		root = new Group();
 		gameScene = new Scene(root, WIDTH, HEIGHT);
 		soundManager = new SoundManager();
-		soundManager.playSound(SoundManager.Sounds.Running);
 		// shop = new Shop();
 		loadAssets();
 		loadLouie();
 		
-		//need this here for now for background/louie to show during countdown, will figure out better way
+		//need this here for now for background/louie to show during countdown, will figure out better way....maybe?
 		gc.drawImage(background, 0, 0);
     	louie.render(gc, deltaDifference);
     	
-		//Countdown at the beginning
-		Image one = new Image("file:resources/Images/countdown0.png");
+		//countdown logic
+		Image one = new Image("file:resources/Images/countdown2.png");
 		Image two = new Image("file:resources/Images/countdown1.png");
-		Image three = new Image("file:resources/Images/countdown2.png");
-		
+		Image three = new Image("file:resources/Images/countdown0.png");
 		ImageView images = new ImageView();
 		
+		//sound manager didnt work so had to do it this way
+		Media beepBoop = new Media(new File(
+				"resources/Sounds/CountDown_Beep.wav").toURI().toString());
+		
+		MediaPlayer countingPlayer = new MediaPlayer(beepBoop);
+		
+		countingPlayer.setStopTime(Duration.millis(850));
+        countingPlayer.cycleCountProperty().set(3);
+		countingPlayer.play();
+		
+		//animation for counting
 		Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(images.imageProperty(), one)),
+                new KeyFrame(Duration.ZERO, new KeyValue(images.imageProperty(), three)),
                 new KeyFrame(Duration.seconds(1), new KeyValue(images.imageProperty(), two)),
-                new KeyFrame(Duration.seconds(2), new KeyValue(images.imageProperty(), three)),
+                new KeyFrame(Duration.seconds(2), new KeyValue(images.imageProperty(), one)),
                 new KeyFrame(Duration.seconds(3), new KeyValue(images.imageProperty(), null))
                 );
+		
         timeline.play();
         root.getChildren().add(images);
         
         //logic was moved inside action handler to wait until countdown was done
 		timeline.onFinishedProperty().set(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				
+				soundManager.playSound(SoundManager.Sounds.Running);
 				initListener();
 				spawnEnemy();
 				spawnEnemy();
@@ -259,7 +273,7 @@ public class Game extends Application {
 							evilExam.chargeLeft();
 							if (evilExam.getPositionX() + 96 < -50) {
 								iter.remove();
-								spawnEnemy();// GRAPHICS GLITCH IS HERE
+								spawnEnemy();// GRAPHICS GLITCH IS HERE ..... I can see the irritation in the caps
 							}
 						}
 					}

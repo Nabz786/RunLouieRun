@@ -38,6 +38,9 @@ public class SoundManager {
 	
 	/** Death sound effect.**/
 	private String deathSoundFile = "resources/Sounds/DeathSound1.wav";
+	
+	/** Countdown Sound. **/
+	private String countDownFile = "resources/Sounds/CountDown_Beep.wav";
 
 	/**
 	 * Sets the current sound playing to null.
@@ -61,7 +64,10 @@ public class SoundManager {
 		Jump,
 		
 		/** Death sound effect.**/
-		Death
+		Death,
+		
+		/** Countdown sound effect.**/
+		CountDown
 	}
 	
 	/**
@@ -94,6 +100,13 @@ public class SoundManager {
 				clearCurrentSound();
 				currentSoundEffect = new Media(new File(
 						deathSoundFile).toURI().toString());
+				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				soundEffectPlayer.play();
+				break;
+			case CountDown:
+				clearCurrentSound();
+				currentSoundEffect = new Media(new File(
+						countDownFile).toURI().toString());
 				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
