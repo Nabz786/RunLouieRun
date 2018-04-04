@@ -45,7 +45,7 @@ public class Game extends Application {
 	private SoundManager soundManager;
 
 	/** In-game store object. **/
-	// private Shop shop;
+	private Shop store;
 
 	/** For now we will use a pane as the Parent node. **/
 	private Group root;
@@ -67,7 +67,7 @@ public class Game extends Application {
 
 	/** Main character louie sprite. **/
 	private Louie louie;
-
+	
 	/** Boolean value to identify whether game has been started. **/
 	private boolean gameStarted = false;
 
@@ -109,12 +109,14 @@ public class Game extends Application {
 	 * animation.
 	 */
 	private void loadLouie() {
+
 		louie = new Louie(32, 243);
 
 		Image[] louieFrames = new Image[3];
 
 		for (int i = 1; i < 4; i++) {
-			louieFrames[i - 1] = new Image("file:resources/" + "Images/Finished_Louie" + i + ".png");
+			//louieFrames[i - 1] = new Image("file:resources/Images/Finished_Louie" + i + ".png");
+			louieFrames[i - 1] = new Image((store.getActiveItem().getImage()) + i + ".png");
 		}
 		louie.setFrames(louieFrames);
 		louie.setFrameDuration(0.100);
@@ -166,11 +168,12 @@ public class Game extends Application {
 	 */
 	
 	private void createGameInstance() {
-			
+		
 		root = new Group();
 		gameScene = new Scene(root, WIDTH, HEIGHT);
 		soundManager = new SoundManager();
-		// shop = new Shop();
+		
+		store = new Shop();
 		loadAssets();
 		loadLouie();
 		
@@ -242,30 +245,30 @@ public class Game extends Application {
 						gc.drawImage(background, 0, 0);
 						louie.render(gc, deltaDifference);
 
-						// for (int i = 0; i < enemyList.size(); i++) {
-						// EvilExam enemy = enemyList.get(i);
-						// enemy.render(gc, deltaDifference, 96, 96);
-						// enemy.chargeLeft();
-						//
-						// if (enemy.getPositionX() + 96 < 0) {
-						// enemyList.remove(enemy);
-						// spawnEnemy();
-						// }
-						//
-						// if (louie.intersects(enemy)) {
-						// try {
-						// Parent root = FXMLLoader.load(
-						// getClass().getResource(
-						// "gameOverScreen.fxml"));
-						// Scene mainMenuScene = new Scene(root, 600, 400);
-						// Main.setScene(mainMenuScene);
-						// } catch (IOException e) {
-						// e.printStackTrace();
-						// }
-						// stop();
-						// soundManager.stopSound();
-						// }
-						// }
+//						 for (int i = 0; i < enemyList.size(); i++) {
+//						 EvilExam enemy = enemyList.get(i);
+//						 enemy.render(gc, deltaDifference, 96, 96);
+//						 enemy.chargeLeft();
+//						
+//						 if (enemy.getPositionX() + 96 < 0) {
+//						 enemyList.remove(enemy);
+//						 spawnEnemy();
+//						 }
+//						
+//						 if (louie.intersects(enemy)) {
+//						 try {
+//						 Parent root = FXMLLoader.load(
+//						 getClass().getResource(
+//						 "gameOverScreen.fxml"));
+//						 Scene mainMenuScene = new Scene(root, 600, 400);
+//						 Main.setScene(mainMenuScene);
+//						 } catch (IOException e) {
+//						 e.printStackTrace();
+//						 }
+//						 stop();
+//						 soundManager.stopSound();
+//						 }
+//						 }
 
 						for (Iterator<EvilExam> iter = enemyList.iterator(); iter.hasNext();) {
 							EvilExam evilExam = iter.next();
