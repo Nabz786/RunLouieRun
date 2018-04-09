@@ -53,9 +53,6 @@ public class Game extends Application {
 	/** For now we will use a pane as the Parent node. **/
 	private Group root;
 
-	/** Graphics canvas where objects are drawn. **/
-	private Canvas canvas;
-
 	/** Graphics engine. **/
 	private GraphicsContext gc;
 
@@ -74,10 +71,6 @@ public class Game extends Application {
 	/** Arraylist holding all spawned enemies. **/
 	private ArrayList<EvilExam> enemyList;
 	
-	private ArrayList<EvilExam> subList;
-
-	private double deltaDifference;
-
 	/**
 	 * Constructor for game class. Calls another method to initialize the game
 	 * engine and draw all required game assets to the screen
@@ -86,21 +79,19 @@ public class Game extends Application {
 		root = new Group();
 		soundManager = new SoundManager();
 		store = new Shop();
+		assetLoader = new AssetLoader();
+		loadGraphicsAssets();
 		createGameInstance();
+		loadLouie();
 	}
 
 	/**
 	 * Instantiates all required members, and loads backgrounds.
-	 **/
-	private void loadAssets() {
-		canvas = new Canvas(700, assetLoader.getWinHeight());
+	 */
+	private void loadGraphicsAssets() {
+		Canvas canvas = new Canvas(700, assetLoader.getWinHeight());
 		root.getChildren().add(canvas);
-
 		gc = canvas.getGraphicsContext2D();
-		
-		enemyList = new ArrayList<EvilExam>();
-		subList = new ArrayList<EvilExam>();
-
 		background = new Image("file:resources/Images/background.png");
 	}
 
@@ -109,7 +100,6 @@ public class Game extends Application {
 	 * animation.
 	 */
 	private void loadLouie() {
-
 		louie = new Louie(32, 243);
 
 		Image[] louieFrames = new Image[3];
@@ -128,11 +118,14 @@ public class Game extends Application {
 	 * animation.
 	 */
 	private void spawnEnemy() {
+		enemyList = new ArrayList<EvilExam>();
+		
 		if (gameStarted) {
-			EvilExam enemy = new EvilExam(enemyList.get(enemyList.size() - 1).getPositionX() + 350, 275);
-			subList.add(enemy);
+			EvilExam enemy = new EvilExam(enemyList.get(enemyList.size()
+					- 1).getPositionX() + 350, 275);
 		} else {
-			EvilExam enemy = new EvilExam(assetLoader.getWinWidth() + enemyList.size() * 250, 275);
+			EvilExam enemy = new EvilExam(assetLoader.getWinWidth() 
+					+ enemyList.size() * 250, 275);
 			enemyList.add(enemy);
 		}
 	}
@@ -171,13 +164,10 @@ public class Game extends Application {
 	private void createGameInstance() {
 		
 		gameScene = new Scene(root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
-
-		loadAssets();
-		loadLouie();
 		
-		//need this here for now for background/louie to show during countdown, will figure out better way....maybe?
 		gc.drawImage(background, 0, 0);
-    	louie.render(gc, deltaDifference);
+    	gc.drawImage(new Image(store.getActiveItem().getImage() + 0 + ".png"),
+    			32, 244, 142, 140);
     	
 		//countdown logic
 		Image one = new Image("file:resources/Images/countdown2.png");
@@ -185,23 +175,14 @@ public class Game extends Application {
 		Image three = new Image("file:resources/Images/countdown0.png");
 		ImageView images = new ImageView();
 		
-		//sound manager didnt work so had to do it this way
-		Media beepBoop = new Media(new File(
-				"resources/Sounds/CountDown_Beep.wav").toURI().toString());
-		
-		MediaPlayer countingPlayer = new MediaPlayer(beepBoop);
-		
-		countingPlayer.setStopTime(Duration.millis(850));
-        countingPlayer.cycleCountProperty().set(3);
-		countingPlayer.play();
+		soundManager.playCountDown();
 		
 		//animation for counting
 		Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(images.imageProperty(), three)),
                 new KeyFrame(Duration.seconds(1), new KeyValue(images.imageProperty(), two)),
                 new KeyFrame(Duration.seconds(2), new KeyValue(images.imageProperty(), one)),
-                new KeyFrame(Duration.seconds(3), new KeyValue(images.imageProperty(), null))
-                );
+                new KeyFrame(Duration.seconds(3), new KeyValue(images.imageProperty(), null)));
 		
         timeline.play();
         root.getChildren().add(images);
@@ -210,79 +191,83 @@ public class Game extends Application {
 		timeline.onFinishedProperty().set(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
-				soundManager.playSound(SoundManager.Sounds.Running);
-				initListener();
-				spawnEnemy();
-				spawnEnemy();
-				// remove for actual program
-				spawnEnemy();
-				
-				gameStarted = true;
-
-				final long startingTime = System.nanoTime();
-
-				new AnimationTimer() {
-
-					@Override
-					public void handle(final long currentDeltaTime) {
-						deltaDifference = (currentDeltaTime - startingTime) / 1000000000.0;
-
-						gc.clearRect(0, 0, 700, assetLoader.getWinHeight());
-
-						if (louie.onGround()) {
-							louie.setCanJump();
-							if (input.contains("SPACE")) {
-								louie.jump();
-							}
-						} else {
-							louie.setCantJump();
-							louie.rebound();
-						}
-
-						gc.drawImage(background, 0, 0);
-						louie.render(gc, deltaDifference);
-
-//						 for (int i = 0; i < enemyList.size(); i++) {
-//						 EvilExam enemy = enemyList.get(i);
-//						 enemy.render(gc, deltaDifference, 96, 96);
-//						 enemy.chargeLeft();
-//						
-//						 if (enemy.getPositionX() + 96 < 0) {
-//						 enemyList.remove(enemy);
-//						 spawnEnemy();
-//						 }
-//						
-//						 if (louie.intersects(enemy)) {
-//						 try {
-//						 Parent root = FXMLLoader.load(
-//						 getClass().getResource(
-//						 "gameOverScreen.fxml"));
-//						 Scene mainMenuScene = new Scene(root, 600, 400);
-//						 Main.setScene(mainMenuScene);
-//						 } catch (IOException e) {
-//						 e.printStackTrace();
-//						 }
-//						 stop();
-//						 soundManager.stopSound();
-//						 }
-//						 }
-
-						for (Iterator<EvilExam> iter = enemyList.iterator(); iter.hasNext();) {
-							EvilExam evilExam = iter.next();
-							evilExam.render(gc, deltaDifference, 96, 96);
-							evilExam.chargeLeft();
-							if (evilExam.getPositionX() + 96 < -50) {
-								iter.remove();
-								spawnEnemy();// GRAPHICS GLITCH IS HERE ..... I can see the irritation in the caps
-							}
-						}
-					}
-				}.start();
+				gameRenderer();
 			}
 		});	
 	}
 
+	
+	private void gameRenderer() {
+		soundManager.playSound(SoundManager.Sounds.Running);
+		initListener();
+		spawnEnemy();
+		spawnEnemy();
+		// remove for actual program
+		spawnEnemy();
+		
+		gameStarted = true;
+
+		final long startingTime = System.nanoTime();
+
+		new AnimationTimer() {
+
+			@Override
+			public void handle(final long currentDeltaTime) {
+				double deltaDifference = (currentDeltaTime - startingTime) / 1000000000.0;
+				
+				gc.clearRect(0, 0, 700, assetLoader.getWinHeight());
+
+				if (louie.onGround()) {
+					louie.setCanJump();
+					if (input.contains("SPACE")) {
+						louie.jump();
+					}
+				} else {
+					louie.setCantJump();
+					louie.rebound();
+				}
+
+				gc.drawImage(background, 0, 0);
+				louie.render(gc, deltaDifference);
+
+//				 for (int i = 0; i < enemyList.size(); i++) {
+//				 EvilExam enemy = enemyList.get(i);
+//				 enemy.render(gc, deltaDifference, 96, 96);
+//				 enemy.chargeLeft();
+//				
+//				 if (enemy.getPositionX() + 96 < 0) {
+//				 enemyList.remove(enemy);
+//				 spawnEnemy();
+//				 }
+//				
+//				 if (louie.intersects(enemy)) {
+//				 try {
+//				 Parent root = FXMLLoader.load(
+//				 getClass().getResource(
+//				 "gameOverScreen.fxml"));
+//				 Scene mainMenuScene = new Scene(root, 600, 400);
+//				 Main.setScene(mainMenuScene);
+//				 } catch (IOException e) {
+//				 e.printStackTrace();
+//				 }
+//				 stop();
+//				 soundManager.stopSound();
+//				 }
+//				 }
+
+				for (Iterator<EvilExam> iter = enemyList.iterator(); iter.hasNext();) {
+					EvilExam evilExam = iter.next();
+					evilExam.render(gc, deltaDifference, 96, 96);
+					evilExam.chargeLeft();
+					if (evilExam.getPositionX() + 96 < -50) {
+						iter.remove();
+						//spawnEnemy();// GRAPHICS GLITCH IS HERE ..... I can see the irritation in the caps
+					}
+				}
+			}
+		}.start();
+	}
+	
 	/**
 	 * Returns the current gamescene to load in the main stage.
 	 * 
