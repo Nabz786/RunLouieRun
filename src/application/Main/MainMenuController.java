@@ -79,7 +79,7 @@ public class MainMenuController {
 						getClass().
 						getResource(
 								"laker_store.fxml"));
-				Scene mainMenuScene = new Scene(root, WIDTH, HEIGHT);
+				Scene mainMenuScene = new Scene(root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
 				Main.setScene(mainMenuScene);
 				soundManager.stopSound();
 			}catch (IOException e1) {
