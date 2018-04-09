@@ -43,18 +43,15 @@ public class Game extends Application {
 
 	/** Sound managers to manage the in game sound effects. **/
 	private SoundManager soundManager;
+	
+	/** Assetloader to manage assets.**/
+	private AssetLoader assetLoader;
 
 	/** In-game store object. **/
 	private Shop store;
 
 	/** For now we will use a pane as the Parent node. **/
 	private Group root;
-
-	/** Width of the game window. **/
-	public static final int WIDTH = 600;
-
-	/** Height of the game window. **/
-	public static final int HEIGHT = 400;
 
 	/** Graphics canvas where objects are drawn. **/
 	private Canvas canvas;
@@ -93,7 +90,7 @@ public class Game extends Application {
 	 * Instantiates all required members, and loads backgrounds.
 	 **/
 	private void loadAssets() {
-		canvas = new Canvas(700, Game.HEIGHT);
+		canvas = new Canvas(700, assetLoader.getWinHeight());
 		root.getChildren().add(canvas);
 
 		gc = canvas.getGraphicsContext2D();
@@ -132,7 +129,7 @@ public class Game extends Application {
 			EvilExam enemy = new EvilExam(enemyList.get(enemyList.size() - 1).getPositionX() + 350, 275);
 			subList.add(enemy);
 		} else {
-			EvilExam enemy = new EvilExam(WIDTH + enemyList.size() * 250, 275);
+			EvilExam enemy = new EvilExam(assetLoader.getWinWidth() + enemyList.size() * 250, 275);
 			enemyList.add(enemy);
 		}
 	}
@@ -171,7 +168,7 @@ public class Game extends Application {
 	private void createGameInstance() {
 		
 		root = new Group();
-		gameScene = new Scene(root, WIDTH, HEIGHT);
+		gameScene = new Scene(root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
 		soundManager = new SoundManager();
 		
 		store = new Shop();
@@ -231,7 +228,7 @@ public class Game extends Application {
 					public void handle(final long currentDeltaTime) {
 						deltaDifference = (currentDeltaTime - startingTime) / 1000000000.0;
 
-						gc.clearRect(0, 0, 700, HEIGHT);
+						gc.clearRect(0, 0, 700, assetLoader.getWinHeight());
 
 						if (louie.onGround()) {
 							louie.setCanJump();

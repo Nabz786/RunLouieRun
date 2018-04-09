@@ -1,6 +1,8 @@
 package application.Main;
 
 import java.io.IOException;
+
+import application.Game.AssetLoader;
 import application.Game.Game;
 import application.Game.SoundManager;
 import javafx.fxml.FXML;
@@ -28,11 +30,8 @@ public class MainMenuController {
 	/** Sound manager to manage the start menu sound. **/
 	private SoundManager soundManager;
 
-	/** Width of the program window. **/
-	private static final int WIDTH = 600;
-
-	/** height of the program window. **/
-	private static final int HEIGHT = 400;
+	/** Asset Manager.**/
+	private AssetLoader assetLoader;
 
 	
 	/******************************************************************
@@ -42,6 +41,7 @@ public class MainMenuController {
 	@FXML
 	private void initialize() {
 		soundManager = new SoundManager();
+		assetLoader = new AssetLoader();
 		soundManager.playSound(SoundManager.Sounds.MainMenu);
 
 		//If the start button is hit will start new game
@@ -63,7 +63,8 @@ public class MainMenuController {
 						"helpMenu.fxml"));
 
 				Scene mainMenuScene = new Scene(root, 
-						WIDTH, HEIGHT);
+						assetLoader.getWinWidth(), 
+						assetLoader.getWinHeight());
 				Main.setScene(mainMenuScene);
 				soundManager.stopSound();
 

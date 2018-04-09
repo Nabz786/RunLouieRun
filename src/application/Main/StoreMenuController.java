@@ -1,5 +1,7 @@
 package application.Main;
 import java.io.IOException;
+
+import application.Game.AssetLoader;
 import application.Game.SoundManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,12 +31,8 @@ public class StoreMenuController {
 			/** Sound manager to manage the start menu sound. **/
 			private SoundManager soundManager;
 			
-			/** Width of the program window. **/
-			private static final int WIDTH = 600;
-
-			/** height of the program window. **/
-			private static final int HEIGHT = 400;
-
+			/** Asset Manager.**/
+			private AssetLoader assetLoader;
 			
 			/**
 		    * This method is called after all @FXML annotated members have
@@ -45,6 +43,7 @@ public class StoreMenuController {
 				
 				//start playing music
 				soundManager = new SoundManager();
+				assetLoader = new AssetLoader();
 				soundManager.playSound(SoundManager.Sounds.MainMenu);
 				
 				//if the back button is clicked return back to main menu
@@ -56,7 +55,7 @@ public class StoreMenuController {
 								getClass().getResource(
 								 "MainMenuStyle.fxml"));
 						Scene mainMenuScene = new Scene(
-								root, WIDTH, HEIGHT);
+								root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
 						Main.setScene(mainMenuScene);
 						
 						soundManager.stopSound();

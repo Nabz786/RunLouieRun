@@ -25,10 +25,7 @@ public class GameOverController {
    private SoundManager soundManager;
 
    /** Width of the program window. **/
-   private static final int WIDTH = 600;
-
-   /** Height of the program window. **/
-   private static final int HEIGHT = 400;
+   private AssetLoader assetLoader;
 
    
    /**
@@ -38,6 +35,7 @@ public class GameOverController {
    @FXML
    private void initialize() {
       soundManager = new SoundManager();
+      assetLoader = new AssetLoader();
       soundManager.playSound(SoundManager.Sounds.Death);
       //If the restart button is hit will start new game
       restartButton.setOnAction(e -> {
@@ -50,7 +48,8 @@ public class GameOverController {
          try {
             //Loads the main menu to return back to
             Parent root = FXMLLoader.load(Main.class.getResource("MainMenuStyle.fxml"));
-            Scene mainMenuScene = new Scene(root, WIDTH, HEIGHT);
+            Scene mainMenuScene = new Scene(root, 
+            		assetLoader.getWinWidth(),assetLoader.getWinHeight());
             Main.setScene(mainMenuScene);
          } catch (IOException e1) {
             e1.printStackTrace();
