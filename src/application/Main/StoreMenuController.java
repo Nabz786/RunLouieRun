@@ -18,12 +18,11 @@ import javafx.scene.control.Button;
 */
 
 public class StoreMenuController {
-			
-			/**Button to return to main menu. **/
+	
 			@FXML
-			private Button MenuButton;
-			private Button backButton;
-			private Button forwardButton;
+			private Button menuButton;
+			private Button leftButton;
+			private Button rightButton;
 			private Button buyButton;
 			private Button equipButton;
 			
@@ -49,7 +48,7 @@ public class StoreMenuController {
 				soundManager.playSound(SoundManager.Sounds.MainMenu);
 				
 				//if the back button is clicked return back to main menu
-				MenuButton.setOnAction(e -> {
+				menuButton.setOnAction(e -> {
 					try {
 						
 						//Loads the main menu to return back to
@@ -66,7 +65,17 @@ public class StoreMenuController {
 							e1.printStackTrace();
 						}
 				});
-//				forwardButton.setOnAction(e ->{
+//				rightButton.setOnAction(e ->{
+//					try {
+//						
+//					}
+//				});
+//				leftButton.setOnAction(e ->{
+//					try {
+//						
+//					}
+//				});
+//				buyButton.setOnAction(e ->{
 //					try {
 //						
 //					}

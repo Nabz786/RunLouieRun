@@ -118,6 +118,7 @@ public class Game extends Application {
 			//louieFrames[i - 1] = new Image("file:resources/Images/Finished_Louie" + i + ".png");
 			louieFrames[i - 1] = new Image((store.getActiveItem().getImage()) + i + ".png");
 		}
+		
 		louie.setFrames(louieFrames);
 		louie.setFrameDuration(0.100);
 	}

@@ -23,7 +23,7 @@ public class MainMenuController {
 
 	/** Buttons to start and exit the game. **/
 	@FXML
-	private Button startButton, exitButton, helpButton;
+	private Button startButton, exitButton, helpButton, storeButton;
 
 	/** Sound manager to manage the start menu sound. **/
 	private SoundManager soundManager;
@@ -71,6 +71,19 @@ public class MainMenuController {
 				e1.printStackTrace();
 			}
 		});
-
+		
+		storeButton.setOnAction(e -> {
+			try {
+				Parent root = FXMLLoader.load(
+						getClass().
+						getResource(
+								"laker_store.fxml"));
+				Scene mainMenuScene = new Scene(root, WIDTH, HEIGHT);
+				Main.setScene(mainMenuScene);
+				soundManager.stopSound();
+			}catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
 	}
 }

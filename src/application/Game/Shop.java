@@ -14,10 +14,10 @@ public class Shop {
 		Green_Louie = new ShopItem("Green Louie",20,"file:resources/Images/green_");
 		Pink_Louie = new ShopItem("Pink Louie",20,"file:resources/Images/pink_");
 		Patriotic_Louie = new ShopItem("Patriotic Louie",100,"file:resources/Images/patriotic_");
-		//King_Louie = new ShopItem("King Louie",100,"file:resources/Images/king_");
+		King_Louie = new ShopItem("King Louie",100,"file:resources/Images/kingLouie_");
 		Default_Louie = new ShopItem("Default Louie",0,"file:resources/Images/Finished_Louie");
 		shopitems.addAll(Arrays.asList(Rainbow_Louie,Golden_Louie,Green_Louie,Pink_Louie,Patriotic_Louie,Default_Louie));
-		equippedItem = Default_Louie;
+		equippedItem = Rainbow_Louie;
 	}
 	
 	public void BuyItem(ShopItem item) {
