@@ -83,6 +83,9 @@ public class Game extends Application {
 	 * engine and draw all required game assets to the screen
 	 **/
 	public Game() {
+		root = new Group();
+		soundManager = new SoundManager();
+		store = new Shop();
 		createGameInstance();
 	}
 
@@ -167,11 +170,8 @@ public class Game extends Application {
 	
 	private void createGameInstance() {
 		
-		root = new Group();
 		gameScene = new Scene(root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
-		soundManager = new SoundManager();
-		
-		store = new Shop();
+
 		loadAssets();
 		loadLouie();
 		
@@ -278,13 +278,9 @@ public class Game extends Application {
 							}
 						}
 					}
-
 				}.start();
 			}
-
-		});
-
-		
+		});	
 	}
 
 	/**
