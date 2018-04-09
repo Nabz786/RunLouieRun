@@ -1,6 +1,8 @@
 package application.Main;
 
 import java.io.IOException;
+
+import application.Game.AssetLoader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,11 +19,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-	/** Width of the program window. **/
-	private static final int WIDTH = 600; 
-
-	/** height of the program window. **/
-	private static final int HEIGHT = 400; 
+	/** Manage game assets. **/
+	AssetLoader assetLoader;
 
 	/** Stage for the primary stage which will be the main-window. **/
 	public static Stage mainWindow;
@@ -36,13 +35,14 @@ public class Main extends Application {
     */
 	@Override
 	public final void start(final Stage primaryStage) throws IOException {
-	
+		assetLoader = new AssetLoader();
 		//Loads main menu setup for main menu
 		Parent root = FXMLLoader.load(
 				getClass().getResource("MainMenuStyle.fxml"));
 		//Main window options
 		setMainWindow(primaryStage);
-		mainMenuScene = new Scene(root, WIDTH, HEIGHT);
+		mainMenuScene = new Scene(root, 
+				assetLoader.getWinWidth(), assetLoader.getWinHeight());
 		mainWindow.setScene(mainMenuScene);
 		mainWindow.setTitle("Run Louie Run");
 		mainWindow.show();
