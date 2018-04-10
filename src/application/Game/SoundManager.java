@@ -5,6 +5,7 @@ import java.io.File;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
  * Sound manager class for simple sound management throughout the game.
@@ -122,6 +123,17 @@ public class SoundManager {
 		currentSoundEffect = null;
 	}
 
+	public void playCountDown() {
+		currentSoundEffect = new Media(new File(
+				"resources/Sounds/CountDown_Beep.wav").toURI().toString());
+		MediaPlayer countingPlayer = new MediaPlayer(currentSoundEffect);
+		
+		countingPlayer.setStopTime(Duration.millis(850));
+        countingPlayer.cycleCountProperty().set(3);
+		countingPlayer.play();
+		
+		
+	}
 	/**
 	 * Stops the music.
 	 */
