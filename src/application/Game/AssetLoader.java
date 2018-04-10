@@ -26,10 +26,18 @@ public class AssetLoader {
 		
 	}
 
+	/**
+	 * Returns width of program window.
+	 * @return width of program window
+	 */
 	public int getWinWidth() {
 		return WIDTH;
 	}
 	
+	/**
+	 * Returns height of program window.
+	 * @return height, height of program window
+	 */
 	public int getWinHeight() {
 		return HEIGHT;
 	}

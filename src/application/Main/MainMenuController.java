@@ -84,7 +84,7 @@ public class MainMenuController {
 						assetLoader.getWinHeight());
 				Main.setScene(mainMenuScene);
 				soundManager.stopSound();
-			}catch (IOException e1) {
+			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 		});

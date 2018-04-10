@@ -53,7 +53,8 @@ public class HelpMenuController {
 							getClass().getResource(
 							 "MainMenuStyle.fxml"));
 					Scene mainMenuScene = new Scene(
-							root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
+						root, assetLoader.getWinWidth(), 
+						assetLoader.getWinHeight());
 					Main.setScene(mainMenuScene);
 					
 					soundManager.stopSound();

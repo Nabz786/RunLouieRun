@@ -94,21 +94,24 @@ public class SoundManager {
 			case Jump:
 				currentSoundEffect = new Media(new File(jumpSoundFile
 						).toURI().toString());
-				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				soundEffectPlayer = new MediaPlayer(
+						currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
 			case Death:
 				clearCurrentSound();
 				currentSoundEffect = new Media(new File(
 						deathSoundFile).toURI().toString());
-				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				soundEffectPlayer = new MediaPlayer(
+						currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
 			case CountDown:
 				clearCurrentSound();
 				currentSoundEffect = new Media(new File(
 						countDownFile).toURI().toString());
-				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				soundEffectPlayer = new MediaPlayer(
+						currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
 		default:
@@ -123,9 +126,13 @@ public class SoundManager {
 		currentSoundEffect = null;
 	}
 
+	/**
+	 * Allows program to play countdown sound effect.
+	 */
 	public void playCountDown() {
 		currentSoundEffect = new Media(new File(
-				"resources/Sounds/CountDown_Beep.wav").toURI().toString());
+				"resources/Sounds/CountDown_Beep.wav")
+				.toURI().toString());
 		MediaPlayer countingPlayer = new MediaPlayer(currentSoundEffect);
 		
 		countingPlayer.setStopTime(Duration.millis(850));

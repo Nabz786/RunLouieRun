@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.Main.MainMenuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main.MainMenuController">
   <children>
     <ImageView fitHeight="400.0" fitWidth="600.0">
       <image>
@@ -20,7 +20,7 @@
         <Image url="@../../../resources/Images/title.png" />
       </image>
     </ImageView>
-    <ImageView fitHeight="140.0" fitWidth="142.0" layoutX="61.0" layoutY="246.0">
+    <ImageView fitHeight="140.0" fitWidth="142.0" layoutX="32.0" layoutY="243.9">
       <image>
         <Image url="@../../../resources/Images/starting_Louie.png" />
       </image>

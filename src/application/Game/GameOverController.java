@@ -47,9 +47,10 @@ public class GameOverController {
       mainMenuButton.setOnAction(e -> {
          try {
             //Loads the main menu to return back to
-            Parent root = FXMLLoader.load(Main.class.getResource("MainMenuStyle.fxml"));
+            Parent root = FXMLLoader.load(
+            		Main.class.getResource("MainMenuStyle.fxml"));
             Scene mainMenuScene = new Scene(root, 
-            		assetLoader.getWinWidth(),assetLoader.getWinHeight());
+            		assetLoader.getWinWidth(), assetLoader.getWinHeight());
             Main.setScene(mainMenuScene);
          } catch (IOException e1) {
             e1.printStackTrace();

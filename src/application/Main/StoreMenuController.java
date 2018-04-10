@@ -21,11 +21,24 @@ import javafx.scene.control.Button;
 
 public class StoreMenuController {
 	
+			/** menu button .**/
 			@FXML
 			private Button menuButton;
+			
+			/** left button.**/
+			@FXML
 			private Button leftButton;
+			
+			/** right button.**/
+			@FXML
 			private Button rightButton;
+			
+			/** buy button.**/
+			@FXML
 			private Button buyButton;
+			
+			/** equip button.**/
+			@FXML
 			private Button equipButton;
 			
 			/** Sound manager to manage the start menu sound. **/
@@ -46,16 +59,17 @@ public class StoreMenuController {
 				assetLoader = new AssetLoader();
 				soundManager.playSound(SoundManager.Sounds.MainMenu);
 				
-				//if the back button is clicked return back to main menu
+				//back button click event returns back to main menu
 				menuButton.setOnAction(e -> {
 					try {
 						
-						//Loads the main menu to return back to
 						Parent root = FXMLLoader.load(
-								getClass().getResource(
-								 "MainMenuStyle.fxml"));
+							getClass().getResource(
+							"MainMenuStyle.fxml"));
 						Scene mainMenuScene = new Scene(
-								root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
+						  root, assetLoader.getWinWidth(),
+						  assetLoader.getWinHeight());
+						
 						Main.setScene(mainMenuScene);
 						
 						soundManager.stopSound();
