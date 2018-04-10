@@ -66,7 +66,7 @@ public class StoreMenuController {
 				});
 //				rightButton.setOnAction(e ->{
 //					try {
-//						
+//						 
 //					}
 //				});
 //				leftButton.setOnAction(e ->{

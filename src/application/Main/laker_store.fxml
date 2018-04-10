@@ -18,7 +18,7 @@
         <Image url="@../../../resources/Images/lakerStore.png" preserveRatio="true" smooth="true" />
       </image>
     </ImageView>
-    <Button fx:id="rightButton" layoutX="473.0" layoutY="341.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="42.0" text="right">
+    <Button fx:id="rightButton" layoutX="479.0" layoutY="341.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="42.0" text="right">
       <effect>
         <ImageInput>
           <source>
@@ -27,7 +27,7 @@
         </ImageInput>
       </effect>
     </Button>
-    <Button fx:id="leftButton" layoutX="316.0" layoutY="341.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="42.0" text="left">
+    <Button fx:id="leftButton" layoutX="323.0" layoutY="341.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="42.0" text="left">
       <effect>
         <ImageInput>
           <source>
@@ -49,12 +49,12 @@
       </effect>
     </Button>
     <Button fx:id="buyButton" layoutX="118.0" layoutY="286.0" mnemonicParsing="false" onAction="#initialize" text="Buy" />
-    <Button fx:id="equipButton" layoutX="374.0" layoutY="342.0" mnemonicParsing="false" onAction="#initialize" text="Equip" />
+    <Button fx:id="equipButton" layoutX="378.0" layoutY="341.0" mnemonicParsing="false" onAction="#initialize" text="Equip" />
     <Pane fx:id="goldLouie" layoutX="38.0" layoutY="163.0" prefHeight="155.0" prefWidth="480.0" visible="false">
       <children>
         <Text fill="WHITE" layoutX="59.0" layoutY="56.0" scaleX="1.9522813796588037" scaleY="1.9606787433000739" strokeType="OUTSIDE" strokeWidth="0.0" text="Golden Louie" />
-        <Text fill="WHITE" layoutX="81.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 10" textAlignment="CENTER" />
-        <ImageView id="gold_1.png" fitHeight="163.0" fitWidth="177.0" layoutX="283.0" layoutY="0.0">
+        <Text fill="WHITE" layoutX="81.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 50" textAlignment="CENTER" />
+        <ImageView id="gold_1.png" fitHeight="159.0" fitWidth="152.0" layoutX="297.0" layoutY="3.0">
           <image>
             <Image url="@../../../resources/Images/gold_1.png" preserveRatio="true" smooth="true" />
           </image>
@@ -63,19 +63,19 @@
     </Pane>
     <Pane fx:id="greenLouie" layoutX="40.0" layoutY="164.0" prefHeight="153.9998779296875" prefWidth="480.0" visible="false">
       <children>
-        <Text fill="WHITE" layoutX="63.0" layoutY="57.0" scaleX="1.9522813796588037" scaleY="1.9606787433000739" strokeType="OUTSIDE" strokeWidth="0.0" text="Green Louie" />
-        <Text fill="WHITE" layoutX="75.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 10" textAlignment="CENTER" />
-        <ImageView id="green_1.png" fitHeight="229.99989318847656" fitWidth="232.0" layoutX="276.0" layoutY="-35.0">
+        <Text fill="WHITE" layoutX="75.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 20" textAlignment="CENTER" />
+        <ImageView id="green_1.png" fitHeight="229.99989318847656" fitWidth="232.0" layoutX="275.0" layoutY="-32.0">
           <image>
             <Image url="@../../../resources/Images/green_1.png" preserveRatio="true" smooth="true" />
           </image>
         </ImageView>
+        <Text fill="WHITE" layoutX="63.0" layoutY="57.0" scaleX="1.9522813796588037" scaleY="1.9606787433000739" strokeType="OUTSIDE" strokeWidth="0.0" text="Green Louie" />
       </children>
     </Pane>
     <Pane id="greenLouie" fx:id="pinkLouie" layoutX="40.0" layoutY="164.0" prefHeight="153.9998779296875" prefWidth="480.0" visible="false">
       <children>
         <Text fill="WHITE" layoutX="70.0" layoutY="57.0" scaleX="2.124097928073178" scaleY="1.9606637478985252" strokeType="OUTSIDE" strokeWidth="0.0" text="Pink Louie" />
-        <Text fill="WHITE" layoutX="75.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 10" textAlignment="CENTER" />
+        <Text fill="WHITE" layoutX="75.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 20" textAlignment="CENTER" />
         <ImageView id="pink_1.png" fitHeight="229.9998779296875" fitWidth="250.0" layoutX="267.0" layoutY="-34.0">
           <image>
             <Image url="@../../../resources/Images/pink_1.png" preserveRatio="true" smooth="true" />
@@ -83,13 +83,46 @@
         </ImageView>
       </children>
     </Pane>
-    <Pane id="greenLouie" layoutX="41.0" layoutY="163.0" prefHeight="153.9998779296875" prefWidth="480.0" visible="true">
+    <Pane id="greenLouie" fx:id="defaultLouie" layoutX="41.0" layoutY="165.0" prefHeight="153.9998779296875" prefWidth="480.0" visible="true">
+      <children>
+        <Text fill="WHITE" layoutX="86.0" layoutY="58.0" scaleX="2.124097928073178" scaleY="1.9606637478985252" strokeType="OUTSIDE" strokeWidth="0.0" text="Louie" />
+        <Text fill="WHITE" layoutX="79.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 0" textAlignment="CENTER" />
+        <ImageView id="Finished_Louie1.png" fitHeight="233.0" fitWidth="234.00010681152344" layoutX="269.0" layoutY="-34.0">
+          <image>
+            <Image url="@../../../resources/Images/Finished_Louie1.png" preserveRatio="true" smooth="true" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+    <Pane id="greenLouie" fx:id="kingLouie" layoutX="41.0" layoutY="163.0" prefHeight="153.9998779296875" prefWidth="480.0" visible="false">
       <children>
         <Text fill="WHITE" layoutX="70.0" layoutY="57.0" scaleX="2.124097928073178" scaleY="1.9606637478985252" strokeType="OUTSIDE" strokeWidth="0.0" text="King Louie" />
-        <Text fill="WHITE" layoutX="75.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 10" textAlignment="CENTER" />
-        <ImageView id="kingLouie_1.png" fitHeight="157.0" fitWidth="168.99990000000253" layoutX="290.0" layoutY="0.0">
+        <Text fill="WHITE" layoutX="75.0" layoutY="97.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 100" textAlignment="CENTER" />
+        <ImageView id="kingLouie_1.png" fitHeight="166.0" fitWidth="168.99989318847656" layoutX="283.0" layoutY="0.0">
           <image>
             <Image url="@../../../resources/Images/kingLouie_1.png" preserveRatio="true" smooth="true" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+    <Pane id="goldLouie" fx:id="rainbowLouie" layoutX="47.0" layoutY="163.0" prefHeight="155.0" prefWidth="480.0" visible="false">
+      <children>
+        <Text fill="WHITE" layoutX="47.0" layoutY="56.0" scaleX="1.737719626588349" scaleY="1.9606787433000739" strokeType="OUTSIDE" strokeWidth="0.0" text="Rainbow Louie" />
+        <Text fill="WHITE" layoutX="77.0" layoutY="97.0" scaleX="1.8897524775857317" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 50" textAlignment="CENTER" />
+        <ImageView id="rainbowLouie1.png" fitHeight="167.0" fitWidth="165.0" layoutX="284.0" layoutY="0.0">
+          <image>
+            <Image url="@../../../resources/Images/rainbowLouie1.png" preserveRatio="true" smooth="true" />
+          </image>
+        </ImageView>
+      </children>
+    </Pane>
+    <Pane id="greenLouie" fx:id="patrioticLouie" layoutX="48.0" layoutY="164.0" prefHeight="153.9998779296875" prefWidth="480.0" visible="false">
+      <children>
+        <Text fill="WHITE" layoutX="46.0" layoutY="54.0" scaleX="1.8502114154896236" scaleY="1.9606637478985252" strokeType="OUTSIDE" strokeWidth="0.0" text="Patriotic Louie" />
+        <Text fill="WHITE" layoutX="63.0" layoutY="93.0" scaleX="1.9949647734286757" scaleY="1.3365965084026759" strokeType="OUTSIDE" strokeWidth="0.0" text="Price: 100" textAlignment="CENTER" />
+        <ImageView id="patriotic_1.png" fitHeight="162.00010681152344" fitWidth="157.0" layoutX="288.0" layoutY="0.0">
+          <image>
+            <Image url="@../../../resources/Images/patriotic_1.png" preserveRatio="true" smooth="true" />
           </image>
         </ImageView>
       </children>

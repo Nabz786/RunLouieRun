@@ -85,6 +85,7 @@ public class Game extends Application {
 	public Game() {
 		root = new Group();
 		soundManager = new SoundManager();
+		assetLoader = new AssetLoader();
 		store = new Shop();
 		createGameInstance();
 	}
@@ -169,10 +170,10 @@ public class Game extends Application {
 	 */
 	
 	private void createGameInstance() {
-		
+		loadAssets();		
 		gameScene = new Scene(root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
 
-		loadAssets();
+
 		loadLouie();
 		
 		//need this here for now for background/louie to show during countdown, will figure out better way....maybe?

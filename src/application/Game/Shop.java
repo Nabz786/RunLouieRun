@@ -17,7 +17,7 @@ public class Shop {
 		King_Louie = new ShopItem("King Louie",100,"file:resources/Images/kingLouie_");
 		Default_Louie = new ShopItem("Default Louie",0,"file:resources/Images/Finished_Louie");
 		shopitems.addAll(Arrays.asList(Rainbow_Louie,Golden_Louie,Green_Louie,Pink_Louie,Patriotic_Louie,Default_Louie));
-		equippedItem = Rainbow_Louie;
+		equippedItem = Default_Louie;
 	}
 	
 	public void BuyItem(ShopItem item) {
