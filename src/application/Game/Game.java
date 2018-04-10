@@ -1,31 +1,22 @@
 package application.Game;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import application.Main.Main;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.beans.value.WritableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -72,6 +63,8 @@ public class Game extends Application {
 	/** Array list holding all spawned enemies. **/
 	private ArrayList<EvilExam> enemyList;
 	
+	private double deltaDifference = 0.0;
+	
 	/**
 	 * Constructor for game class. Calls another method to initialize the game
 	 * engine and draw all required game assets to the screen
@@ -106,12 +99,12 @@ public class Game extends Application {
 		Image[] louieFrames = new Image[3];
 
 		for (int i = 1; i < 4; i++) {
-			//louieFrames[i - 1] = new Image("file:resources/Images/Finished_Louie" + i + ".png");
-			louieFrames[i - 1] = new Image((store.getActiveItem().getImage()) + i + ".png");
+			louieFrames[i - 1] = new Image("file:resources/Images/Finished_Louie" + i + ".png");
+			//louieFrames[i - 1] = new Image(store.getActiveItem().getImage() + i + ".png");
 		}
 		
 		louie.setFrames(louieFrames);
-		louie.setFrameDuration(0.100);
+		louie.setFrameDuration(0.1);
 	}
 
 	/**
@@ -164,7 +157,9 @@ public class Game extends Application {
 	
 	private void createGameInstance() {
 		
-		gameScene = new Scene(root, assetLoader.getWinWidth(), assetLoader.getWinHeight());
+		gameScene = new Scene(root,
+				assetLoader.getWinWidth(),
+				assetLoader.getWinHeight());
 		
 		gc.drawImage(background, 0, 0);
     	gc.drawImage(new Image(store.getActiveItem().getImage() + 0 + ".png"),
@@ -180,10 +175,14 @@ public class Game extends Application {
 		
 		//animation for counting
 		Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(images.imageProperty(), three)),
-                new KeyFrame(Duration.seconds(1), new KeyValue(images.imageProperty(), two)),
-                new KeyFrame(Duration.seconds(2), new KeyValue(images.imageProperty(), one)),
-                new KeyFrame(Duration.seconds(3), new KeyValue(images.imageProperty(), null)));
+                new KeyFrame(Duration.ZERO,
+                		new KeyValue(images.imageProperty(), three)),
+                new KeyFrame(Duration.seconds(1),
+                		new KeyValue(images.imageProperty(), two)),
+                new KeyFrame(Duration.seconds(2),
+                		new KeyValue(images.imageProperty(), one)),
+                new KeyFrame(Duration.seconds(3),
+                		new KeyValue(images.imageProperty(), null)));
 		
         timeline.play();
         root.getChildren().add(images);
@@ -191,20 +190,22 @@ public class Game extends Application {
         //logic was moved inside action handler to wait until countdown was done
 		timeline.onFinishedProperty().set(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent event) {
+			public void handle(final ActionEvent event) {
 				gameRenderer();
 			}
 		});	
 	}
 
-	
+	/**
+	 * Renders all members of the game.
+	 */
 	private void gameRenderer() {
 		soundManager.playSound(SoundManager.Sounds.Running);
 		initListener();
-		spawnEnemy();
-		spawnEnemy();
+		//spawnEnemy();
+		//spawnEnemy();
 		// remove for actual program
-		spawnEnemy();
+		//spawnEnemy();
 		
 		gameStarted = true;
 
@@ -214,7 +215,11 @@ public class Game extends Application {
 
 			@Override
 			public void handle(final long currentDeltaTime) {
-				double deltaDifference = (currentDeltaTime - startingTime) / 1000000000.0;
+				deltaDifference = 
+						(currentDeltaTime - startingTime)
+						/ 1000000000.0;
+								
+				
 				
 				gc.clearRect(0, 0, 700, assetLoader.getWinHeight());
 
@@ -230,6 +235,8 @@ public class Game extends Application {
 
 				gc.drawImage(background, 0, 0);
 				louie.render(gc, deltaDifference);
+				
+				
 
 //				 for (int i = 0; i < enemyList.size(); i++) {
 //				 EvilExam enemy = enemyList.get(i);
@@ -256,19 +263,17 @@ public class Game extends Application {
 //				 }
 //				 }
 
-				for (Iterator<EvilExam> iter = enemyList.iterator(); iter.hasNext();) {
-					EvilExam evilExam = iter.next();
-					evilExam.render(gc, deltaDifference, 96, 96);
-					evilExam.chargeLeft();
-					if (evilExam.getPositionX() + 96 < -50) {
-						iter.remove();
-						//spawnEnemy();// GRAPHICS GLITCH IS HERE ..... I can see the irritation in the caps
-					}
+//				for (Iterator<EvilExam> 
+//				iter = enemyList.iterator(); iter.hasNext();) {
+//					EvilExam evilExam = iter.next();
+//					evilExam.render(gc, deltaDifference, 96, 96);
+//					evilExam.chargeLeft();
+//					if (evilExam.getPositionX() + 96 < -50) {
+//						iter.remove();
+//						//spawnEnemy();// GRAPHICS Error
 				}
-			}
-		}.start();
-	}
-	
+			}.start();
+}
 	/**
 	 * Returns the current gamescene to load in the main stage.
 	 * 
