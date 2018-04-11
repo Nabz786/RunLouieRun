@@ -1,8 +1,6 @@
 package application.Game;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -63,6 +61,7 @@ public class Game extends Application {
 	/** Array list holding all spawned enemies. **/
 	private ArrayList<EvilExam> enemyList;
 	
+	/** Difference in time between frames.**/
 	private double deltaDifference = 0.0;
 	
 	/**
@@ -99,8 +98,10 @@ public class Game extends Application {
 		Image[] louieFrames = new Image[3];
 
 		for (int i = 1; i < 4; i++) {
-			louieFrames[i - 1] = new Image("file:resources/Images/Finished_Louie" + i + ".png");
-			//louieFrames[i - 1] = new Image(store.getActiveItem().getImage() + i + ".png");
+			//louieFrames[i - 1] = new Image
+			//("file:resources/Images/Finished_Louie" + i + ".png");
+			louieFrames[i - 1] = new Image(store.getActiveItem()
+					.getImage() + i + ".png");
 		}
 		
 		louie.setFrames(louieFrames);
