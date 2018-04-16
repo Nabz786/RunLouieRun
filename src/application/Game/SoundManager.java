@@ -42,6 +42,9 @@ public class SoundManager {
 	
 	/** Countdown Sound. **/
 	private String countDownFile = "resources/Sounds/CountDown_Beep.wav";
+	
+	/** Coin pickup sound.**/
+	private String coinPickUp = "resources/Sounds/Coin_PickUp.wav";
 
 	/**
 	 * Sets the current sound playing to null.
@@ -68,7 +71,10 @@ public class SoundManager {
 		Death,
 		
 		/** Countdown sound effect.**/
-		CountDown
+		CountDown,
+		
+		/** Coin Pickup sound effect.**/
+		CoinPickUp
 	}
 	
 	/**
@@ -115,6 +121,14 @@ public class SoundManager {
 						currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
+			case CoinPickUp:
+				clearCurrentSound();
+				currentSoundEffect = new Media(new File(
+						coinPickUp).toURI().toString());
+				soundEffectPlayer = new MediaPlayer(
+						currentSoundEffect);
+				soundEffectPlayer.play();
+				break;
 		default:
 			break;
 		}
@@ -142,6 +156,7 @@ public class SoundManager {
 		
 		
 	}
+	
 	/**
 	 * Stops the music.
 	 */
