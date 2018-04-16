@@ -59,7 +59,7 @@ public class ShopItem {
 	
 	/**
 	 * Returns name of item to purchase.
-	 * @return name of purchased item
+	 * @return - name of purchased item
 	 */
 	public String getName() {
 		return name;

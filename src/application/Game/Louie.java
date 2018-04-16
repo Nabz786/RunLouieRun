@@ -24,8 +24,8 @@ public class Louie extends BaseSprite {
 	
 	/**
 	 * Creates a louie sprite at a specifed position on the canvas.
-	 * @param positionX X Coordinate on the canvas
-	 * @param positionY Y Coordinate on the canvas
+	 * @param positionX - X Coordinate on the canvas
+	 * @param positionY - Y Coordinate on the canvas
 	 */
 	public Louie(final double positionX, final double positionY) {
 		super(positionX, positionY);
@@ -34,8 +34,8 @@ public class Louie extends BaseSprite {
 	
 	/**
 	 * Called from Game, renders louie's position on the canvas.
-	 * @param gc Graphics Context
-	 * @param deltaDifference Difference in time between current/last frame
+	 * @param gc - Graphics Context
+	 * @param deltaDifference - Difference in time between current/last frame
 	 */
 	public void render(final GraphicsContext gc,
 			final double deltaDifference) {
@@ -93,5 +93,4 @@ public class Louie extends BaseSprite {
 	public void setCantJump() {
 		canJump = false;
 	}
-
 }

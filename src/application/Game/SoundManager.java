@@ -153,8 +153,6 @@ public class SoundManager {
 		countingPlayer.setStopTime(Duration.millis(850));
         countingPlayer.cycleCountProperty().set(3);
 		countingPlayer.play();
-		
-		
 	}
 	
 	/**

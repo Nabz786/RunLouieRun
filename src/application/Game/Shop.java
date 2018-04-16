@@ -90,4 +90,18 @@ public class Shop {
 	public ShopItem getActiveItem() {
 		return equippedItem;
 	}
+	
+	/**
+	 * Saves a player's items that have been unlocked.
+	 */
+	public void savePlayerData() {
+		
+	}
+	
+	/**
+	 * Loads a players unlocked items.
+	 */
+	public void loadPlayerData() {
+		
+	}
 }
