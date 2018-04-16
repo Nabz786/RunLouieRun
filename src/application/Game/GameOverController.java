@@ -38,7 +38,7 @@ public class GameOverController {
       assetLoader = new AssetLoader();
       soundManager.playSound(SoundManager.Sounds.Death);
       //If the restart button is hit will start new game
-      restartButton.setOnAction(e -> {
+         restartButton.setOnAction(e -> {
          Game game = new Game();
          Main.setScene(game.getGameScene());
       });
