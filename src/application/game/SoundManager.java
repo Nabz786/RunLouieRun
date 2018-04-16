@@ -1,4 +1,4 @@
-package application.Game;
+package application.game;
 
 
 import java.io.File;

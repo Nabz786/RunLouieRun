@@ -1,8 +1,8 @@
-package application.Main;
+package application.main;
 
 import java.io.IOException;
 
-import application.Game.AssetLoader;
+import application.game.AssetLoader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

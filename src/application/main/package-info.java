@@ -3,5 +3,5 @@
 *including the main menu, help menu, and soon the option menu.
 *@author Nabeel
 */
-package application.Main;
+package application.main;
 

@@ -1,6 +1,7 @@
-package application.Game;
+package application.game;
 import java.io.IOException;
-import application.Main.Main;
+
+import application.main.Main;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

@@ -1,4 +1,4 @@
-package application.Game;
+package application.game;
 
 /**
  * Shop item class creates and adds attributes to shop items.

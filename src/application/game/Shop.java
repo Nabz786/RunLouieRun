@@ -1,4 +1,4 @@
-package application.Game;
+package application.game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -80,7 +80,7 @@ public class Shop {
 	 * @param f - amount of funds to set
 	 */
 	public void setFunds(final int f) {
-		funds = f;
+		funds += f;
 	}
 	
 	/**

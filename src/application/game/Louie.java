@@ -1,4 +1,4 @@
-package application.Game;
+package application.game;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -29,7 +29,7 @@ public class Louie extends BaseSprite {
 	 */
 	public Louie(final double positionX, final double positionY) {
 		super(positionX, positionY);
-		canJump = true;
+		setCanJump(true);
 	}
 	
 	/**
@@ -91,6 +91,23 @@ public class Louie extends BaseSprite {
 	 * Sets the vale of can jump to false.
 	 */
 	public void setCantJump() {
-		canJump = false;
+		setCanJump(false);
+	}
+
+	/** 
+	 * Returns whether or not louie can jump.
+	 * @return - True (able to jump), False (Unable to jump)
+	 */
+	public boolean CanJump() {
+		return canJump;
+	}
+
+	/**
+	 * Sets the can jump param to whether or not louie can
+	 * jump.
+	 * @param canJump - True (able to jump), False (Unable to jump)
+	 */
+	public void setCanJump(boolean canJump) {
+		this.canJump = canJump;
 	}
 }

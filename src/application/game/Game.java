@@ -1,10 +1,10 @@
-package application.Game;
+package application.game;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import application.Main.Main;
+import application.main.Main;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -18,9 +18,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -43,9 +47,11 @@ public class Game extends Application {
 	/** Asset loader to manage assets.**/
 	private AssetLoader assetLoader;
 
-	/** In-game store object. **/
-	private Shop store;
+	/** In-game shop object. **/
+	private  Shop shop;
 
+	private static StatsManager statsManager;
+	
 	/** For now we will use a pane as the Parent node. **/
 	private Group root;
 
@@ -68,17 +74,29 @@ public class Game extends Application {
 	private ArrayList<Anchor> anchorList;
 
 	/** Difference in time between frames.**/
-	private double deltaDifference = 0.0;
+	private double deltaDifference;
 
 	/** Spawn interval between sprites.**/
-	private int spawnInterval = 0;
-
+	private int spawnInterval, distanceInterval;
+	
+	/** Number of coins collected.**/
+	private int numCoins;
+	
+	/** Traveled distance.**/
+	private int distanceScore;
+	
 	/** First Looping background .**/
 	private BackGround bG1;
 
 	/** Second looping background.**/
 	private BackGround bG2;
-
+	
+	/** Label to hold scores.**/
+	private Label scoreLabel, distanceScoreLabel;
+	
+	/** Symbol for score label.**/
+	private Image scoreAnchor;
+	
 	/**
 	 * Constructor for game class. Calls another method to initialize the game
 	 * engine and draw all required game assets to the screen
@@ -86,14 +104,21 @@ public class Game extends Application {
 	public Game() {
 		root = new Group();
 		soundManager = new SoundManager();
-		store = new Shop();
+		shop = new Shop();
 		assetLoader = new AssetLoader();
+		enemyList = new ArrayList<EvilExam>();
+		anchorList = new ArrayList<Anchor>();
+		
 		loadGraphicsAssets();
 		createGameInstance();
 		loadLouie();
-		enemyList = new ArrayList<EvilExam>();
-		anchorList = new ArrayList<Anchor>();
-
+		setupScoreLabel();
+				
+		deltaDifference = 0.0;
+		spawnInterval = 0;
+		distanceInterval = 0;
+		distanceScore = 0;
+		numCoins = 0;
 	}
 
 	/**
@@ -118,7 +143,7 @@ public class Game extends Application {
 		for (int i = 1; i < 4; i++) {
 			//louieFrames[i - 1] = new Image
 			//("file:resources/Images/Finished_Louie" + i + ".png");
-			louieFrames[i - 1] = new Image(store.getActiveItem()
+			louieFrames[i - 1] = new Image(shop.getActiveItem()
 					.getImage() + i + ".png");
 		}
 
@@ -192,15 +217,17 @@ public class Game extends Application {
 		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(final KeyEvent e) {
 				String code = e.getCode().toString();
-				if (!input.contains(code)) {
-					input.add(code);
+				if(e.getCode() == KeyCode.SPACE) {
+					if (!input.contains(code)) {
+						soundManager.playSound(SoundManager.Sounds.Jump);
+						input.add(code);
+					}
 				}
 			}
 		});
 
 		gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			public void handle(final KeyEvent e) {
-				soundManager.playSound(SoundManager.Sounds.Jump);
 				String code = e.getCode().toString();
 				input.remove(code);
 			}
@@ -220,7 +247,7 @@ public class Game extends Application {
 				assetLoader.getWinHeight());
 
 		gc.drawImage(background, 0, 0);
-		gc.drawImage(new Image(store.getActiveItem()
+		gc.drawImage(new Image(shop.getActiveItem()
 				.getImage() + 0 + ".png"),
 				32, 244, 142, 140);
 
@@ -292,6 +319,7 @@ public class Game extends Application {
 				manageLouie(gc, deltaDifference);
 				manageEnemies(gc, deltaDifference);
 				manageAnchors(gc, deltaDifference);
+				updateDistanceScoreText();
 
 				for (int i = 0; i < enemyList.size(); i++) {
 					if (louie.intersects(enemyList.get(i))) {
@@ -303,7 +331,9 @@ public class Game extends Application {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+						StatsManager.setNumCoins(numCoins);
 						stop();
+						System.out.println(StatsManager.getNumCoins());
 						soundManager.stopSound();
 					}
 				}
@@ -351,10 +381,11 @@ public class Game extends Application {
 				break;
 			}
 		}
-		
-		
+				
 		for (int i = 0; i < anchorList.size(); i++) {
 			if (anchorList.get(i).intersects(louie)) {
+				numCoins++;
+				updateScoreText(numCoins);
 				anchorList.remove(i);
 				soundManager.playSound(
 						SoundManager.Sounds.CoinPickUp);
@@ -403,18 +434,75 @@ public class Game extends Application {
 					+ 2200 * 2, bG2.getPositionY());
 		}
 	}
+	
+	/**
+	 * Initializes and draws score label to screen.
+	 */
+	private void setupScoreLabel() {
+		scoreLabel = new Label("");
+		scoreLabel.setLayoutX(500);
+		scoreLabel.setLayoutY(50);
+		scoreLabel.setFont(new Font("Arial", 20));
+		scoreLabel.setTextFill(Color.ANTIQUEWHITE);
+		scoreAnchor = new Image("file:resources/Images/anchor0.png");
+		
+		distanceScoreLabel = new Label(distanceScore + "m");
+		distanceScoreLabel.setLayoutX(512);
+		distanceScoreLabel.setLayoutY(25);
+		distanceScoreLabel.setFont(new Font("Arial", 20));
+		distanceScoreLabel.setTextFill(Color.ANTIQUEWHITE);
+		
+		ImageView imageView = new ImageView(scoreAnchor);
+		imageView.setFitHeight(43);
+		imageView.setFitWidth(43);
+		scoreLabel.setGraphic(imageView);
+		
+		root.getChildren().add(scoreLabel);
+		root.getChildren().add(distanceScoreLabel);
+	}
+	
+	/**
+	 * Updates the score label with the current score.
+	 */
+	private void updateScoreText(final int score) {
+		scoreLabel.setText(Integer.toString(numCoins));
+	}
+	
+	/**
+	 * Updates the distance score label with the distance traveled.
+	 */
+	private void updateDistanceScoreText() {
+		distanceInterval++;
+		if(distanceInterval % 3 == 0) {
+			distanceScore++;
+		}
+		
+		
+		distanceScoreLabel.setText(Integer.toString(distanceScore) + "m");
+	}
 
 	/**
 	 * Returns the current gamescene to load in the main stage.
 	 * @return the current game scene
 	 */
-
 	public Scene getGameScene() {
 		return gameScene;
+	}
+	
+	/**
+	 * Returns the number of coins.
+	 * @return - int, amount of coins
+	 */
+	public int getNumCoins() {
+		return numCoins;
 	}
 
 	@Override
 	public void start(final Stage gameStage) {
 
+	}
+
+	public static StatsManager getStatsManager() {
+		return statsManager;
 	}
 }

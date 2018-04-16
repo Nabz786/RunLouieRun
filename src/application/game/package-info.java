@@ -3,5 +3,5 @@
 *the game engine, as well as sound management.
 *@author Nabeel
 */
-package application.Game;
+package application.game;
 

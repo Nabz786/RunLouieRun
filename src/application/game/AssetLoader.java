@@ -1,4 +1,4 @@
-package application.Game;
+package application.game;
 
 /**
  * Holds and loads all game assets.
@@ -16,16 +16,8 @@ public class AssetLoader {
 	 * Default constructor, calls loadAllAssets().
 	 */
 	public AssetLoader() {
-		loadAllAssets();
 	}
 	
-	/**
-	 * Loads all assets for the entire game.
-	 */
-	private void loadAllAssets() {
-		
-	}
-
 	/**
 	 * Returns width of program window.
 	 * @return width of program window

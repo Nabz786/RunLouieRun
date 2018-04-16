@@ -1,10 +1,10 @@
-package application.Main;
+package application.main;
 
 import java.io.IOException;
 
-import application.Game.AssetLoader;
-import application.Game.Game;
-import application.Game.SoundManager;
+import application.game.AssetLoader;
+import application.game.Game;
+import application.game.SoundManager;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
