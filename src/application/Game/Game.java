@@ -74,10 +74,10 @@ public class Game extends Application {
 	private int spawnInterval = 0;
 
 	/** First Looping background .**/
-	BackGround bG1;
+	private BackGround bG1;
 
 	/** Second looping background.**/
-	BackGround bG2;
+	private BackGround bG2;
 
 	/**
 	 * Constructor for game class. Calls another method to initialize the game
@@ -331,7 +331,7 @@ public class Game extends Application {
 		}
 
 		for(int i = 0; i < anchorList.size(); i++) {
-			if (anchorList.get(i).getPositionX() + 96 < 0) {
+			if (anchorList.get(i).getPositionX() + 96 < 0 || louie.intersects(anchorList.get(i))) {
 				anchorList.remove(i);
 				break;
 			}
