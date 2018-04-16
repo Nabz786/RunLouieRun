@@ -3,6 +3,11 @@ package application.Game;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+/**
+ * Creates a background sprite for the background image,
+ * moves it left to simulate movement incrementally.
+ * @author Nabeel
+ */
 public class BackGround {
 
 	/** The image for the background .**/
@@ -28,7 +33,6 @@ public class BackGround {
 	/**
 	 * Called from Game, renders background's position on the canvas.
 	 * @param gc Graphics Context
-	 * @param deltaDifference Difference in time between current/last frame
 	 */
 	public void render(final GraphicsContext gc) {
 		 gc.drawImage(backGround,
@@ -55,7 +59,7 @@ public class BackGround {
 	 * Sets the background sprite's image.
 	 * @param backGround - image to set
 	 */
-	public void setBackGround(Image backGround) {
+	public void setBackGround(final Image backGround) {
 		this.backGround = backGround;
 	}
 	

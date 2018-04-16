@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import application.Game.SoundManager.Sounds;
 import application.Main.Main;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -129,7 +128,7 @@ public class Game extends Application {
 
 	/**
 	 * Creates new anchor and enemy sprites and adds them to their 
-	 * respective arraylist
+	 * respective arraylist.
 	 */
 	private void spawnEnemy() {
 
@@ -140,14 +139,15 @@ public class Game extends Application {
 			int random = randomSpawn.nextInt(4);
 
 
-			switch(random) {
+			switch (random) {
 			case 1:
 				int spacing = 1;
 				int currentEnemy = enemyList.size();
-				while(currentEnemy <= 2) {
-					int posX = 650 * spacing;
-					System.out.println(posX);
-					enemyList.add(new EvilExam(650*spacing, 275));
+				while (currentEnemy <= 2) {
+					//int posX = 650 * spacing;
+					//System.out.println(posX);
+					enemyList.add(new EvilExam(
+							650 * spacing, 275));
 					currentEnemy++;
 					spacing++;
 				}
@@ -164,11 +164,14 @@ public class Game extends Application {
 			case 3:
 				int anchorSpacing = 1;
 				int currentAnchor = anchorList.size();
-				while(currentAnchor <= 3) {
-					anchorList.add(new Anchor(770*anchorSpacing, 300));
+				while (currentAnchor <= 3) {
+					anchorList.add(new Anchor(770
+							* anchorSpacing, 300));
 					currentAnchor++;
 					anchorSpacing++;
 				}
+				break;
+			default:
 				break;
 
 			}
@@ -217,7 +220,8 @@ public class Game extends Application {
 				assetLoader.getWinHeight());
 
 		gc.drawImage(background, 0, 0);
-		gc.drawImage(new Image(store.getActiveItem().getImage() + 0 + ".png"),
+		gc.drawImage(new Image(store.getActiveItem()
+				.getImage() + 0 + ".png"),
 				32, 244, 142, 140);
 
 		//countdown logic
@@ -231,18 +235,21 @@ public class Game extends Application {
 		//animation for counting
 		Timeline timeline = new Timeline(
 				new KeyFrame(Duration.ZERO,
-						new KeyValue(images.imageProperty(), three)),
+						new KeyValue(images.imageProperty(),
+								three)),
 				new KeyFrame(Duration.seconds(1),
-						new KeyValue(images.imageProperty(), two)),
+						new KeyValue(images.imageProperty(),
+								two)),
 				new KeyFrame(Duration.seconds(2),
-						new KeyValue(images.imageProperty(), one)),
+						new KeyValue(images.imageProperty(),
+								one)),
 				new KeyFrame(Duration.seconds(3),
-						new KeyValue(images.imageProperty(), null)));
+						new KeyValue(images.imageProperty(),
+								null)));
 
 		timeline.play();
 		root.getChildren().add(images);
 
-		//logic was moved inside action handler to wait until countdown was done
 		timeline.onFinishedProperty().set(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent event) {
@@ -257,8 +264,8 @@ public class Game extends Application {
 	private void gameRenderer() {
 		
 		soundManager.playSound(SoundManager.Sounds.Running);
-		bG1 = new BackGround(0,0);
-		bG2 = new BackGround(2200,0);
+		bG1 = new BackGround(0, 0);
+		bG2 = new BackGround(2200, 0);
 		
 		initListener();
 
@@ -286,11 +293,11 @@ public class Game extends Application {
 				manageEnemies(gc, deltaDifference);
 				manageAnchors(gc, deltaDifference);
 
-				for(int i = 0; i < enemyList.size(); i++) {
+				for (int i = 0; i < enemyList.size(); i++) {
 					if (louie.intersects(enemyList.get(i))) {
 						try {
 							Parent root = FXMLLoader.load(
-									getClass().getResource("gameOverScreen.fxml"));
+							getClass().getResource("gameOverScreen.fxml"));
 							Scene mainMenuScene = new Scene(root, 600, 400);
 							Main.setScene(mainMenuScene);
 						} catch (IOException e) {
@@ -305,14 +312,20 @@ public class Game extends Application {
 	}
 
 
-	private void manageEnemies(GraphicsContext gc, double deltaDifference) {
-		for(int i = 0; i < enemyList.size(); i++) {
+	/**
+	 * Renders and checks enemeies for collisions.
+	 * @param gc - graphics context to render sprites
+	 * @param deltaDifference - time difference between frames
+	 */
+	private void manageEnemies(final GraphicsContext gc,
+			final double deltaDifference) {
+		for (int i = 0; i < enemyList.size(); i++) {
 			enemyList.get(i).render(gc, deltaDifference, 96, 96);
 			enemyList.get(i).chargeLeft();
 		}
 
 
-		for(int i = 0; i < enemyList.size(); i++) {
+		for (int i = 0; i < enemyList.size(); i++) {
 			if (enemyList.get(i).getPositionX() + 96 < 0) {
 				enemyList.remove(i);
 				break;
@@ -321,17 +334,18 @@ public class Game extends Application {
 	}
 
 	/**
-	 * Moves and checks whether the anchors have moved beyond the screen
+	 * Moves and checks whether the anchors have moved beyond the screen.
 	 * @param gc - graphics context to render sprites
 	 * @param deltaDifference - time difference between frames
 	 */
-	private void manageAnchors(GraphicsContext gc, double deltaDifference) {
-		for(int i = 0; i < anchorList.size(); i++) {
+	private void manageAnchors(final GraphicsContext gc, 
+			final double deltaDifference) {
+		for (int i = 0; i < anchorList.size(); i++) {
 			anchorList.get(i).render(gc, deltaDifference, 43, 43);
 			anchorList.get(i).chargeLeft();
 		}
 
-		for(int i = 0; i < anchorList.size(); i++) {
+		for (int i = 0; i < anchorList.size(); i++) {
 			if (anchorList.get(i).getPositionX() + 96 < 0) {
 				anchorList.remove(i);
 				break;
@@ -339,21 +353,23 @@ public class Game extends Application {
 		}
 		
 		
-		for(int i = 0; i < anchorList.size(); i++) {
+		for (int i = 0; i < anchorList.size(); i++) {
 			if (anchorList.get(i).intersects(louie)) {
 				anchorList.remove(i);
-				soundManager.playSound(SoundManager.Sounds.CoinPickUp);
+				soundManager.playSound(
+						SoundManager.Sounds.CoinPickUp);
 				break;
 			}
 		}
 	}
 
 	/**
-	 * Renders louie and manages louie jumping
+	 * Renders louie and manages louie jumping.
 	 * @param gc - graphics context to render sprites
 	 * @param deltaDifference - time difference between frames
 	 */
-	private void manageLouie(GraphicsContext gc, double deltaDifference) {
+	private void manageLouie(final GraphicsContext gc,
+			final double deltaDifference) {
 		if (louie.onGround()) {
 			louie.setCanJump();
 			if (input.contains("SPACE")) {
@@ -368,21 +384,23 @@ public class Game extends Application {
 	}
 
 	/**
-	 * Renders both backgrounds, moving them left and swapping positions
+	 * Renders both backgrounds, moving them left and swapping positions.
 	 * once one has moved beyond the left window border
 	 * @param gc - graphics context to render sprites
 	 */
-	private void renderBackgrounds(GraphicsContext gc) {
+	private void renderBackgrounds(final GraphicsContext gc) {
 		bG1.render(gc);
 		bG2.render(gc);
 
 		bG1.moveRight();
 		bG2.moveRight();
 
-		if(bG1.getPositionX() <= -1 * 2200) {
-			bG1.setPosition(bG1.getPositionX() + 2200 * 2, bG1.getPositionY());
-		}else if(bG2.getPositionX() <= -1 * 2200) {
-			bG2.setPosition(bG2.getPositionX() + 2200 * 2, bG2.getPositionY());
+		if (bG1.getPositionX() <= -1 * 2200) {
+			bG1.setPosition(bG1.getPositionX()
+					+ 2200 * 2, bG1.getPositionY());
+		} else if (bG2.getPositionX() <= -1 * 2200) {
+			bG2.setPosition(bG2.getPositionX()
+					+ 2200 * 2, bG2.getPositionY());
 		}
 	}
 

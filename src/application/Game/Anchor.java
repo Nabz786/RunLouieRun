@@ -3,6 +3,11 @@ package application.Game;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
+/**
+ * Anchor class, creates anchors at a specified location 
+ * renders, and provides functionality to move anchors left.
+ * @author Nabeel
+ */
 public class Anchor extends BaseSprite {
 
 	/** How fast to charge louie.**/
