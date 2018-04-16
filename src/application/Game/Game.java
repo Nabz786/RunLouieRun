@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import application.Game.SoundManager.Sounds;
 import application.Main.Main;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -331,8 +332,17 @@ public class Game extends Application {
 		}
 
 		for(int i = 0; i < anchorList.size(); i++) {
-			if (anchorList.get(i).getPositionX() + 96 < 0 || louie.intersects(anchorList.get(i))) {
+			if (anchorList.get(i).getPositionX() + 96 < 0) {
 				anchorList.remove(i);
+				break;
+			}
+		}
+		
+		
+		for(int i = 0; i < anchorList.size(); i++) {
+			if (anchorList.get(i).intersects(louie)) {
+				anchorList.remove(i);
+				soundManager.playSound(SoundManager.Sounds.CoinPickUp);
 				break;
 			}
 		}
