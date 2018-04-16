@@ -89,6 +89,7 @@ public class SoundManager {
 				currentMusic = new Media(new File(runningMusic
 						).toURI().toString());
 				musicPlayer = new MediaPlayer(currentMusic);
+				musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 				musicPlayer.play();
 				break;
 			case Jump:
