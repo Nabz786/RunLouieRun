@@ -20,7 +20,7 @@
         <Image url="@../../../resources/Images/title.png" />
       </image>
     </ImageView>
-    <ImageView fitHeight="140.0" fitWidth="142.0" layoutX="32.0" layoutY="243.9">
+    <ImageView fx:id="startCharImage" fitHeight="140.0" fitWidth="142.0" layoutX="32.0" layoutY="243.9">
       <image>
         <Image url="@../../../resources/Images/starting_Louie.png" />
       </image>
@@ -43,6 +43,13 @@
         </ImageInput>
       </effect>
     </Button>
-    <Button fx:id="storeButton" layoutX="425.0" layoutY="221.0" mnemonicParsing="false" onAction="#initialize" text="Store" />
+    <Button fx:id="storeButton" layoutX="422.0" layoutY="221.0" mnemonicParsing="false" onAction="#initialize" text="Store">
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="@../../../resources/Images/StoreText.png" />
+               </source>
+            </ImageInput>
+         </effect></Button>
   </children>
 </Pane>
