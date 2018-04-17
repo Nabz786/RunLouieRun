@@ -139,10 +139,15 @@ public class Game extends Application {
 		Image[] louieFrames = new Image[3];
 
 		for (int i = 1; i < 4; i++) {
-			//louieFrames[i - 1] = new Image
-			//("file:resources/Images/Finished_Louie" + i + ".png");
-			louieFrames[i - 1] = new Image(shop.getActiveItem()
-					.getImage() + i + ".png");
+
+			if(shop.getActiveItem() == null) {
+				shop.loadPlayerData();
+				louieFrames[i - 1] = new Image(shop.getActiveItem()
+						.getImage() + i + ".png");
+			} else {
+				louieFrames[i - 1] = new Image(shop.getActiveItem()
+						.getImage() + i + ".png");
+			}
 		}
 
 		louie.setFrames(louieFrames);
@@ -246,6 +251,11 @@ public class Game extends Application {
 				assetLoader.getWinHeight());
 
 		gc.drawImage(background, 0, 0);
+		
+		if(shop.getActiveItem() == null) {
+			shop.loadPlayerData();
+		}
+		
 		gc.drawImage(new Image(shop.getActiveItem()
 				.getImage() + 0 + ".png"),
 				32, 244, 142, 140);
