@@ -5,10 +5,13 @@ import java.io.IOException;
 import application.game.AssetLoader;
 import application.game.Game;
 import application.game.SoundManager;
+import application.game.StatsManager;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.fxml.FXMLLoader;
 
 /**
@@ -26,6 +29,10 @@ public class MainMenuController {
 	/** Buttons to start and exit the game. **/
 	@FXML
 	private Button startButton, exitButton, helpButton, storeButton;
+	
+	/** Starting louie character.**/
+	@FXML
+	private ImageView startCharImage;
 
 	/** Sound manager to manage the start menu sound. **/
 	private SoundManager soundManager;
@@ -43,6 +50,8 @@ public class MainMenuController {
 		soundManager = new SoundManager();
 		assetLoader = new AssetLoader();
 		soundManager.playSound(SoundManager.Sounds.MainMenu);
+		startCharImage.setImage(new Image(StatsManager.getShopItem().
+				getImage() + "0.png"));
 
 		//If the start button is hit will start new game
 		startButton.setOnAction(e -> {
