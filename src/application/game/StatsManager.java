@@ -5,15 +5,15 @@ package application.game;
  * @author Nabeel
  *
  */
-public class StatsManager {
+public final class StatsManager {
 
 	/** Number of anchors collected from game .**/
 	private static int numAnchors;
 	
 	/**
-	 * Default constructor sets num anchors to 0
+	 * Default constructor sets num anchors to 0.
 	 */
-	public StatsManager() {
+	private StatsManager() {
 		numAnchors = 0;
 	}
 	
@@ -22,7 +22,7 @@ public class StatsManager {
 	 * has ended.
 	 * @param nAnchors - anchors collected
 	 */
-	public static void setNumCoins(int nAnchors) {
+	public static void setNumCoins(final int nAnchors) {
 		numAnchors += nAnchors;
 	}
 	

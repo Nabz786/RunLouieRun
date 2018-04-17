@@ -22,13 +22,6 @@ public class ShopItem {
 	private String pictureFile;
 	
 	/**
-	 * Creates a new shop item.
-	 */
-	public ShopItem() {
-		new ShopItem(null, 0, null);
-	}
-	
-	/**
 	 * Creates a new shop item with specific attributes.
 	 * @param item - Name of item
 	 * @param pri - Price of item

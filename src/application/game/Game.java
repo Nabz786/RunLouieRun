@@ -49,8 +49,6 @@ public class Game extends Application {
 
 	/** In-game shop object. **/
 	private  Shop shop;
-
-	private static StatsManager statsManager;
 	
 	/** For now we will use a pane as the Parent node. **/
 	private Group root;
@@ -217,9 +215,10 @@ public class Game extends Application {
 		gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(final KeyEvent e) {
 				String code = e.getCode().toString();
-				if(e.getCode() == KeyCode.SPACE) {
+				if (e.getCode() == KeyCode.SPACE) {
 					if (!input.contains(code)) {
-						soundManager.playSound(SoundManager.Sounds.Jump);
+						soundManager.playSound(
+							SoundManager.Sounds.Jump);
 						input.add(code);
 					}
 				}
@@ -463,6 +462,7 @@ public class Game extends Application {
 	
 	/**
 	 * Updates the score label with the current score.
+	 * @param score - the number of anchors collected
 	 */
 	private void updateScoreText(final int score) {
 		scoreLabel.setText(Integer.toString(numCoins));
@@ -473,7 +473,7 @@ public class Game extends Application {
 	 */
 	private void updateDistanceScoreText() {
 		distanceInterval++;
-		if(distanceInterval % 3 == 0) {
+		if (distanceInterval % 3 == 0) {
 			distanceScore++;
 		}
 		
@@ -500,9 +500,5 @@ public class Game extends Application {
 	@Override
 	public void start(final Stage gameStage) {
 
-	}
-
-	public static StatsManager getStatsManager() {
-		return statsManager;
 	}
 }

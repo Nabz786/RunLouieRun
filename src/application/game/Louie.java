@@ -98,7 +98,7 @@ public class Louie extends BaseSprite {
 	 * Returns whether or not louie can jump.
 	 * @return - True (able to jump), False (Unable to jump)
 	 */
-	public boolean CanJump() {
+	public boolean canJump() {
 		return canJump;
 	}
 
@@ -107,7 +107,7 @@ public class Louie extends BaseSprite {
 	 * jump.
 	 * @param canJump - True (able to jump), False (Unable to jump)
 	 */
-	public void setCanJump(boolean canJump) {
+	public void setCanJump(final boolean canJump) {
 		this.canJump = canJump;
 	}
 }
