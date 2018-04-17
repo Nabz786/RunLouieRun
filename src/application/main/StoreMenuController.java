@@ -113,6 +113,9 @@ public class StoreMenuController {
 		});
 	}
 
+	/**
+	 * Switches the imageview to the next item in the item list.
+	 */
 	@FXML
 	private void leftItem() {
 		String imgUrl = getItemLeft();
@@ -121,7 +124,10 @@ public class StoreMenuController {
 
 	}
 
-
+	/**
+	 * Switches the imageview in the opposite direction, moving
+	 * to the next item in the itemlist
+	 */
 	@FXML
 	private void rightItem() {
 		System.out.println("Right");
@@ -133,24 +139,41 @@ public class StoreMenuController {
 
 	}
 
+	/**
+	 * Equips an item that has been unlocked
+	 */
 	@FXML
 	private void equipItem() {
 		System.out.println("Equip");
 	}
 
+	/**
+	 * Allows the user to buy an item if they have the funds,
+	 * will set the bought item to the equppiped item,
+	 * then subtracts cost from users funds.
+	 */
 	@FXML
 	private void buyItem() {
 		shop.buyItem(shopItems.get(iterator));
 		StatsManager.setShopItem(shopItems.get(iterator));
-		
+		playerCoinsLabel.setText("You Have: " + StatsManager.getNumCoins());
 	}
 
+	/**
+	 * Copys all possible items that can be purchased into an
+	 * ArrayList to display in the imageview.
+	 */
 	private void initShopItemList() {
 		for(int i = 0; i < shop.getShopItems().size(); i++) {
 			shopItems.add(shop.getShopItems().get(i));
 		}
 	}
 
+	/**
+	 * Moves to the "left" or next item in the arrayList,
+	 * sending the item to the image view.
+	 * @return Image - Next image in arrayList
+	 */
 	private String getItemLeft() {		
 		iterator++;
 
@@ -164,11 +187,6 @@ public class StoreMenuController {
 		}
 	}
 	
-	private int getIterator() {
-		return iterator;
-	}
-	
-
 	//Needs Fixing
 	private String getItemRight() {
 		iterator--;

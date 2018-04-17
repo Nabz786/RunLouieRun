@@ -14,9 +14,6 @@ import javafx.scene.image.ImageView;
  */
 public class Shop {
 	
-	/** total funds a user has.**/
-	private int funds;
-	
 	/** List to hold all unlockable items.**/
 	private List<ShopItem> shopItems = new ArrayList<ShopItem>();
 	
@@ -31,7 +28,6 @@ public class Shop {
 	 * Creates a new shop and instantiates images.
 	 */
 	public Shop() { 
-		funds = 0;
 		rainbowLouie = new ShopItem("Rainbow Louie", 50,
 					"file:resources/Images/rainbowLouie");
 		goldenLouie = new ShopItem("Golden Louie", 50,
@@ -50,9 +46,6 @@ public class Shop {
 		shopItems.addAll(Arrays.asList(rainbowLouie, goldenLouie, 
 				greenLouie, pinkLouie, patrioticLouie, kingLouie,
 				defaultLouie));
-		
-		
-		
 	}
 	
 	/**
@@ -66,9 +59,8 @@ public class Shop {
 		if (price > StatsManager.getNumCoins()) {
 			System.out.println("Insufficient Funds!");
 		} else {
-			funds = funds - price;
+			StatsManager.storeTransaction(item.getPrice());
 			item.setAvailable(false);
-			equippedItem = item;
 			StatsManager.setShopItem(item);
 		}
 	}
@@ -79,17 +71,6 @@ public class Shop {
 	 */
 	public ShopItem getActiveItem() {
 		return StatsManager.getShopItem();
-	}
-	
-	public void setActiveItem(ShopItem item) {
-		equippedItem = item;
-	}
-	
-	/**
-	 * Saves a player's items that have been unlocked.
-	 */
-	public void savePlayerData() {
-		
 	}
 	
 	/**
