@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.scene.image.ImageView;
+
 /**
  * Main shop class, manages all shop transactions.
  * 
@@ -16,7 +18,7 @@ public class Shop {
 	private int funds;
 	
 	/** List to hold all unlockable items.**/
-	private List<ShopItem> shopitems = new ArrayList<ShopItem>();
+	private List<ShopItem> shopItems = new ArrayList<ShopItem>();
 	
 	/** Current item user has equipped.**/
 	private ShopItem equippedItem;
@@ -24,7 +26,7 @@ public class Shop {
 	/** List of all unlockable items.**/
 	private ShopItem defaultLouie, greenLouie, pinkLouie, rainbowLouie, 
 	goldenLouie, kingLouie, patrioticLouie;
-	
+		
 	/**
 	 * Creates a new shop and instantiates images.
 	 */
@@ -43,13 +45,14 @@ public class Shop {
 		kingLouie = new ShopItem("King Louie", 100,
 				"file:resources/Images/kingLouie_");
 		defaultLouie = new ShopItem("Default Louie", 0,
-				"file:resources/Images/Finished_Louie");
+				"file:resources/Images/defaultLouie_");
 		
-		shopitems.addAll(Arrays.asList(rainbowLouie, goldenLouie, 
+		shopItems.addAll(Arrays.asList(rainbowLouie, goldenLouie, 
 				greenLouie, pinkLouie, patrioticLouie, kingLouie,
 				defaultLouie));
 		
-		equippedItem = defaultLouie;
+		
+		
 	}
 	
 	/**
@@ -57,38 +60,29 @@ public class Shop {
 	 * @param item - item to buy
 	 */
 	public void buyItem(final ShopItem item) {
+		System.out.println("Here");
 		int price = item.getPrice();
-		if (price > funds) {
+		System.out.println("Here");
+		if (price > StatsManager.getNumCoins()) {
 			System.out.println("Insufficient Funds!");
 		} else {
 			funds = funds - price;
 			item.setAvailable(false);
 			equippedItem = item;
+			StatsManager.setShopItem(item);
 		}
 	}
-	
-	/**
-	 * Returns total funds a user has.
-	 * @return - funds a user has
-	 */
-	public int getFunds() {
-		return funds;
-	}
-	
-	/**
-	 * Sets funds for a user.
-	 * @param f - amount of funds to set
-	 */
-	public void setFunds(final int f) {
-		funds += f;
-	}
-	
+		
 	/**
 	 * Returns the current equipped item.
 	 * @return - item that is equipped
 	 */
 	public ShopItem getActiveItem() {
-		return equippedItem;
+		return StatsManager.getShopItem();
+	}
+	
+	public void setActiveItem(ShopItem item) {
+		equippedItem = item;
 	}
 	
 	/**
@@ -102,6 +96,16 @@ public class Shop {
 	 * Loads a players unlocked items.
 	 */
 	public void loadPlayerData() {
-		
+		StatsManager.setShopItem(defaultLouie); 
 	}
+	
+	/**
+	 * Returns an image view of all the items.
+	 * @return Imageview - all store items
+	 */
+	public List<ShopItem> getShopItems() {
+		return shopItems;
+	}
+	
+	
 }
