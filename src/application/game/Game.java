@@ -78,10 +78,10 @@ public class Game extends Application {
 	private int spawnInterval, distanceInterval;
 	
 	/** Number of coins collected.**/
-	private int numCoins;
+	private static int numCoins;
 	
 	/** Traveled distance.**/
-	private int distanceScore;
+	private static int distanceScore;
 	
 	/** First Looping background .**/
 	private BackGround bG1;
@@ -503,7 +503,7 @@ public class Game extends Application {
 	 * Returns the number of coins.
 	 * @return - int, amount of coins
 	 */
-	public int getNumCoins() {
+	public static int getNumCoins() {
 		return numCoins;
 	}
 	
@@ -511,7 +511,7 @@ public class Game extends Application {
 	 * Returns the player's distance.
 	 * @return - int, distance
 	 */
-	public int getDistance(){
+	public static int getDistance(){
 		return distanceScore;
 	}
 
