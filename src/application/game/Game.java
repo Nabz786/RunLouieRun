@@ -506,6 +506,14 @@ public class Game extends Application {
 	public int getNumCoins() {
 		return numCoins;
 	}
+	
+	/**
+	 * Returns the player's distance.
+	 * @return - int, distance
+	 */
+	public int getDistance(){
+		return distanceScore;
+	}
 
 	@Override
 	public void start(final Stage gameStage) {
