@@ -143,8 +143,10 @@ public class StoreMenuController {
 	 */
 	@FXML
 	private void equipItem() {
-		StatsManager.setShopItem(shopItems.get(iterator));
-		soundManager.playSound(SoundManager.Sounds.EquipItem);
+		if(shopItems.get(iterator).isAvailable()) {
+			StatsManager.setShopItem(shopItems.get(iterator));
+			soundManager.playSound(SoundManager.Sounds.EquipItem);
+		}
 	}
 
 	/**
