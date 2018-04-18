@@ -121,7 +121,7 @@ public class StoreMenuController {
 		String imgUrl = getItemLeft();
 		Image whichLouie = new Image(imgUrl + "1.png");
 		itemView.setImage(whichLouie);
-
+		soundManager.playSound(SoundManager.Sounds.StoreArrow);
 	}
 
 	/**
@@ -130,13 +130,10 @@ public class StoreMenuController {
 	 */
 	@FXML
 	private void rightItem() {
-		System.out.println("Right");
-		//					String imgUrl = getItemRight();
-		//					System.out.println(imgUrl);
-		//					System.out.println(imgUrl);
-		//					Image pleaseWork = new Image(imgUrl + "0.png");
-		//					itemView.setImage(pleaseWork);
-
+		String imgUrl = getItemRight();
+		Image whichLouie = new Image(imgUrl + "1.png");
+		itemView.setImage(whichLouie);
+		soundManager.playSound(SoundManager.Sounds.StoreArrow);
 	}
 
 	/**
@@ -176,7 +173,6 @@ public class StoreMenuController {
 	 */
 	private String getItemLeft() {		
 		iterator++;
-
 		if(iterator >= shopItems.size()) {
 			iterator = 0;
 			costLabel.setText("Cost: " + shopItems.get(0).getPrice());
@@ -187,15 +183,19 @@ public class StoreMenuController {
 		}
 	}
 	
-	//Needs Fixing
+	/**
+	 * Moves to the "right" or next item in the arrayList,
+	 * sending the item to the image view.
+	 * @return Image - Next image in arrayList
+	 */
 	private String getItemRight() {
 		iterator--;
-		System.out.println(iterator);
-		System.out.println(shopItems.size());
 		if(iterator < 0) {
 			iterator = 6;
+			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
 			return shopItems.get(iterator).getImage();
 		} else { 
+			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
 			return shopItems.get(iterator).getImage();
 		}
 	}

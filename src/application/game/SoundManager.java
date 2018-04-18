@@ -45,6 +45,15 @@ public class SoundManager {
 	
 	/** Coin pickup sound.**/
 	private String coinPickUp = "resources/Sounds/Coin_PickUp.wav";
+	
+	/** Store button sound. **/
+	private String buttonPress = "resources/Sounds/rightleftbuttonclick.wav";
+	
+	/** Buy item sound. **/
+	private String buyitem = "resources/Sounds/boughtItem.wav";
+	
+	/** Equip item sound. **/
+	private String equipItem = "resources/Sounds/equippedItem.wav";
 
 	/**
 	 * Sets the current sound playing to null.
@@ -74,7 +83,17 @@ public class SoundManager {
 		CountDown,
 		
 		/** Coin Pickup sound effect.**/
-		CoinPickUp
+		CoinPickUp,
+		
+		/** Buy item sound effect.**/
+		BuyItem,
+		
+		/** Equip item sound effect.**/
+		EquipItem,
+		
+		/** Store arrows sound effect.**/
+		StoreArrow
+		
 	}
 	
 	/**
@@ -127,6 +146,24 @@ public class SoundManager {
 						coinPickUp).toURI().toString());
 				soundEffectPlayer = new MediaPlayer(
 						currentSoundEffect);
+				soundEffectPlayer.play();
+				break;
+			case BuyItem:
+				clearCurrentSound();
+				currentSoundEffect = new Media(new File(buyitem).toURI().toString());
+				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				soundEffectPlayer.play();
+				break;
+			case EquipItem:
+				clearCurrentSound();
+				currentSoundEffect = new Media(new File(equipItem).toURI().toString());
+				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				soundEffectPlayer.play();
+				break;
+			case StoreArrow:
+				clearCurrentSound();
+				currentSoundEffect = new Media(new File(buttonPress).toURI().toString());
+				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
 		default:
