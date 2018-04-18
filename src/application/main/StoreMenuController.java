@@ -111,6 +111,8 @@ public class StoreMenuController {
 				e1.printStackTrace();
 			}
 		});
+		
+
 	}
 
 	/**
@@ -141,12 +143,13 @@ public class StoreMenuController {
 	 */
 	@FXML
 	private void equipItem() {
-		System.out.println("Equip");
+		StatsManager.setShopItem(shopItems.get(iterator));
+		soundManager.playSound(SoundManager.Sounds.EquipItem);
 	}
 
 	/**
 	 * Allows the user to buy an item if they have the funds,
-	 * will set the bought item to the equppiped item,
+	 * will set the bought item to the equipped item,
 	 * then subtracts cost from users funds.
 	 */
 	@FXML
@@ -154,7 +157,12 @@ public class StoreMenuController {
 		shop.buyItem(shopItems.get(iterator));
 		StatsManager.setShopItem(shopItems.get(iterator));
 		playerCoinsLabel.setText("You Have: " + StatsManager.getNumCoins());
-	}
+		if(StatsManager.getNumCoins() < shopItems.get(iterator).getPrice()) {
+			soundManager.playSound(SoundManager.Sounds.StoreArrow);
+		}else{
+				StatsManager.setNumCoins(StatsManager.getNumCoins()-shopItems.get(iterator).getPrice());
+			}
+		}
 
 	/**
 	 * Copys all possible items that can be purchased into an

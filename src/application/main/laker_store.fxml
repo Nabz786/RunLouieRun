@@ -52,7 +52,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/C:/Users/Nabeel/Desktop/Coding/Java/RunLouieRun/resources/Images/buy.png" />
+                  <Image url="@../../../resources/Images/buy.png" />
                </source>
             </ImageInput>
          </effect></Button>
@@ -60,7 +60,7 @@
          <effect>
             <ImageInput>
                <source>
-                  <Image url="file:/C:/Users/Nabeel/Desktop/Coding/Java/RunLouieRun/resources/Images/equip.png" />
+                  <Image url="@../../../resources/Images/equip.png" />
                </source>
             </ImageInput>
          </effect></Button>
