@@ -143,9 +143,12 @@ public class StoreMenuController {
 	 */
 	@FXML
 	private void equipItem() {
-		if(shopItems.get(iterator).isAvailable()) {
+		if(!shopItems.get(iterator).isAvailable()) {
 			StatsManager.setShopItem(shopItems.get(iterator));
 			soundManager.playSound(SoundManager.Sounds.EquipItem);
+		}
+		else {
+			soundManager.playSound(SoundManager.Sounds.StoreArrow);
 		}
 	}
 
@@ -162,7 +165,7 @@ public class StoreMenuController {
 		if(StatsManager.getNumCoins() < shopItems.get(iterator).getPrice()) {
 			soundManager.playSound(SoundManager.Sounds.StoreArrow);
 		}else{
-				StatsManager.setNumCoins(StatsManager.getNumCoins()-shopItems.get(iterator).getPrice());
+			soundManager.playSound(SoundManager.Sounds.BuyItem);
 			}
 		}
 
