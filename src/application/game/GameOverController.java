@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 
 /**
@@ -27,6 +28,14 @@ public class GameOverController {
 
    /** Width of the program window. **/
    private AssetLoader assetLoader;
+   
+   /** Label for distance traveled **/
+   @FXML
+   private Label distanceLabel;
+   
+   /** Labels for anchors earned **/
+   @FXML
+   private Label anchorLabel;
 
    
    /**
@@ -35,6 +44,9 @@ public class GameOverController {
     */
    @FXML
    private void initialize() {
+	  distanceLabel.setText( "You made it: " + Game.getDistance() + "m");
+	  anchorLabel.setText("You Earned: " + Game.getNumCoins() + " anchors");
+	  
       soundManager = new SoundManager();
       assetLoader = new AssetLoader();
       soundManager.playSound(SoundManager.Sounds.Death);
@@ -57,5 +69,7 @@ public class GameOverController {
             e1.printStackTrace();
          }
       });
+      
+      
    }
 }
