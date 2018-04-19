@@ -59,6 +59,10 @@ public class StoreMenuController {
 	/** Label to display the amount of coins a user has .**/
 	@FXML
 	private Label playerCoinsLabel;
+	
+	/** item purchased label. **/
+	@FXML
+	private Label purchasedLabel;
 
 	/** Sound manager to manage the start menu sound. **/
 	private SoundManager soundManager;
@@ -140,9 +144,10 @@ public class StoreMenuController {
 	@FXML
 	private void equipItem() {
 		initShopItemList();
-		if (!shopItems.get(iterator).isEquipped()) {
+		if (!shopItems.get(iterator).isEquipped() && shopItems.get(iterator).isPurchased()) {
 			StatsManager.equipItem(shopItems.get(iterator));
 			soundManager.playSound(SoundManager.Sounds.EquipItem);
+			purchasedLabel.setText("Equipped");
 		} else {
 			soundManager.playSound(SoundManager.Sounds.StoreArrow);
 		}
@@ -164,6 +169,7 @@ public class StoreMenuController {
 			soundManager.playSound(SoundManager.Sounds.BuyItem);
 			playerCoinsLabel.setText(
 					"You Have: " + StatsManager.getNumCoins());
+			purchasedLabel.setText("Equipped");
 		}
 	}
 
@@ -173,7 +179,6 @@ public class StoreMenuController {
 	 */
 	private void initShopItemList() {
 		for (int i = 0; i < StatsManager.getShopItems().size(); i++) {
-			//shopItems.add(shop.getShopItems().get(i));
 			shopItems.add(StatsManager.getShopItems().get(i));
 		}
 	}
@@ -190,15 +195,12 @@ public class StoreMenuController {
 			costLabel.setText("Cost: " + shopItems.get(0).getPrice());
 			if (shopItems.get(0).getName() 
 					== StatsManager.getEquippedItem().getName()) {
-				//purchasedLabel.setText("Equipped");
-				System.out.println("Equipped");
+				purchasedLabel.setText("Equipped");
 			} else if (shopItems.get(0).isPurchased() 
 					&& !shopItems.get(iterator).isEquipped()) {
-				//purchasedLabel.setText("Equip Available");
-				System.out.println("Equip Available");
+				purchasedLabel.setText("Equip Available");
 			} else {
-				//purchasedLabel.setText("Not Purchased");
-				System.out.println("Not Purchased");
+				purchasedLabel.setText("Not Purchased");
 			}
 			return shopItems.get(iterator).getImage();
 		} else { 
@@ -207,15 +209,12 @@ public class StoreMenuController {
 			if (shopItems.get(iterator).getName()
 					.equals(StatsManager.getEquippedItem()
 							.getName())) {
-				//purchasedLabel.setText("Equipped");
-				System.out.println("Equipped");
+				purchasedLabel.setText("Equipped");
 			} else if (shopItems.get(iterator).isPurchased() 
 					&& !shopItems.get(iterator).isEquipped()) {
-				//purchasedLabel.setText("Equip Available");
-				System.out.println("Equip Available");
+				purchasedLabel.setText("Equip Available");
 			} else {
-				//purchasedLabel.setText("Not Purchased");
-				System.out.println("Not Purchased");
+				purchasedLabel.setText("Not Purchased");
 			}
 			return shopItems.get(iterator).getImage();
 		}
@@ -235,16 +234,12 @@ public class StoreMenuController {
 			if (shopItems.get(iterator).getName()
 					.equals(StatsManager.getEquippedItem()
 							.getName())) { 
-				//purchasedLabel.setText("Equipped");
-				System.out.println("Equipped");
+				purchasedLabel.setText("Equipped");
 			} else if (shopItems.get(iterator).isPurchased() 
 					&& !shopItems.get(iterator).isEquipped()) {
-				//purchasedLabel.setText("Equip Available");
-				System.out.println("Equip Available");
+				purchasedLabel.setText("Equip Available");
 			} else {
-				//purchasedLabel.setText("Not Purchased");
-				System.out.println("Not purchased");
-
+				purchasedLabel.setText("Not Purchased");
 			}
 			return shopItems.get(iterator).getImage();
 		} else { 
@@ -255,11 +250,9 @@ public class StoreMenuController {
 				System.out.println("Equipped");
 			} else if (shopItems.get(iterator).isPurchased() 
 					&& !shopItems.get(iterator).isEquipped()) {
-				//purchasedLabel.setText("Equip Available");
-				System.out.println("Equip Available");
+				purchasedLabel.setText("Equip Available");
 			} else {
-				//purchasedLabel.setText("Not Purchased");
-				System.out.println("Not purchased");
+				purchasedLabel.setText("Not Purchased");
 			}
 			return shopItems.get(iterator).getImage();
 		}
