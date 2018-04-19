@@ -182,7 +182,7 @@ public class StoreMenuController {
 			shopItems.add(StatsManager.getShopItems().get(i));
 		}
 	}
-
+	
 	/**
 	 * Moves to the "left" or next item in the arrayList,
 	 * sending the item to the image view.

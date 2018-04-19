@@ -86,7 +86,7 @@ public final class StatsManager {
 	 * @param nAnchors - anchors collected
 	 */
 	public static void setNumCoins(final int nAnchors) {
-		numAnchors += nAnchors;
+		numAnchors = nAnchors;
 	}
 
 	/**
@@ -115,6 +115,7 @@ public final class StatsManager {
 		equippedItem = item;
 		System.out.println(equippedItem.getName());
 	}
+	
 
 	/**
 	 * Returns the list of all purchasable items.
@@ -154,6 +155,19 @@ public final class StatsManager {
 				setShopItem(shopItems.get(i));
 				shopItems.get(i).setEquipped(true);
 			}
+		}
+	}
+
+	/**
+	 * Resets game by changing score to zero, and setting all
+	 * items to not purchased or equipped.
+	 */
+	public static void resetGame() {
+		for (int i = 0; i < shopItems.size(); i++) {
+			shopItems.get(i).setEquipped(false);
+			shopItems.get(i).setPurchased(false);
+			StatsManager.setNumCoins(0);
+			StatsManager.setShopItem(defaultLouie);
 		}
 	}
 
