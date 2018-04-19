@@ -1,2 +1,3 @@
-application.Game
-application.Main
+application.game
+application.main
+tests
