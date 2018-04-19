@@ -46,7 +46,8 @@ public class Shop {
 		shopItems.addAll(Arrays.asList(rainbowLouie, goldenLouie, 
 				greenLouie, pinkLouie, patrioticLouie, kingLouie,
 				defaultLouie));
-		defaultLouie.setAvailable(false);
+		defaultLouie.setAvailable(true);
+		StatsManager.setShopItem(defaultLouie);
 	}
 	
 	/**
@@ -85,6 +86,13 @@ public class Shop {
 	 */
 	public List<ShopItem> getShopItems() {
 		return shopItems;
+	}
+	
+	/**
+	 * Sets the active/equipped item.
+	 */
+	public void setActiveItem(ShopItem item) {
+		StatsManager.setShopItem(item);
 	}
 	
 	
