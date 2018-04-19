@@ -11,11 +11,11 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.main.StoreMenuController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="852.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.main.StoreMenuController">
   <children>
     <ImageView id="lakerStore.png">
       <image>
-        <Image preserveRatio="true" smooth="true" url="@../../../resources/Images/lakerStore.png" />
+        <Image url="@../../../resources/Images/lakerStore.png" preserveRatio="true" smooth="true" />
       </image>
     </ImageView>
     <Button fx:id="rightButton" layoutX="479.0" layoutY="341.0" mnemonicParsing="false" onAction="#rightItem" prefHeight="26.0" prefWidth="42.0" text="right">
@@ -49,23 +49,26 @@
       </effect>
     </Button>
     <Button fx:id="buyButton" layoutX="118.0" layoutY="286.0" mnemonicParsing="false" onAction="#buyItem" prefHeight="25.0" prefWidth="61.0" text="Buy">
-         <effect>
-            <ImageInput>
-               <source>
-                  <Image url="@../../../resources/Images/buy.png" />
-               </source>
-            </ImageInput>
-         </effect></Button>
+      <effect>
+        <ImageInput>
+          <source>
+            <Image url="@../../../resources/Images/buy.png" />
+          </source>
+        </ImageInput>
+      </effect>
+    </Button>
     <Button fx:id="equipButton" layoutX="365.0" layoutY="341.0" mnemonicParsing="false" onAction="#equipItem" text="Equip">
-         <effect>
-            <ImageInput>
-               <source>
-                  <Image url="@../../../resources/Images/equip.png" />
-               </source>
-            </ImageInput>
-         </effect></Button>
-      <ImageView fx:id="itemView" fitHeight="160.0" fitWidth="186.0" layoutX="323.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="playerCoinsLabel" layoutX="112.0" layoutY="233.0" text="You Have " textFill="WHITE" />
-      <Label fx:id="costLabel" layoutX="112.0" layoutY="200.0" prefHeight="17.0" prefWidth="77.0" text="Cost " textFill="#fcebeb" />
+      <effect>
+        <ImageInput>
+          <source>
+            <Image url="@../../../resources/Images/equip.png" />
+          </source>
+        </ImageInput>
+      </effect>
+    </Button>
+    <ImageView fx:id="itemView" fitHeight="160.0" fitWidth="186.0" layoutX="323.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
+    <Label fx:id="playerCoinsLabel" layoutX="112.0" layoutY="217.0" prefWidth="121.0" text="You Have " textFill="WHITE" />
+    <Label fx:id="costLabel" layoutX="112.0" layoutY="189.0" prefHeight="24.0" prefWidth="121.0" text="Cost " textFill="#fcebeb" />
+    <Label fx:id="purchasedLabel" layoutX="114.0" layoutY="248.0" prefWidth="121.0" text="" textFill="WHITE" />
   </children>
 </AnchorPane>
