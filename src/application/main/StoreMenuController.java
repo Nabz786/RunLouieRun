@@ -49,12 +49,19 @@ public class StoreMenuController {
 	@FXML
 	private Button equipButton;
 
+	/** item view. **/
 	@FXML
 	private ImageView itemView;
 	
+	/** cost of item label. **/
 	@FXML
 	private Label costLabel;
 	
+	/** item purchased label. **/
+	@FXML
+	private Label purchasedLabel;
+	
+	/** amount of player coins available label. **/
 	@FXML
 	private Label playerCoinsLabel;
 
@@ -143,9 +150,10 @@ public class StoreMenuController {
 	 */
 	@FXML
 	private void equipItem() {
-		if(!shopItems.get(iterator).isAvailable()) {
+		if(shopItems.get(iterator).isAvailable()) {
 			StatsManager.setShopItem(shopItems.get(iterator));
 			soundManager.playSound(SoundManager.Sounds.EquipItem);
+			purchasedLabel.setText("Equipped");
 		}
 		else {
 			soundManager.playSound(SoundManager.Sounds.StoreArrow);
@@ -164,6 +172,7 @@ public class StoreMenuController {
 		playerCoinsLabel.setText("You Have: " + StatsManager.getNumCoins());
 		if(StatsManager.getNumCoins() < shopItems.get(iterator).getPrice()) {
 			soundManager.playSound(SoundManager.Sounds.StoreArrow);
+			costLabel.setText("Insufficient Funds!");
 		}else{
 			soundManager.playSound(SoundManager.Sounds.BuyItem);
 			}
@@ -189,9 +198,21 @@ public class StoreMenuController {
 		if(iterator >= shopItems.size()) {
 			iterator = 0;
 			costLabel.setText("Cost: " + shopItems.get(0).getPrice());
+			if(shopItems.get(0)==shop.getActiveItem())
+				purchasedLabel.setText("Equipped");
+			else if(shopItems.get(0).isAvailable())
+				purchasedLabel.setText("Equip Available");
+			else
+				purchasedLabel.setText("Not Purchased");
 			return shopItems.get(iterator).getImage();
 		} else { 
 			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
+			if(shopItems.get(iterator)==shop.getActiveItem())
+				purchasedLabel.setText("Equipped");
+			else if(shopItems.get(iterator).isAvailable())
+				purchasedLabel.setText("Equip Available");
+			else
+				purchasedLabel.setText("Not Purchased");
 			return shopItems.get(iterator).getImage();
 		}
 	}
@@ -206,9 +227,21 @@ public class StoreMenuController {
 		if(iterator < 0) {
 			iterator = 6;
 			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
+			if(shopItems.get(iterator)==shop.getActiveItem())
+				purchasedLabel.setText("Equipped");
+			else if(shopItems.get(iterator).isAvailable())
+				purchasedLabel.setText("Equip Available");
+			else
+				purchasedLabel.setText("Not Purchased");
 			return shopItems.get(iterator).getImage();
 		} else { 
 			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
+			if(shopItems.get(iterator)==shop.getActiveItem())
+				purchasedLabel.setText("Equipped");
+			else if(shopItems.get(iterator).isAvailable())
+				purchasedLabel.setText("Equip Available");
+			else
+				purchasedLabel.setText("Not Purchased");
 			return shopItems.get(iterator).getImage();
 		}
 	}
