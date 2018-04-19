@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.game.AssetLoader;
-import application.game.Shop;
 import application.game.ShopItem;
 import application.game.SoundManager;
 import application.game.StatsManager;
@@ -49,12 +48,15 @@ public class StoreMenuController {
 	@FXML
 	private Button equipButton;
 
+	/** Image view to display all purchasable items.**/
 	@FXML
 	private ImageView itemView;
-	
+
+	/**Label to display the cost of an item.**/
 	@FXML
 	private Label costLabel;
-	
+
+	/** Label to display the amount of coins a user has .**/
 	@FXML
 	private Label playerCoinsLabel;
 
@@ -63,16 +65,12 @@ public class StoreMenuController {
 
 	/** Asset Manager.**/
 	private AssetLoader assetLoader;
-	
-	/** main link to shop class.**/
-	private Shop shop;
 
 	/** List to hold all shop item images.**/
 	private List<ShopItem> shopItems;
 
 	/** Iterator to traverse shop items.**/
 	private int iterator;
-
 
 	/**
 	 * This method is called after all @FXML annotated members have
@@ -85,12 +83,12 @@ public class StoreMenuController {
 		soundManager = new SoundManager();
 		assetLoader = new AssetLoader();
 		soundManager.playSound(SoundManager.Sounds.MainMenu);
-		shop = new Shop();
 		shopItems = new ArrayList<ShopItem>();
 		initShopItemList();
 		iterator = 0;
 		playerCoinsLabel.setText("You Have: " + StatsManager.getNumCoins());
-		
+		leftItem();
+
 
 		//back button click event returns back to main menu
 		menuButton.setOnAction(e -> {
@@ -98,7 +96,7 @@ public class StoreMenuController {
 
 				Parent root = FXMLLoader.load(
 						getClass().getResource(
-								"MainMenuStyle.fxml"));
+							"MainMenuStyle.fxml"));
 				Scene mainMenuScene = new Scene(
 						root, assetLoader.getWinWidth(),
 						assetLoader.getWinHeight());
@@ -111,8 +109,6 @@ public class StoreMenuController {
 				e1.printStackTrace();
 			}
 		});
-		
-
 	}
 
 	/**
@@ -128,7 +124,7 @@ public class StoreMenuController {
 
 	/**
 	 * Switches the imageview in the opposite direction, moving
-	 * to the next item in the itemlist
+	 * to the next item in the itemlist.
 	 */
 	@FXML
 	private void rightItem() {
@@ -139,15 +135,15 @@ public class StoreMenuController {
 	}
 
 	/**
-	 * Equips an item that has been unlocked
+	 * Equips an item that has been unlocked.
 	 */
 	@FXML
 	private void equipItem() {
-		if(!shopItems.get(iterator).isAvailable()) {
-			StatsManager.setShopItem(shopItems.get(iterator));
+		initShopItemList();
+		if (!shopItems.get(iterator).isEquipped()) {
+			StatsManager.equipItem(shopItems.get(iterator));
 			soundManager.playSound(SoundManager.Sounds.EquipItem);
-		}
-		else {
+		} else {
 			soundManager.playSound(SoundManager.Sounds.StoreArrow);
 		}
 	}
@@ -159,23 +155,26 @@ public class StoreMenuController {
 	 */
 	@FXML
 	private void buyItem() {
-		shop.buyItem(shopItems.get(iterator));
-		StatsManager.setShopItem(shopItems.get(iterator));
-		playerCoinsLabel.setText("You Have: " + StatsManager.getNumCoins());
-		if(StatsManager.getNumCoins() < shopItems.get(iterator).getPrice()) {
+		initShopItemList();
+		if (StatsManager.getNumCoins() 
+				< shopItems.get(iterator).getPrice()) {
 			soundManager.playSound(SoundManager.Sounds.StoreArrow);
-		}else{
+		} else {
+			StatsManager.buyItem(shopItems.get(iterator));
 			soundManager.playSound(SoundManager.Sounds.BuyItem);
-			}
+			playerCoinsLabel.setText(
+					"You Have: " + StatsManager.getNumCoins());
 		}
+	}
 
 	/**
 	 * Copys all possible items that can be purchased into an
 	 * ArrayList to display in the imageview.
 	 */
 	private void initShopItemList() {
-		for(int i = 0; i < shop.getShopItems().size(); i++) {
-			shopItems.add(shop.getShopItems().get(i));
+		for (int i = 0; i < StatsManager.getShopItems().size(); i++) {
+			//shopItems.add(shop.getShopItems().get(i));
+			shopItems.add(StatsManager.getShopItems().get(i));
 		}
 	}
 
@@ -186,16 +185,42 @@ public class StoreMenuController {
 	 */
 	private String getItemLeft() {		
 		iterator++;
-		if(iterator >= shopItems.size()) {
+		if (iterator >= shopItems.size()) {
 			iterator = 0;
 			costLabel.setText("Cost: " + shopItems.get(0).getPrice());
+			if (shopItems.get(0).getName() 
+					== StatsManager.getEquippedItem().getName()) {
+				//purchasedLabel.setText("Equipped");
+				System.out.println("Equipped");
+			} else if (shopItems.get(0).isPurchased() 
+					&& !shopItems.get(iterator).isEquipped()) {
+				//purchasedLabel.setText("Equip Available");
+				System.out.println("Equip Available");
+			} else {
+				//purchasedLabel.setText("Not Purchased");
+				System.out.println("Not Purchased");
+			}
 			return shopItems.get(iterator).getImage();
 		} else { 
-			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
+			costLabel.setText("Cost: " 
+					+ shopItems.get(iterator).getPrice());
+			if (shopItems.get(iterator).getName()
+					.equals(StatsManager.getEquippedItem()
+							.getName())) {
+				//purchasedLabel.setText("Equipped");
+				System.out.println("Equipped");
+			} else if (shopItems.get(iterator).isPurchased() 
+					&& !shopItems.get(iterator).isEquipped()) {
+				//purchasedLabel.setText("Equip Available");
+				System.out.println("Equip Available");
+			} else {
+				//purchasedLabel.setText("Not Purchased");
+				System.out.println("Not Purchased");
+			}
 			return shopItems.get(iterator).getImage();
 		}
 	}
-	
+
 	/**
 	 * Moves to the "right" or next item in the arrayList,
 	 * sending the item to the image view.
@@ -203,12 +228,39 @@ public class StoreMenuController {
 	 */
 	private String getItemRight() {
 		iterator--;
-		if(iterator < 0) {
+		if (iterator < 0) {
 			iterator = 6;
-			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
+			costLabel.setText("Cost: " 
+					+ shopItems.get(iterator).getPrice());
+			if (shopItems.get(iterator).getName()
+					.equals(StatsManager.getEquippedItem()
+							.getName())) { 
+				//purchasedLabel.setText("Equipped");
+				System.out.println("Equipped");
+			} else if (shopItems.get(iterator).isPurchased() 
+					&& !shopItems.get(iterator).isEquipped()) {
+				//purchasedLabel.setText("Equip Available");
+				System.out.println("Equip Available");
+			} else {
+				//purchasedLabel.setText("Not Purchased");
+				System.out.println("Not purchased");
+
+			}
 			return shopItems.get(iterator).getImage();
 		} else { 
-			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
+			costLabel.setText("Cost: " 
+					+ shopItems.get(iterator).getPrice());
+			if (shopItems.get(iterator).getName() 
+					== StatsManager.getEquippedItem().getName()) {
+				System.out.println("Equipped");
+			} else if (shopItems.get(iterator).isPurchased() 
+					&& !shopItems.get(iterator).isEquipped()) {
+				//purchasedLabel.setText("Equip Available");
+				System.out.println("Equip Available");
+			} else {
+				//purchasedLabel.setText("Not Purchased");
+				System.out.println("Not purchased");
+			}
 			return shopItems.get(iterator).getImage();
 		}
 	}
