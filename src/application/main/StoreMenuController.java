@@ -150,7 +150,7 @@ public class StoreMenuController {
 	 */
 	@FXML
 	private void equipItem() {
-		if(shopItems.get(iterator).isAvailable()) {
+		if(!shopItems.get(iterator).isAvailable()) {
 			StatsManager.setShopItem(shopItems.get(iterator));
 			soundManager.playSound(SoundManager.Sounds.EquipItem);
 			purchasedLabel.setText("Equipped");
@@ -167,14 +167,17 @@ public class StoreMenuController {
 	 */
 	@FXML
 	private void buyItem() {
-		shop.buyItem(shopItems.get(iterator));
-		StatsManager.setShopItem(shopItems.get(iterator));
+		//StatsManager.setShopItem(shopItems.get(iterator));
 		playerCoinsLabel.setText("You Have: " + StatsManager.getNumCoins());
-		if(StatsManager.getNumCoins() < shopItems.get(iterator).getPrice()) {
+		if(!shopItems.get(iterator).isAvailable())
+			costLabel.setText("You own this item!");
+		else if(StatsManager.getNumCoins() < shopItems.get(iterator).getPrice()) {
 			soundManager.playSound(SoundManager.Sounds.StoreArrow);
 			costLabel.setText("Insufficient Funds!");
 		}else{
 			soundManager.playSound(SoundManager.Sounds.BuyItem);
+			shop.buyItem(shopItems.get(iterator));
+			purchasedLabel.setText("Equipped");
 			}
 		}
 
@@ -200,7 +203,7 @@ public class StoreMenuController {
 			costLabel.setText("Cost: " + shopItems.get(0).getPrice());
 			if(shopItems.get(0)==shop.getActiveItem())
 				purchasedLabel.setText("Equipped");
-			else if(shopItems.get(0).isAvailable())
+			else if(!shopItems.get(0).isAvailable())
 				purchasedLabel.setText("Equip Available");
 			else
 				purchasedLabel.setText("Not Purchased");
@@ -209,7 +212,7 @@ public class StoreMenuController {
 			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
 			if(shopItems.get(iterator)==shop.getActiveItem())
 				purchasedLabel.setText("Equipped");
-			else if(shopItems.get(iterator).isAvailable())
+			else if(!shopItems.get(iterator).isAvailable())
 				purchasedLabel.setText("Equip Available");
 			else
 				purchasedLabel.setText("Not Purchased");
@@ -229,7 +232,7 @@ public class StoreMenuController {
 			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
 			if(shopItems.get(iterator)==shop.getActiveItem())
 				purchasedLabel.setText("Equipped");
-			else if(shopItems.get(iterator).isAvailable())
+			else if(!shopItems.get(iterator).isAvailable())
 				purchasedLabel.setText("Equip Available");
 			else
 				purchasedLabel.setText("Not Purchased");
@@ -238,7 +241,7 @@ public class StoreMenuController {
 			costLabel.setText("Cost: " + shopItems.get(iterator).getPrice());
 			if(shopItems.get(iterator)==shop.getActiveItem())
 				purchasedLabel.setText("Equipped");
-			else if(shopItems.get(iterator).isAvailable())
+			else if(!shopItems.get(iterator).isAvailable())
 				purchasedLabel.setText("Equip Available");
 			else
 				purchasedLabel.setText("Not Purchased");
