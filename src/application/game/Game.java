@@ -136,14 +136,6 @@ public class Game extends Application {
 
 		for (int i = 1; i < 4; i++) {
 
-//			if(shop.getActiveItem() == null) {
-//				shop.loadPlayerData();
-//				louieFrames[i - 1] = new Image(shop.getActiveItem()
-//						.getImage() + i + ".png");
-//			} else {
-//				louieFrames[i - 1] = new Image(shop.getActiveItem()
-//						.getImage() + i + ".png");
-//			}
 			
 			louieFrames[i - 1] = new Image(StatsManager.getEquippedItem()
 					.getImage() + i + ".png");
