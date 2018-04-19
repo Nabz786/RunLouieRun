@@ -46,11 +46,8 @@ public class Game extends Application {
 
 	/** Asset loader to manage assets.**/
 	private AssetLoader assetLoader;
-
-	/** In-game shop object. **/
-	private  Shop shop;
 	
-	/** For now we will use a pane as the Parent node. **/
+	/**  Root for the Parent node. **/
 	private Group root;
 
 	/** Graphics engine. **/
@@ -102,7 +99,6 @@ public class Game extends Application {
 	public Game() {
 		root = new Group();
 		soundManager = new SoundManager();
-		shop = new Shop();
 		assetLoader = new AssetLoader();
 		enemyList = new ArrayList<EvilExam>();
 		anchorList = new ArrayList<Anchor>();
@@ -115,8 +111,6 @@ public class Game extends Application {
 		deltaDifference = 0.0;
 		spawnInterval = 0;
 		distanceInterval = 0;
-		distanceScore = 0;
-		numCoins = 0;
 	}
 
 	/**
@@ -127,6 +121,8 @@ public class Game extends Application {
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
 		background = new Image("file:resources/Images/background.png");
+		distanceInterval = 0;
+		distanceScore = 0;
 	}
 
 	/**
@@ -140,14 +136,18 @@ public class Game extends Application {
 
 		for (int i = 1; i < 4; i++) {
 
-			if(shop.getActiveItem() == null) {
-				shop.loadPlayerData();
-				louieFrames[i - 1] = new Image(shop.getActiveItem()
-						.getImage() + i + ".png");
-			} else {
-				louieFrames[i - 1] = new Image(shop.getActiveItem()
-						.getImage() + i + ".png");
-			}
+//			if(shop.getActiveItem() == null) {
+//				shop.loadPlayerData();
+//				louieFrames[i - 1] = new Image(shop.getActiveItem()
+//						.getImage() + i + ".png");
+//			} else {
+//				louieFrames[i - 1] = new Image(shop.getActiveItem()
+//						.getImage() + i + ".png");
+//			}
+			
+			louieFrames[i - 1] = new Image(StatsManager.getEquippedItem()
+					.getImage() + i + ".png");
+			
 		}
 
 		louie.setFrames(louieFrames);
@@ -252,13 +252,14 @@ public class Game extends Application {
 
 		gc.drawImage(background, 0, 0);
 		
-		if(shop.getActiveItem() == null) {
-			shop.loadPlayerData();
-		}
+//		if(shop.getActiveItem() == null) {
+//			shop.loadPlayerData();
+//		}
 		
-		gc.drawImage(new Image(shop.getActiveItem()
+		gc.drawImage(new Image(StatsManager.getEquippedItem()
 				.getImage() + 0 + ".png"),
 				32, 244, 142, 140);
+		
 
 		//countdown logic
 		Image one = new Image("file:resources/Images/countdown2.png");
@@ -511,7 +512,7 @@ public class Game extends Application {
 	 * Returns the player's distance.
 	 * @return - int, distance
 	 */
-	public static int getDistance(){
+	public static int getDistance() {
 		return distanceScore;
 	}
 
