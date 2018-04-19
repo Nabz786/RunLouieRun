@@ -46,8 +46,7 @@ public class Shop {
 		shopItems.addAll(Arrays.asList(rainbowLouie, goldenLouie, 
 				greenLouie, pinkLouie, patrioticLouie, kingLouie,
 				defaultLouie));
-		defaultLouie.setAvailable(true);
-		StatsManager.setShopItem(defaultLouie);
+		defaultLouie.setAvailable(false);
 	}
 	
 	/**
@@ -56,10 +55,10 @@ public class Shop {
 	 */
 	public void buyItem(final ShopItem item) {
 		int price = item.getPrice();
-		if (price > StatsManager.getNumCoins()) {
+		if (price > StatsManager.getNumCoins()) 
 			System.out.println("Insufficient Funds!");
-		} else {
-			StatsManager.storeTransaction(item.getPrice());
+		else {
+			StatsManager.storeTransaction(price);
 			item.setAvailable(false);
 			StatsManager.setShopItem(item);
 		}
