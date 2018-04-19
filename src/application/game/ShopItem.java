@@ -15,8 +15,8 @@ public class ShopItem {
 	/** price of shop item.**/
 	private int price;
 	
-	/** whether the item has been sold.**/
-	private boolean sold;
+	/** whether the item is able to be bought.**/
+	private boolean available;
 	
 	/** string of image url for item image .**/
 	private String pictureFile;
@@ -31,7 +31,7 @@ public class ShopItem {
 		name = item;
 		price = pri;
 		pictureFile = louie;
-		sold = false;
+		available = true;
 	}
 	
 	/**
@@ -63,15 +63,15 @@ public class ShopItem {
 	 * @return - can an item be purchased (yes or no)
 	 */
 	public boolean isAvailable() {
-		return sold;
+		return available;
 	}
 	
 	/**
 	 * Sets an items purchased state to true.
 	 * @param bought - item has been bought (true)
 	 */
-	public void setAvailable(final boolean bought) {
-		this.sold = bought;
+	public void setAvailable(final boolean avail) {
+		this.available = avail;
 	}
 	
 	/**
