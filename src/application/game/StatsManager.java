@@ -134,8 +134,8 @@ public final class StatsManager {
 					&& !shopItems.get(i).isEquipped() 
 					&& !shopItems.get(i).isPurchased()) {
 				storeTransaction(item.getPrice());
-				System.out.println("herehere");
 				shopItems.get(i).setPurchased(true);
+				equipItem(item);
 			}
 		}
 	}
@@ -146,8 +146,6 @@ public final class StatsManager {
 	 * @param item to equip
 	 */
 	public static void equipItem(final ShopItem item) {
-
-		System.out.println("This is the equippedItem: " + item.getName());
 		for (int i = 0; i < shopItems.size(); i++) {
 			if (shopItems.get(i).getName().equals(item.getName())
 					&& shopItems.get(i).isPurchased() 
