@@ -12,7 +12,7 @@ public class Anchor extends BaseSprite {
 
 	/** How fast to charge louie.**/
 	private float chargePower = 2.9f;
-	
+		
 	/**
 	 * Constructor to create a sprite and assign it a position.
 	 * On creation the animation of the sprite is also started

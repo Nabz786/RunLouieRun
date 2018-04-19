@@ -1,58 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.main.HelpMenuController">
-  <children>
-    <ImageView fitHeight="400.0" fitWidth="606.0" layoutX="-3.0">
-      <effect>
-        <ColorAdjust brightness="-0.75" />
-      </effect>
-      <image>
-        <Image url="@../../../resources/Images/background.png" />
-      </image>
-    </ImageView>
-    <Text fill="WHITE" layoutX="358.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The object of the game is to run as far as possible! Jump over evil exams and collect anchors to buy items in the shop!" wrappingWidth="227.4482421875" />
-    <Button fx:id="backButton" layoutX="424.0" layoutY="142.0" mnemonicParsing="false" onAction="#initialize" text="BackButton">
-      <effect>
-        <ImageInput>
-          <source>
-            <Image url="@../../../resources/Images/back_text.png" />
-          </source>
-        </ImageInput>
-      </effect>
-    </Button>
-    <ImageView fitHeight="117.0" fitWidth="117.0" layoutX="43.0" layoutY="142.0">
-      <image>
-        <Image url="@../../../resources/Images/Finished_Louie1.png" />
-      </image>
-    </ImageView>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="239.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="292.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="321.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-    <Text fill="WHITE" layoutX="14.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press the spacebar to jump over enemies" wrappingWidth="278.2158203125" />
-    <ImageView fitHeight="140.0" fitWidth="153.0" layoutX="84.0" layoutY="232.0">
-      <image>
-        <Image url="@../../../resources/Images/enemy.png" />
-      </image>
-    </ImageView>
-    <ImageView id="anchor1.png" layoutX="248.0" layoutY="312.0">
-      <image>
-        <Image url="@../../../resources/Images/anchor1.png" preserveRatio="true" smooth="true" />
-      </image>
-    </ImageView>
-    <ImageView id="anchor2.png" layoutX="289.0" layoutY="312.0">
-      <image>
-        <Image url="@../../../resources/Images/anchor2.png" preserveRatio="true" smooth="true" />
-      </image>
-    </ImageView>
-  </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.main.HelpMenuController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="606.0" layoutX="-3.0">
+         <image>
+            <Image url="@../../../resources/Images/background.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="-0.75" />
+         </effect>
+      </ImageView>
+      <Text fill="WHITE" layoutX="358.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The object of the game is to run away from the evil final exams. Try to survive as long as possible." wrappingWidth="227.4482421875" />
+      <Button fx:id="backButton" layoutX="424.0" layoutY="111.0" mnemonicParsing="false" onAction="#initialize" text="BackButton">
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="@../../../resources/Images/back_text.png" />
+               </source>
+            </ImageInput>
+         </effect>
+      </Button>
+      <ImageView fitHeight="117.0" fitWidth="117.0" layoutX="43.0" layoutY="142.0">
+         <image>
+            <Image url="@../../../resources/Images/Finished_Louie1.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="239.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="265.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="292.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="86.0" layoutY="321.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+      <Text fill="WHITE" layoutX="14.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press the spacebar to jump over enemies" wrappingWidth="278.2158203125" />
+      <ImageView fitHeight="140.0" fitWidth="153.0" layoutX="84.0" layoutY="232.0">
+         <image>
+            <Image url="@../../../resources/Images/enemy.png" />
+         </image>
+      </ImageView>
+   </children>
 </Pane>

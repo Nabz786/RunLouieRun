@@ -50,7 +50,7 @@ public class MainMenuController {
 		soundManager = new SoundManager();
 		assetLoader = new AssetLoader();
 		soundManager.playSound(SoundManager.Sounds.MainMenu);
-		startCharImage.setImage(new Image(StatsManager.getShopItem().
+		startCharImage.setImage(new Image(StatsManager.getEquippedItem().
 				getImage() + "0.png"));
 
 		//If the start button is hit will start new game
