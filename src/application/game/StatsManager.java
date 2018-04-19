@@ -14,7 +14,7 @@ public final class StatsManager {
 	private static ShopItem shopItem;
 	
 	/**
-	 * Default constructor
+	 * Default constructor.
 	 */
 	private StatsManager() {
 		
