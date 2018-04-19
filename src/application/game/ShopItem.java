@@ -15,8 +15,8 @@ public class ShopItem {
 	/** price of shop item.**/
 	private int price;
 	
-	/** whether the item is able to be bought.**/
-	private boolean available;
+	/** whether the item has been sold.**/
+	private boolean purchased, equipped;
 	
 	/** string of image url for item image .**/
 	private String pictureFile;
@@ -31,7 +31,8 @@ public class ShopItem {
 		name = item;
 		price = pri;
 		pictureFile = louie;
-		available = true;
+		purchased = false;
+		equipped = false;
 	}
 	
 	/**
@@ -62,16 +63,33 @@ public class ShopItem {
 	 * Returns whether or not an item is available to buy.
 	 * @return - can an item be purchased (yes or no)
 	 */
-	public boolean isAvailable() {
-		return available;
+	public boolean isPurchased() {
+		return purchased;
 	}
 	
 	/**
 	 * Sets an items purchased state to true.
-	 * @param bought - item has been bought (true)
+	 * @param purchased - item has been bought (true)
 	 */
-	public void setAvailable(final boolean avail) {
-		this.available = avail;
+	public void setPurchased(final boolean purchased) {
+		this.purchased = purchased;
+	}
+	
+	/** 
+	 * Returns a boolean value based on whether this item has been 
+	 * equipped.
+	 * @return If this item has been equipped
+	 */
+	public boolean isEquipped() {
+		return equipped;
+	}
+	
+	/**
+	 * Sets an items equipped to state to a specified state.
+	 * @param equipped
+	 */
+	public void setEquipped(final boolean equipped) {
+		this.equipped = equipped;
 	}
 	
 	/**
