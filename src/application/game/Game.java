@@ -110,7 +110,7 @@ public class Game extends Application {
 				
 		deltaDifference = 0.0;
 		spawnInterval = 0;
-		distanceInterval = 0;
+		resetDistanceScores();
 	}
 
 	/**
@@ -121,8 +121,6 @@ public class Game extends Application {
 		root.getChildren().add(canvas);
 		gc = canvas.getGraphicsContext2D();
 		background = new Image("file:resources/Images/background.png");
-		distanceInterval = 0;
-		distanceScore = 0;
 	}
 
 	/**
@@ -135,13 +133,9 @@ public class Game extends Application {
 		Image[] louieFrames = new Image[3];
 
 		for (int i = 1; i < 4; i++) {
-
-			
 			louieFrames[i - 1] = new Image(StatsManager.getEquippedItem()
 					.getImage() + i + ".png");
-			
 		}
-
 		louie.setFrames(louieFrames);
 		louie.setFrameDuration(0.1);
 	}
@@ -153,34 +147,27 @@ public class Game extends Application {
 	private void spawnEnemy() {
 
 		spawnInterval++;
-		//	System.out.println(spawnInterval);
 		if (spawnInterval >= 100) {
 			Random randomSpawn = new Random();
 			int random = randomSpawn.nextInt(4);
-
 
 			switch (random) {
 			case 1:
 				int spacing = 1;
 				int currentEnemy = enemyList.size();
 				while (currentEnemy <= 2) {
-					//int posX = 650 * spacing;
-					//System.out.println(posX);
+
 					enemyList.add(new EvilExam(
 							650 * spacing, 275));
 					currentEnemy++;
 					spacing++;
 				}
 				break;
-
-
-
 			case 2:
 				anchorList.add(new Anchor(800, 300));
 				anchorList.add(new Anchor(900, 300));
 				anchorList.add(new Anchor(1000, 300));
 				break;
-
 			case 3:
 				int anchorSpacing = 1;
 				int currentAnchor = anchorList.size();
@@ -193,13 +180,9 @@ public class Game extends Application {
 				break;
 			default:
 				break;
-
 			}
-
 			spawnInterval = 0;
 		}
-
-		//System.out.print(enemyList.size());
 	}
 
 	/**
@@ -243,11 +226,6 @@ public class Game extends Application {
 				assetLoader.getWinHeight());
 
 		gc.drawImage(background, 0, 0);
-		
-//		if(shop.getActiveItem() == null) {
-//			shop.loadPlayerData();
-//		}
-		
 		gc.drawImage(new Image(StatsManager.getEquippedItem()
 				.getImage() + 0 + ".png"),
 				32, 244, 142, 140);
@@ -311,12 +289,8 @@ public class Game extends Application {
 						(currentDeltaTime - startingTime)
 						/ 1000000000.0;
 
-
-
 				gc.clearRect(0, 0, 700, assetLoader.getWinHeight());
-
-
-
+				
 				renderBackgrounds(gc);
 				manageLouie(gc, deltaDifference);
 				manageEnemies(gc, deltaDifference);
@@ -327,15 +301,16 @@ public class Game extends Application {
 					if (louie.intersects(enemyList.get(i))) {
 						try {
 							Parent root = FXMLLoader.load(
-							getClass().getResource("gameOverScreen.fxml"));
-							Scene mainMenuScene = new Scene(root, 600, 400);
+							getClass()
+						 .getResource("gameOverScreen.fxml"));
+							Scene mainMenuScene 
+							= new Scene(root, 600, 400);
 							Main.setScene(mainMenuScene);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 						StatsManager.setNumCoins(numCoins);
 						stop();
-						System.out.println(StatsManager.getNumCoins());
 						soundManager.stopSound();
 					}
 				}
@@ -484,6 +459,14 @@ public class Game extends Application {
 		distanceScoreLabel.setText(Integer.toString(distanceScore) + "m");
 	}
 
+	/**
+	 * Resets both score counters to 0.
+	 */
+	private void resetDistanceScores() {
+		numCoins = 0;
+		distanceScore = 0;
+	}
+	
 	/**
 	 * Returns the current gamescene to load in the main stage.
 	 * @return the current game scene
