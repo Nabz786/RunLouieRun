@@ -144,7 +144,8 @@ public class StoreMenuController {
 	@FXML
 	private void equipItem() {
 		initShopItemList();
-		if (!shopItems.get(iterator).isEquipped() && shopItems.get(iterator).isPurchased()) {
+		if (!shopItems.get(iterator).isEquipped() 
+				&& shopItems.get(iterator).isPurchased()) {
 			StatsManager.equipItem(shopItems.get(iterator));
 			soundManager.playSound(SoundManager.Sounds.EquipItem);
 			purchasedLabel.setText("Equipped");
@@ -245,8 +246,8 @@ public class StoreMenuController {
 		} else { 
 			costLabel.setText("Cost: " 
 					+ shopItems.get(iterator).getPrice());
-			if (shopItems.get(iterator).getName() 
-					== StatsManager.getEquippedItem().getName()) {
+			if (shopItems.get(iterator).getName().equals(
+					StatsManager.getEquippedItem().getName())) {
 				System.out.println("Equipped");
 			} else if (shopItems.get(iterator).isPurchased() 
 					&& !shopItems.get(iterator).isEquipped()) {

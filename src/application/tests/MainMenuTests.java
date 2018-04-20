@@ -1,21 +1,27 @@
-package tests;
-
-import static org.junit.Assert.*;
+package application.tests;
 
 import org.junit.Test;
-import org.junit.Assert;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.api.FxRobotException;
 import static org.testfx.api.FxAssert.verifyThat;
-import org.testfx.matcher.base.NodeMatchers;
 
+/**
+ * Test cases to validate the elements on the main menu.
+ * @author Nabeel
+ */
 public class MainMenuTests extends GameTestsBase {
 
+	/**
+	 * False test to check for a non-existant element.
+	 */
 	@Test(expected = FxRobotException.class)
 	public void clickFakeElement() {
 		clickOn("#LeaveGame");
 	}
 
+	/**
+	 * Verifies all components on the main menu exist.
+	 */
 	@Test
 	public void verifyAllComponents() {
 		verifyThat("#startButton", NodeMatchers.hasChild("start"));
@@ -23,6 +29,9 @@ public class MainMenuTests extends GameTestsBase {
 		verifyThat("#storeButton", NodeMatchers.hasChild("Store"));
 	}
 
+	/**
+	 * Verifies all components on the main menu exist after switching scenes.
+	 */
 	@Test
 	public void verifyAllComponentsAfterHelpClick() {
 		clickOn("#helpButton");
@@ -32,6 +41,10 @@ public class MainMenuTests extends GameTestsBase {
 		verifyThat("#storeButton", NodeMatchers.hasChild("Store"));
 	}
 
+	/**
+	 * Verifies all components exist on the main menu after switching scenes
+	 * to the shop.
+	 */
 	@Test
 	public void verifyAllComponentsAfterStoreClick() {
 		clickOn("#storeButton");
@@ -40,5 +53,4 @@ public class MainMenuTests extends GameTestsBase {
 		verifyThat("#helpButton", NodeMatchers.hasChild("Button"));
 		verifyThat("#storeButton", NodeMatchers.hasChild("Store"));
 	}
-
 }

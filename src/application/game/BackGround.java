@@ -22,8 +22,8 @@ public class BackGround {
 	/**
 	 * Constructor creates a new background image at specified
 	 * x,y position.
-	 * @param positionX - X coord to place background
-	 * @param positionY - Y coord to place background
+	 * @param positionX X coord to place background
+	 * @param positionY Y coord to place background
 	 */
 	public BackGround(final double positionX, final double positionY) {
 		setPosition(positionX, positionY);
@@ -49,7 +49,7 @@ public class BackGround {
 
 	/**
 	 * Returns the background image.
-	 * @return - Image of background
+	 * @return Image of background
 	 */
 	public Image getBackGround() {
 		return backGround;
@@ -57,7 +57,7 @@ public class BackGround {
 
 	/**
 	 * Sets the background sprite's image.
-	 * @param backGround - image to set
+	 * @param backGround image to set
 	 */
 	public void setBackGround(final Image backGround) {
 		this.backGround = backGround;
@@ -65,8 +65,8 @@ public class BackGround {
 	
 	/**
 	 * Sets the position of a sprite manually.
-	 * @param x - x coordinate on screen 
-	 * @param y - y coordinate on screen
+	 * @param x x coordinate on screen 
+	 * @param y y coordinate on screen
 	 */
 	public void setPosition(final double x, final double y) {
         positionX = x;

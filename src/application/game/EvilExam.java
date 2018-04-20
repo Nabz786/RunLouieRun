@@ -17,8 +17,8 @@ public class EvilExam extends BaseSprite {
 	/**
 	 * Constructor to create a sprite and assign it a position.
 	 * On creation the animation of the sprite is also started
-	 * @param positionX - X coordinate of the sprite 
-	 * @param positionY - Y coordinate of the sprite
+	 * @param positionX X coordinate of the sprite 
+	 * @param positionY Y coordinate of the sprite
 	 */
 	public EvilExam(final double positionX, final double positionY) {
 		super(positionX, positionY);

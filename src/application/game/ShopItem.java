@@ -23,9 +23,9 @@ public class ShopItem {
 	
 	/**
 	 * Creates a new shop item with specific attributes.
-	 * @param item - Name of item
-	 * @param pri - Price of item
-	 * @param louie - specified skin
+	 * @param item Name of item
+	 * @param pri Price of item
+	 * @param louie specified skin
 	 */
 	public ShopItem(final String item, final int pri, final String louie) {
 		name = item;
@@ -37,7 +37,7 @@ public class ShopItem {
 	
 	/**
 	 * Returns image url for a skin.
-	 * @return - image url for a skin
+	 * @return image url for a skin
 	 */
 	public String getImage() {
 		return pictureFile;
@@ -45,7 +45,7 @@ public class ShopItem {
 	
 	/**
 	 * Returns price of item.
-	 * @return - price of item
+	 * @return price of item
 	 */
 	public int getPrice() {
 		return price;
@@ -53,7 +53,7 @@ public class ShopItem {
 	
 	/**
 	 * Returns name of item to purchase.
-	 * @return - name of purchased item
+	 * @return name of purchased item
 	 */
 	public String getName() {
 		return name;
@@ -61,7 +61,7 @@ public class ShopItem {
 	
 	/**
 	 * Returns whether or not an item is available to buy.
-	 * @return - can an item be purchased (yes or no)
+	 * @return can an item be purchased (yes or no)
 	 */
 	public boolean isPurchased() {
 		return purchased;
@@ -69,7 +69,7 @@ public class ShopItem {
 	
 	/**
 	 * Sets an items purchased state to true.
-	 * @param purchased - item has been bought (true)
+	 * @param purchased item has been bought (true)
 	 */
 	public void setPurchased(final boolean purchased) {
 		this.purchased = purchased;
@@ -86,7 +86,7 @@ public class ShopItem {
 	
 	/**
 	 * Sets an items equipped to state to a specified state.
-	 * @param equipped
+	 * @param equipped Value used to update the items equipped state.
 	 */
 	public void setEquipped(final boolean equipped) {
 		this.equipped = equipped;
@@ -94,7 +94,7 @@ public class ShopItem {
 	
 	/**
 	 * Sets price of an item. 
-	 * @param cost -  price to set
+	 * @param cost price to set
 	 */
 	public void setPrice(final int cost) {
 		this.price = cost;
@@ -102,7 +102,7 @@ public class ShopItem {
 	
 	/**
 	 * Renames an item.
-	 * @param rename - new item name
+	 * @param rename new item name
 	 */
 	public void rename(final String rename) {
 		this.name = rename;

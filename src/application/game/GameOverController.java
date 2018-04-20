@@ -29,11 +29,11 @@ public class GameOverController {
    /** Width of the program window. **/
    private AssetLoader assetLoader;
    
-   /** Label for distance traveled **/
+   /** Label for distance traveled.**/
    @FXML
    private Label distanceLabel;
    
-   /** Labels for anchors earned **/
+   /** Labels for anchors earned.**/
    @FXML
    private Label anchorLabel;
 
@@ -44,7 +44,7 @@ public class GameOverController {
     */
    @FXML
    private void initialize() {
-	  distanceLabel.setText( "You made it: " + Game.getDistance() + "m");
+	  distanceLabel.setText("You made it: " + Game.getDistance() + "m");
 	  anchorLabel.setText("You Earned: " + Game.getNumCoins() + " anchors");
 	  
       soundManager = new SoundManager();
@@ -68,8 +68,6 @@ public class GameOverController {
          } catch (IOException e1) {
             e1.printStackTrace();
          }
-      });
-      
-      
+      }); 
    }
 }

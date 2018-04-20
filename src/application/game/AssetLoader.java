@@ -28,7 +28,7 @@ public class AssetLoader {
 	
 	/**
 	 * Returns height of program window.
-	 * @return height, height of program window
+	 * @return height height of program window
 	 */
 	public int getWinHeight() {
 		return HEIGHT;

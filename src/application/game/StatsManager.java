@@ -22,7 +22,7 @@ public final class StatsManager {
 	private static ShopItem equippedItem;
 
 	/** Static list to hold all purchasable items.**/
-	private static final List<ShopItem> shopItems = new ArrayList<ShopItem>();
+	private static final List<ShopItem> SHOP_ITEMS = new ArrayList<ShopItem>();
 
 	static {
 		rainbowLouie = new ShopItem("Rainbow Louie", 50,
@@ -40,7 +40,7 @@ public final class StatsManager {
 		defaultLouie = new ShopItem("Default Louie", 0,
 				"file:resources/Images/defaultLouie_");
 
-		shopItems.addAll(Arrays.asList(rainbowLouie, goldenLouie, 
+		SHOP_ITEMS.addAll(Arrays.asList(rainbowLouie, goldenLouie, 
 				greenLouie, pinkLouie, patrioticLouie, kingLouie,
 				defaultLouie));
 
@@ -54,9 +54,9 @@ public final class StatsManager {
 	 * @return Item that is equipped
 	 */
 	public static ShopItem getEquippedItem() {
-		for (int i = 0; i < shopItems.size(); i++) {
-			if (shopItems.get(i).isEquipped()) {
-				equippedItem = shopItems.get(i);
+		for (int i = 0; i < SHOP_ITEMS.size(); i++) {
+			if (SHOP_ITEMS.get(i).isEquipped()) {
+				equippedItem = SHOP_ITEMS.get(i);
 			}
 		}
 		return equippedItem;
@@ -67,32 +67,25 @@ public final class StatsManager {
 	 * unavailable state.
 	 */
 	private static void setAllNotBoughtAvailble() {
-		for (int i = 0; i < shopItems.size(); i++) {
-			shopItems.get(i).setPurchased(false);
-			shopItems.get(i).setEquipped(false);
+		for (int i = 0; i < SHOP_ITEMS.size(); i++) {
+			SHOP_ITEMS.get(i).setPurchased(false);
+			SHOP_ITEMS.get(i).setEquipped(false);
 		}
-	}
-
-	/**
-	 * Default constructor.
-	 */
-	private StatsManager() {
-
 	}
 
 	/**
 	 * Increments the number of collected anchors when the game
 	 * has ended.
-	 * @param nAnchors - anchors collected
+	 * @param nAnchors anchors collected
 	 */
 	public static void setNumCoins(final int nAnchors) {
-		numAnchors = nAnchors;
+		numAnchors += nAnchors;
 	}
 
 	/**
 	 * If the user purchased an item, we will subtract the cost of
 	 * the item from the users to total funds.
-	 * @param withdrawnCoins - Amount to remove from users funds
+	 * @param withdrawnCoins Amount to remove from users funds
 	 */
 	public static void storeTransaction(final int withdrawnCoins) {
 		numAnchors = numAnchors - withdrawnCoins;
@@ -100,7 +93,7 @@ public final class StatsManager {
 
 	/**
 	 * Returns the total number of anchors collected.
-	 * @return int - number of collected anchors
+	 * @return int number of collected anchors
 	 */
 	public static int getNumCoins() {
 		return numAnchors;
@@ -108,7 +101,7 @@ public final class StatsManager {
 
 	/**
 	 * Sets a new active item for the users equipped item.
-	 * @param item - item that is to be equipped.
+	 * @param item item that is to be equipped.
 	 */
 	public static void setShopItem(final ShopItem item) {
 		equippedItem = null;
@@ -122,7 +115,7 @@ public final class StatsManager {
 	 * @return List of all purchasable items
 	 */
 	public static List<ShopItem> getShopItems() {
-		return shopItems;
+		return SHOP_ITEMS;
 	}
 
 	/**
@@ -130,12 +123,12 @@ public final class StatsManager {
 	 * @param item to be purchased
 	 */
 	public static void buyItem(final ShopItem item) {
-		for (int i = 0; i < shopItems.size(); i++) {
-			if (shopItems.get(i).getName().equals(item.getName()) 
-					&& !shopItems.get(i).isEquipped() 
-					&& !shopItems.get(i).isPurchased()) {
+		for (int i = 0; i < SHOP_ITEMS.size(); i++) {
+			if (SHOP_ITEMS.get(i).getName().equals(item.getName()) 
+					&& !SHOP_ITEMS.get(i).isEquipped() 
+					&& !SHOP_ITEMS.get(i).isPurchased()) {
 				storeTransaction(item.getPrice());
-				shopItems.get(i).setPurchased(true);
+				SHOP_ITEMS.get(i).setPurchased(true);
 				equipItem(item);
 			}
 		}
@@ -147,13 +140,13 @@ public final class StatsManager {
 	 * @param item to equip
 	 */
 	public static void equipItem(final ShopItem item) {
-		for (int i = 0; i < shopItems.size(); i++) {
-			if (shopItems.get(i).getName().equals(item.getName())
-					&& shopItems.get(i).isPurchased() 
-					&& !shopItems.get(i).isEquipped()) {
+		for (int i = 0; i < SHOP_ITEMS.size(); i++) {
+			if (SHOP_ITEMS.get(i).getName().equals(item.getName())
+					&& SHOP_ITEMS.get(i).isPurchased() 
+					&& !SHOP_ITEMS.get(i).isEquipped()) {
 				setAllItemsNotEquipped();
-				setShopItem(shopItems.get(i));
-				shopItems.get(i).setEquipped(true);
+				setShopItem(SHOP_ITEMS.get(i));
+				SHOP_ITEMS.get(i).setEquipped(true);
 			}
 		}
 	}
@@ -163,9 +156,9 @@ public final class StatsManager {
 	 * items to not purchased or equipped.
 	 */
 	public static void resetGame() {
-		for (int i = 0; i < shopItems.size(); i++) {
-			shopItems.get(i).setEquipped(false);
-			shopItems.get(i).setPurchased(false);
+		for (int i = 0; i < SHOP_ITEMS.size(); i++) {
+			SHOP_ITEMS.get(i).setEquipped(false);
+			SHOP_ITEMS.get(i).setPurchased(false);
 			StatsManager.setNumCoins(0);
 			StatsManager.setShopItem(defaultLouie);
 		}
@@ -175,8 +168,8 @@ public final class StatsManager {
 	 * Sets all purchasable item's equipped state to false.
 	 */
 	private static void setAllItemsNotEquipped() {
-		for (int i = 0; i < shopItems.size(); i++) {
-			shopItems.get(i).setEquipped(false);
+		for (int i = 0; i < SHOP_ITEMS.size(); i++) {
+			SHOP_ITEMS.get(i).setEquipped(false);
 		}
 	}
 }

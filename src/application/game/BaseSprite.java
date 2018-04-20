@@ -40,10 +40,10 @@ public class BaseSprite {
 	
 	/**
 	 * Called every time graphics context is called to update the sprite.
-	 * @param gc - Graphics context 
-	 * @param deltaDifference - Difference in time between frames
-	 * @param defaultImgWidth - The default width to set an image 
-	 * @param defaultImgHeight - The default height to set an image
+	 * @param gc Graphics context 
+	 * @param deltaDifference Difference in time between frames
+	 * @param defaultImgWidth The default width to set an image 
+	 * @param defaultImgHeight The default height to set an image
 	 */
 	public void render(final GraphicsContext gc, 
 			final double deltaDifference, 
@@ -56,8 +56,8 @@ public class BaseSprite {
 	
 	/**
 	 * Sets the position of a sprite manually.
-	 * @param x - x coordinate on screen 
-	 * @param y - y coordinate on screen
+	 * @param x x coordinate on screen 
+	 * @param y y coordinate on screen
 	 */
 	public void setPosition(final double x, final double y) {
         positionX = x;
@@ -91,7 +91,7 @@ public class BaseSprite {
 
 	/**
 	 * Checks if this sprites rectangle intersects with another sprite.
-	 * @param s - Sprite to check if collision occurred
+	 * @param s Sprite to check if collision occurred
 	 * @return Whether or not a collision occurred
 	 */
 	public boolean intersects(final BaseSprite s) {
@@ -100,16 +100,16 @@ public class BaseSprite {
 	
 	/**
 	 * Sets the duration to display each frame for the sprite animation.
-	 * @param frameDuration - Duration to display each frame
+	 * @param frameDuration Duration to display each frame
 	 */
 	public void setFrameDuration(final double frameDuration) {
 		this.dispayDuration = frameDuration;
 	}
 	
 	/**
-	 * Assigns each image for animation in a remote array to the. 
-	 * sprites array
-	 * @param frames - All images for animation
+	 * Assigns each image for animation in a remote array to the
+	 * sprites array.
+	 * @param frames All images for animation
 	 */
 	public void setFrames(final Image[] frames) {
 		this.frames = frames;
@@ -118,7 +118,7 @@ public class BaseSprite {
 	/**
 	 * Returns each the index for a respective frame by incorporating.
 	 * change in time within the game engine
-	 * @param deltaTime - change in time between current and last frame
+	 * @param deltaTime change in time between current and last frame
 	 * @return Next image to draw
 	 */
 	public Image getCurrentFrame(final double deltaTime) {

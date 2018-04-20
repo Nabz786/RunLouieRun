@@ -99,7 +99,7 @@ public class SoundManager {
 	/**
 	 * Takes in a sound(type) as input then plays the 
 	 * corresponding audio file. 
-	 * @param sound - the sound to play
+	 * @param sound the sound to play
 	 */
 	public void playSound(final Sounds sound) {
 		switch (sound) {
@@ -150,20 +150,28 @@ public class SoundManager {
 				break;
 			case BuyItem:
 				clearCurrentSound();
-				currentSoundEffect = new Media(new File(buyitem).toURI().toString());
-				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				currentSoundEffect = new Media(
+						new File(buyitem).toURI().toString());
+				soundEffectPlayer = 
+						new MediaPlayer(currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
 			case EquipItem:
 				clearCurrentSound();
-				currentSoundEffect = new Media(new File(equipItem).toURI().toString());
-				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				currentSoundEffect = new Media(
+						new File(equipItem)
+						.toURI().toString());
+				soundEffectPlayer = 
+						new MediaPlayer(currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
 			case StoreArrow:
 				clearCurrentSound();
-				currentSoundEffect = new Media(new File(buttonPress).toURI().toString());
-				soundEffectPlayer = new MediaPlayer(currentSoundEffect);
+				currentSoundEffect = new Media(
+						new File(buttonPress)
+						.toURI().toString());
+				soundEffectPlayer = 
+						new MediaPlayer(currentSoundEffect);
 				soundEffectPlayer.play();
 				break;
 		default:

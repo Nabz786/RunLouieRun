@@ -23,15 +23,14 @@ public class Main extends Application {
 	AssetLoader assetLoader;
 
 	/** Stage for the primary stage which will be the main-window. **/
-	public static Stage mainWindow;
+	private static Stage mainWindow;
 
 	/** The first scene that loads upon running the program. **/
 	private Scene mainMenuScene;
 	
-	
 	/**
     * This method starts the game.
-    * @param primaryStage - the graphics context for the panel
+    * @param primaryStage the graphics context for the panel
     */
 	@Override
 	public final void start(final Stage primaryStage) throws IOException {
@@ -69,7 +68,7 @@ public class Main extends Application {
 
 	/*****************************************************************
 	* This method is the main method that will launch the application.
-	* @param args -
+	* @param args String arguments
     *****************************************************************/
 	public static void main(final String[] args) {
 		launch(args);

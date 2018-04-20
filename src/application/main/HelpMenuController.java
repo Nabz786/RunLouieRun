@@ -21,7 +21,6 @@ import javafx.scene.control.Button;
 
 public class HelpMenuController {
 
-		
 		/**Button to return to main menu. **/
 		@FXML
 		private Button backButton;
